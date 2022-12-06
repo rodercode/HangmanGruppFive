@@ -3,6 +3,6 @@ module com.example.hangmangruppfive {
     requires javafx.fxml;
 
 
-    opens com.example.hangmangruppfive to javafx.fxml;
-    exports com.example.hangmangruppfive;
+    opens Game to javafx.fxml;
+    exports Game;
 }

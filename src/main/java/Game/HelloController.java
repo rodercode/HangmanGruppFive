@@ -1,4 +1,4 @@
-package com.example.hangmangruppfive;
+package Game;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
