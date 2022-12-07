@@ -1,6 +1,6 @@
 package Temples;
 
-public class AddPictureToScene {
+public class AddImage {
 //    @FXML
 //    ImageView imageView;
 //    Button myButton;
