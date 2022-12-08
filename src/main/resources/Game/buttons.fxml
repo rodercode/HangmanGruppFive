@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.MouseInput">
    <children>
-      <AnchorPane layoutX="283.0" layoutY="554.0" prefHeight="200.0" prefWidth="457.0">
+      <AnchorPane layoutX="283.0" layoutY="554.0" prefHeight="200.0" prefWidth="482.0">
          <children>
             <TilePane layoutX="65.0" layoutY="111.0" prefHeight="81.0" prefWidth="327.0">
                <children>
                   <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#buttonQ" prefHeight="25.0" prefWidth="26.0" text="Q" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="W" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="28.0" text="W" />
                   <Button mnemonicParsing="false" text="E" />
                   <Button mnemonicParsing="false" text="R" />
                   <Button mnemonicParsing="false" text="T" />
