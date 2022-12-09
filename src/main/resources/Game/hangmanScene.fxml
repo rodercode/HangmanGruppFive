@@ -11,5 +11,6 @@
             fx:controller="Game.ControlHangmanScene"
             prefHeight="400.0" prefWidth="600.0">
     <fx:include source="buttons.fxml"/>
+    <fx:include source="userInput.fxml"/>
 
 </AnchorPane>
