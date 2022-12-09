@@ -17,7 +17,11 @@ public class Word {
 
     public void btn() {
         String word = userInput.getText();
-        wordToGuess.setText(word);
+        String hiddenWord = "";
+        for (int i = 0; i <word.length() ; i++) {
+            hiddenWord = hiddenWord + "*";
+        }
+        wordToGuess.setText(hiddenWord);
     }
 
 
