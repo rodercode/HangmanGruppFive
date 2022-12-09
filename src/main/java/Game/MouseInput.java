@@ -14,11 +14,14 @@ public class MouseInput {
     @FXML
     private Text theWordField;
 
+    private String theWord;
+
     public void buttonQ() {
         guess.setText("Q");
     }
 
     public void getUserInput(ActionEvent actionEvent) {
+
     }
 }
 
