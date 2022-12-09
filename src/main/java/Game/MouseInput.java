@@ -8,13 +8,7 @@ import javafx.scene.text.Text;
 
 public class MouseInput {
     @FXML
-    private Label testText;
-    @FXML
     private TextField guess;
-    @FXML
-    private Text theWordField;
-
-    private String theWord;
 
     public void buttonQ() {
         guess.setText("Q");
