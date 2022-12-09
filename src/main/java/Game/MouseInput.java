@@ -8,10 +8,19 @@ import javafx.scene.text.Text;
 
 public class MouseInput {
     @FXML
-    private TextField guess;
+    private TextField textField;
 
     public void buttonQ() {
-        guess.setText("Q");
+        textField.appendText("Q");
+    }
+    public void buttonW() {
+        textField.appendText("W");
+    }
+    public void buttonE() {
+        textField.appendText("E");
+    }
+    public void buttonR() {
+        textField.appendText("R");
     }
 
     public void getUserInput(ActionEvent actionEvent) {
