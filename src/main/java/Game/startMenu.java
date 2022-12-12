@@ -2,29 +2,51 @@ package Game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class startMenu implements Initializable {
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.getListOfWords();
-    }
     private Database database;
-    private int currentplayer;
+    private int currentPlayer;
 
     public startMenu() {
         database = Database.getInstance();
-        currentplayer = 1;
-
+        currentPlayer = 1;
     }
+
+    @FXML
+    public void pressPlayBtn() throws IOException {
+        enterWord();
+        if (data.getListOfWords().size() == 2) {
+
+        }
+    }
+
+    public void changePlayer() throws IOException {
+        player.setText("Player Two: Enter A Word");
+        userInput.setText("");
+    }
+
+
+
+    public boolean checkIfInputIsValid() {
+        return !userInput.getText().equals("");
+    }
+
+
+
     @FXML
     private Label popUpLabel;
     @FXML
@@ -33,10 +55,24 @@ public class startMenu implements Initializable {
     @FXML
     private Label Player;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        database.getListOfWords();
+    }
+
+    public void enterWord() throws IOException {
+        if (checkIfInputIsValid()) {
+            data.addWord(userInput.getText().toLowerCase());
+            changePlayer();
+        } else {
+            popUpLabel.setText("Incorrect Word");
+            System.out.println("Fail");
+        }
+    }
     @FXML
     public void startGameButton(ActionEvent actionEvent) {
 
-        if(userInput.getText().equals("")){
+        if(checkIfInputIsValid()){
             popUpLabel.setText("Incorrect Word");
             System.out.println("Fail");
 
