@@ -1,11 +1,11 @@
 package Game;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,12 +16,34 @@ public class GameViewControl implements Initializable {
 
    @Override
    public void initialize(URL url, ResourceBundle resourceBundle) {
-      System.out.println(data.getListOfWords());
+      currentPlayer.setAlignment(Pos.CENTER);
+      wordGuess.setAlignment(Pos.CENTER);
+      mistake.setAlignment(Pos.CENTER);
    }
-
    public GameViewControl() {
       data = Database.getInstance();
    }
+
+   @FXML
+   private Label currentPlayer;
+   @FXML
+   private TextField userInput;
+
+   @FXML
+   private Label wordGuess;
+   @FXML
+   private Label mistake;
+
+   @FXML
+   public void button() {
+      String word = userInput.getText();
+      String hiddenWord = " ";
+      for (int i = 0; i <word.length() ; i++) {
+         hiddenWord = hiddenWord + " _ ";
+      }
+      wordGuess.setText(hiddenWord);
+   }
+
 
    @FXML
    public void buttonQ() {
@@ -39,34 +61,105 @@ public class GameViewControl implements Initializable {
    public void buttonR() {
       userInput.appendText("R");
    }
-
    @FXML
-   private TextField userInput;
-
+   public void buttonT() {
+      userInput.appendText("T");
+   }
    @FXML
-   private Label wordGuess;
-
+   public void buttonY() {
+      userInput.appendText("Y");
+   }
    @FXML
-   public void button() {
-      String word = userInput.getText();
-      String hiddenWord = " ";
-      for (int i = 0; i <word.length() ; i++) {
-         hiddenWord = hiddenWord + " _ ";
-      }
-      wordGuess.setText(hiddenWord);
+   public void buttonU() {
+      userInput.appendText("U");
+   }
+   @FXML
+   public void buttonI() {
+      userInput.appendText("I");
+   }
+   @FXML
+   public void buttonO() {
+      userInput.appendText("O");
+   }
+   @FXML
+   public void buttonP() {
+      userInput.appendText("P");
+   }
+   @FXML
+   public void buttonÅ() {
+      userInput.appendText("Å");
+   }
+   @FXML
+   public void buttonA() {
+      userInput.appendText("A");
+   }
+   @FXML
+   public void buttonS() {
+      userInput.appendText("S");
+   }
+   @FXML
+   public void buttonD() {
+      userInput.appendText("D");
+   }
+   @FXML
+   public void buttonF() {
+      userInput.appendText("F");
+   }
+   @FXML
+   public void buttonG() {
+      userInput.appendText("G");
+   }
+   @FXML
+   public void buttonH() {
+      userInput.appendText("H");
+   }
+   @FXML
+   public void buttonJ() {
+      userInput.appendText("J");
+   }
+   @FXML
+   public void buttonK() {
+      userInput.appendText("K");
+   }
+   @FXML
+   public void buttonL() {
+      userInput.appendText("L");
+   }
+   @FXML
+   public void buttonÖ() {
+      userInput.appendText("Ö");
+   }
+   @FXML
+   public void buttonÄ() {
+      userInput.appendText("Ä");
+   }
+   @FXML
+   public void buttonZ() {
+      userInput.appendText("Z");
+   }
+   @FXML
+   public void buttonX() {
+      userInput.appendText("X");
+   }
+   @FXML
+   public void buttonC() {
+      userInput.appendText("C");
+   }
+   @FXML
+   public void buttonV() {
+      userInput.appendText("V");
+   }
+   @FXML
+   public void buttonB() {
+      userInput.appendText("B");
+   }
+   @FXML
+   public void buttonN() {
+      userInput.appendText("N");
+   }
+   @FXML
+   public void buttonM() {
+      userInput.appendText("M");
    }
 }
-
-
-
-
-
-//    public void enterButton() {
-//        String word = userInput.getText();
-//        String hiddenWord = "";
-//        for (int i = 0; i <word.length() ; i++) {
-//            hiddenWord = hiddenWord + "*";
-//        }
-//        wordToGuess.setText(hiddenWord);
-//    }
 

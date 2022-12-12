@@ -5,6 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class startMenu {
+
+    private Database database;
+
+    public startMenu() {
+        database = Database.getInstance();
+    }
+
     @FXML
     private TextField userInput;
     @FXML
@@ -126,6 +133,8 @@ public class startMenu {
 
 
     public void startGameButton(ActionEvent actionEvent) {
+        String word = userInput.getText();
+//        database.addWord(word);
     }
 }
 
