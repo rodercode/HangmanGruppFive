@@ -14,6 +14,8 @@ public class GameViewControl implements Initializable {
 
    private Database data;
 
+
+
    @Override
    public void initialize(URL url, ResourceBundle resourceBundle) {
       currentPlayer.setAlignment(Pos.CENTER);
@@ -42,6 +44,7 @@ public class GameViewControl implements Initializable {
       for (int i = 0; i <word.length() ; i++) {
          hiddenWord.append(" _ ");
       }
+      userWordGuess();
       wordGuess.setText(hiddenWord.toString());
    }
 
@@ -50,6 +53,9 @@ public class GameViewControl implements Initializable {
       if (userInput.getText().equals(word)) {
          System.out.println("Funkade :D");
       } else {
+       /*int count = 0;
+         count++;
+         mistake.setText(count); */
          System.out.println("Fel");
       }
    }
