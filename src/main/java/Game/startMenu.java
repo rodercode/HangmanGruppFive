@@ -15,13 +15,23 @@ public class startMenu {
     public startMenu() {
         database = Database.getInstance();
     }
-
     @FXML
     private Label popUpLabel;
-    private Database database = Database.getInstance();
     @FXML
     private TextField userInput;
 
+
+    @FXML
+    public void startGameButton(ActionEvent actionEvent) {
+        if(userInput.getText().equals("")){
+            popUpLabel.setText("Incorrect Word");
+            System.out.println("Fail");
+
+        } else{
+            database.addWord(1,userInput.getText());
+            System.out.println(database.getListOfWords());
+        }
+    }
     @FXML
     public void buttonQ() {
         userInput.appendText("Q");
@@ -137,17 +147,6 @@ public class startMenu {
     @FXML
     public void buttonM() {
         userInput.appendText("M");
-    }
-
-    public void startGameButton(ActionEvent actionEvent) {
-        if(userInput.getText().equals("")){
-            popUpLabel.setText("Incorrect Word");
-            System.out.println("Fail");
-
-        } else{
-            database.addWord(userInput.getText());
-            System.out.println(database.getListOfWords());
-        }
     }
 }
 
