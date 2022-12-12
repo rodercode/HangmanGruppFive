@@ -34,8 +34,12 @@ public class StartMenu {
     }
 
     public void changePlayer() {
-        currentPlayer++;
-        playerPlate.setText("Player " + currentPlayer + ": Enter A Word");
+        if (currentPlayer <2){
+            currentPlayer++;
+            playerPlate.setText("Player " + currentPlayer + ": Enter A Word");
+        }else {
+//            switchScene
+        }
     }
 
     @FXML
