@@ -17,11 +17,15 @@ public class Database {
 
     }
 
+    public void addWord(String word){
+        listOfWords.add(word);
+    }
+
     public static Database getInstance(){
         return instance;
     }
 
-    
+
 
     public List<String> getListOfWords() {
         return listOfWords;
