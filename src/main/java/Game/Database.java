@@ -21,8 +21,13 @@ public class Database {
         return instance;
     }
 
+    
 
+    public List<String> getListOfWords() {
+        return listOfWords;
+    }
 
-
-
+    public void setListOfWords(List<String> listOfWords) {
+        this.listOfWords = listOfWords;
+    }
 }
