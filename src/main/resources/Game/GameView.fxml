@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.GameViewControl">
+   <children>
+      <AnchorPane layoutX="236.0" layoutY="507.0" prefHeight="200.0" prefWidth="482.0">
+         <children>
+            <TilePane layoutX="65.0" layoutY="111.0" prefHeight="81.0" prefWidth="327.0">
+               <children>
+                  <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#buttonQ" prefHeight="25.0" prefWidth="26.0" text="Q" />
+                  <Button fx:id="buttonW" mnemonicParsing="false" onAction="#buttonW" prefHeight="25.0" prefWidth="28.0" text="W" />
+                  <Button fx:id="buttonE" mnemonicParsing="false" onAction="#buttonE" text="E" />
+                  <Button fx:id="buttonR" mnemonicParsing="false" onAction="#buttonR" text="R" />
+                  <Button mnemonicParsing="false" text="T" />
+                  <Button mnemonicParsing="false" text="Y" />
+                  <Button mnemonicParsing="false" text="U" />
+                  <Button mnemonicParsing="false" text="I" />
+                  <Button mnemonicParsing="false" text="O" />
+                  <Button mnemonicParsing="false" text="P" />
+                  <Button mnemonicParsing="false" text="Å" />
+                  <Button mnemonicParsing="false" text="A" />
+                  <Button mnemonicParsing="false" text="S" />
+                  <Button mnemonicParsing="false" text="D" />
+                  <Button mnemonicParsing="false" text="F" />
+                  <Button mnemonicParsing="false" text="G" />
+                  <Button mnemonicParsing="false" text="H" />
+                  <Button mnemonicParsing="false" text="J" />
+                  <Button mnemonicParsing="false" text="K" />
+                  <Button mnemonicParsing="false" text="L" />
+                  <Button mnemonicParsing="false" text="Ö" />
+                  <Button mnemonicParsing="false" text="Ä" />
+                  <Button mnemonicParsing="false" text="Z" />
+                  <Button mnemonicParsing="false" text="X" />
+                  <Button mnemonicParsing="false" text="C" />
+                  <Button mnemonicParsing="false" text="V" />
+                  <Button mnemonicParsing="false" text="B" />
+                  <Button mnemonicParsing="false" text="N" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" text="M" />
+               </children>
+            </TilePane>
+            <TextField fx:id="userInput" layoutX="166.0" layoutY="42.0" onAction="#button" />
+            <Button fx:id="button_Enter" layoutX="203.0" layoutY="74.0" mnemonicParsing="false" onAction="#button" text="ENTER" textFill="#3912a3" />
+            <Label fx:id="wordGuess" layoutX="180.0" layoutY="14.0" prefHeight="31.0" prefWidth="204.0" text="*  GUESS WORD  *" textFill="#e41397">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
