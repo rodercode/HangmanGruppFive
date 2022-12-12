@@ -141,6 +141,7 @@ public class startMenu {
         } else{
             database.addWord(userInput.getText());
             System.out.println(database.getListOfWords());
+            popUpLabel.setText("");
         }
     }
 }
