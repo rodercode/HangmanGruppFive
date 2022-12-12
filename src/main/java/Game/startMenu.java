@@ -9,6 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import java.lang.reflect.Array;
 
 public class startMenu {
+
+    private Database database;
+
+    public startMenu() {
+        database = Database.getInstance();
+    }
+
     @FXML
     private Label popUpLabel;
     private Database database = Database.getInstance();
@@ -131,7 +138,6 @@ public class startMenu {
     public void buttonM() {
         userInput.appendText("M");
     }
-
 
     public void startGameButton(ActionEvent actionEvent) {
         if(userInput.getText().equals("")){
