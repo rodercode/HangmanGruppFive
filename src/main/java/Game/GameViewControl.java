@@ -2,14 +2,24 @@ package Game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class GameViewControl {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    private int Number;
+public class GameViewControl implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(data.getListOfWords());
+    }
+
+    private Database data;
 
     public GameViewControl() {
+        data = Database.getInstance();
     }
 
     @FXML
