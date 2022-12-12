@@ -15,12 +15,10 @@ public class StartMenu{
 
     private Database database;
     private int currentPlayer;
-    private Player player;
 
     public StartMenu() {
         database = Database.getInstance();
         currentPlayer = 1;
-        player = new Player();
     }
 
     @FXML
@@ -29,22 +27,23 @@ public class StartMenu{
     private TextField userInput;
 
     @FXML
-    private Label playerPlate;
+    public Label playerPlate;
+
+
+    public boolean checkIfInputIsValid() {
+        return !userInput.getText().equals("");
+    }
 
     public void changePlayer(){
         currentPlayer++;
         playerPlate.setText("Player " + currentPlayer + ": Enter A Word");
     }
 
-    public boolean checkIfInputIsValid() {
-        return !userInput.getText().equals("");
-    }
-
     @FXML
     public void startGameButton(ActionEvent actionEvent) throws IOException {
 
         if (checkIfInputIsValid()) {
-            database.addWord(currentPlayer, userInput.getText());
+            database.addWord(currentPlayer,userInput.getText());
             userInput.setText("");
             changePlayer();
         } else {

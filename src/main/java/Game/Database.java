@@ -11,9 +11,12 @@ public class Database {
 
    private HashMap<Integer, String> listOfWords;
 
+   private List<Integer> players;
+
 
     public Database() {
         listOfWords = new HashMap<>();
+        players = Arrays.asList(1,2);
     }
 
     public void addWord(int player, String word){
@@ -34,5 +37,13 @@ public class Database {
 
     public void setListOfWords(HashMap<Integer, String> listOfWords) {
         this.listOfWords = listOfWords;
+    }
+
+    public List<Integer> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Integer> players) {
+        this.players = players;
     }
 }
