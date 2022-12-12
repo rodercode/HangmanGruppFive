@@ -126,6 +126,11 @@ public class startMenu {
 
 
     public void startGameButton(ActionEvent actionEvent) {
+        if(userInput.getText().equals("")){
+            System.out.println("fail");
+        } else{
+            System.out.println("word");
+        }
     }
 }
 
