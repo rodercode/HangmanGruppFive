@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.startMenu">
+<AnchorPane fx:id="backgroundPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.StartMenu">
     <TilePane layoutX="119.0" layoutY="283.0" prefHeight="109.0" prefWidth="367.0">
         
         <children>
@@ -138,7 +138,7 @@
          <Font name="Comic Sans MS" size="14.0" />
       </font>
    </Button>
-   <Label fx:id="Player" layoutX="211.0" layoutY="60.0" text="Player 1: Enter Word">
+   <Label fx:id="playerPlate" layoutX="211.0" layoutY="60.0" text="Player 1: Enter A Word">
       <font>
          <Font name="Comic Sans MS" size="18.0" />
       </font>

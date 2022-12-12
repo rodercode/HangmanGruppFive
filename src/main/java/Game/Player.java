@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private List<String>players;
+    private List<Integer>listOfPlayers;
     public Player() {
-        players = new ArrayList<>();
+        listOfPlayers = new ArrayList<>();
+    }
+
+
+    public void addPlayer(int player){
+        listOfPlayers.add(player);
     }
 }
