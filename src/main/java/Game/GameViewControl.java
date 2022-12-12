@@ -19,6 +19,7 @@ public class GameViewControl implements Initializable {
       currentPlayer.setAlignment(Pos.CENTER);
       wordGuess.setAlignment(Pos.CENTER);
       mistake.setAlignment(Pos.CENTER);
+      data.getListOfWords();
    }
    public GameViewControl() {
       data = Database.getInstance();
@@ -36,7 +37,7 @@ public class GameViewControl implements Initializable {
 
    @FXML
    public void button() {
-      String word = userInput.getText();
+      String word = data.getListOfWords().get(2);
       String hiddenWord = " ";
       for (int i = 0; i <word.length() ; i++) {
          hiddenWord = hiddenWord + " _ ";

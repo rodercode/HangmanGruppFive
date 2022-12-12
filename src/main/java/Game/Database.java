@@ -17,6 +17,8 @@ public class Database {
     public Database() {
         listOfWords = new HashMap<>();
         players = Arrays.asList(1,2);
+        listOfWords.put(1,"Kaffe");
+        listOfWords.put(2,"Te");
     }
 
     public void addWord(int player, String word){
@@ -28,11 +30,11 @@ public class Database {
     }
 
 
-    public void getListOfWords() {
+   /* public void getListOfWords() {
         for( Map.Entry<Integer, String> entry : listOfWords.entrySet() ){
             System.out.println( entry.getKey() + " = " + entry.getValue() );
         }
-    }
+    } */
 
 
     public void setListOfWords(HashMap<Integer, String> listOfWords) {
@@ -45,5 +47,9 @@ public class Database {
 
     public void setPlayers(List<Integer> players) {
         this.players = players;
+    }
+
+    public HashMap<Integer, String> getListOfWords() {
+        return listOfWords;
     }
 }
