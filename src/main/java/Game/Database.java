@@ -14,6 +14,8 @@ public class Database {
 
     public Database() {
         listOfWords = new ArrayList<>();
+        listOfWords.add("kaffe");
+        listOfWords.add("mjölk");
 
     }
 
