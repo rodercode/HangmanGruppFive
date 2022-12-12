@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.MouseInput">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.GameViewControl">
    <children>
-      <AnchorPane layoutX="283.0" layoutY="554.0" prefHeight="200.0" prefWidth="482.0">
+      <AnchorPane layoutX="236.0" layoutY="507.0" prefHeight="200.0" prefWidth="482.0">
          <children>
             <TilePane layoutX="65.0" layoutY="111.0" prefHeight="81.0" prefWidth="327.0">
                <children>
@@ -42,8 +44,13 @@
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" text="M" />
                </children>
             </TilePane>
-            <TextField fx:id="textField" layoutX="154.0" layoutY="45.0" />
-            
+            <TextField fx:id="userInput" layoutX="166.0" layoutY="42.0" onAction="#button" />
+            <Button fx:id="button_Enter" layoutX="203.0" layoutY="74.0" mnemonicParsing="false" onAction="#button" text="ENTER" textFill="#3912a3" />
+            <Label fx:id="wordGuess" layoutX="180.0" layoutY="14.0" prefHeight="31.0" prefWidth="204.0" text="*  GUESS WORD  *" textFill="#e41397">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
