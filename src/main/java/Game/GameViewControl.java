@@ -20,6 +20,7 @@ public class GameViewControl implements Initializable {
       wordGuess.setAlignment(Pos.CENTER);
       mistake.setAlignment(Pos.CENTER);
       data.getListOfWords();
+
    }
    public GameViewControl() {
       data = Database.getInstance();
@@ -29,7 +30,6 @@ public class GameViewControl implements Initializable {
    private Label currentPlayer;
    @FXML
    private TextField userInput;
-
    @FXML
    private Label wordGuess;
    @FXML
@@ -38,13 +38,21 @@ public class GameViewControl implements Initializable {
    @FXML
    public void button() {
       String word = data.getListOfWords().get(2);
-      String hiddenWord = " ";
+      StringBuilder hiddenWord = new StringBuilder(" ");
       for (int i = 0; i <word.length() ; i++) {
-         hiddenWord = hiddenWord + " _ ";
+         hiddenWord.append(" _ ");
       }
-      wordGuess.setText(hiddenWord);
+      wordGuess.setText(hiddenWord.toString());
    }
 
+   public void userWordGuess () {
+      String word = data.getListOfWords().get(2);
+      if (userInput.getText().equals(word)) {
+         System.out.println("Funkade :D");
+      } else {
+         System.out.println("Fel");
+      }
+   }
 
    @FXML
    public void buttonQ() {
