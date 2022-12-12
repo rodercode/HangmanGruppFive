@@ -7,16 +7,24 @@ import javafx.scene.control.TextField;
 
 public class GameViewControl {
 
+    private int Number;
 
+    public GameViewControl() {
+    }
+
+    @FXML
     public void buttonQ() {
         userInput.appendText("Q");
     }
+    @FXML
     public void buttonW() {
         userInput.appendText("W");
     }
+    @FXML
     public void buttonE() {
         userInput.appendText("E");
     }
+    @FXML
     public void buttonR() {
         userInput.appendText("R");
     }
