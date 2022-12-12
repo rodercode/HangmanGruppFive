@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.lang.reflect.Array;
+
 public class startMenu {
     @FXML
     private Label popUpLabel;
