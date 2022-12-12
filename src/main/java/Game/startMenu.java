@@ -2,7 +2,11 @@ package Game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+
+import java.lang.reflect.Array;
 
 public class startMenu {
 
@@ -13,7 +17,11 @@ public class startMenu {
     }
 
     @FXML
+    private Label popUpLabel;
+    private Database database = Database.getInstance();
+    @FXML
     private TextField userInput;
+
     @FXML
     public void buttonQ() {
         userInput.appendText("Q");
@@ -131,10 +139,15 @@ public class startMenu {
         userInput.appendText("M");
     }
 
-
     public void startGameButton(ActionEvent actionEvent) {
-        String word = userInput.getText();
-//        database.addWord(word);
+        if(userInput.getText().equals("")){
+            popUpLabel.setText("Incorrect Word");
+            System.out.println("Fail");
+
+        } else{
+            database.addWord(userInput.getText());
+            System.out.println(database.getListOfWords());
+        }
     }
 }
 
