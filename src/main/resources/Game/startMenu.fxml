@@ -138,7 +138,7 @@
          <Font name="Comic Sans MS" size="14.0" />
       </font>
    </Button>
-   <Label layoutX="211.0" layoutY="60.0" text="Player 1: Enter Word">
+   <Label fx:id="Player" layoutX="211.0" layoutY="60.0" text="Player 1: Enter Word">
       <font>
          <Font name="Comic Sans MS" size="18.0" />
       </font>

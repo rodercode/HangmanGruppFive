@@ -3,10 +3,7 @@ package Game;
 import javafx.scene.LightBase;
 import javafx.scene.chart.PieChart;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Database {
 
@@ -28,9 +25,12 @@ public class Database {
     }
 
 
-    public HashMap<Integer, String> getListOfWords() {
-        return listOfWords;
+    public void getListOfWords() {
+        for( Map.Entry<Integer, String> entry : listOfWords.entrySet() ){
+            System.out.println( entry.getKey() + " = " + entry.getValue() );
+        }
     }
+
 
     public void setListOfWords(HashMap<Integer, String> listOfWords) {
         this.listOfWords = listOfWords;

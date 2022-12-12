@@ -2,34 +2,52 @@ package Game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.lang.reflect.Array;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class startMenu {
+public class startMenu implements Initializable {
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        database.getListOfWords();
+    }
     private Database database;
+    private int currentplayer;
 
     public startMenu() {
         database = Database.getInstance();
+        currentplayer = 1;
+
     }
     @FXML
     private Label popUpLabel;
     @FXML
     private TextField userInput;
 
+    @FXML
+    private Label Player;
 
     @FXML
     public void startGameButton(ActionEvent actionEvent) {
+
         if(userInput.getText().equals("")){
             popUpLabel.setText("Incorrect Word");
             System.out.println("Fail");
 
         } else{
-            database.addWord(1,userInput.getText());
-            System.out.println(database.getListOfWords());
+            database.addWord(currentplayer,userInput.getText());
+           // test
+            database.getListOfWords();
+            Player.setText("Player 2: Enter Word");
+            userInput.setText("");
+            currentplayer++;
+            System.out.println(currentplayer);
         }
     }
     @FXML
