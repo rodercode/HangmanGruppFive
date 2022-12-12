@@ -9,7 +9,14 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameViewControl implements Initializable {
+ private Database data;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(data.getListOfWords());
+    }
+
+   
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -17,7 +24,6 @@ public class GameViewControl implements Initializable {
     }
 
     private Database data;
-
     public GameViewControl() {
         data = Database.getInstance();
     }
