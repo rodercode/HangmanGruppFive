@@ -28,9 +28,10 @@ public class GameViewControl implements Initializable {
     // Variables
     private Database data;
     private int remainingGuesses;
-    private char[] hiddenWord;
+    private char[] encryptedWord;
     private int mistakes;
     private int currentPlayer;
+    private String theWord;
 
     private boolean isAnswerCorrect;
 
@@ -49,10 +50,11 @@ public class GameViewControl implements Initializable {
     public GameViewControl() throws FileNotFoundException {
         data = Database.getInstance();
         remainingGuesses = 11;
-        hiddenWord = generateHiddenWord();
+        encryptedWord = generateHiddenWord();
         mistakes = 0;
         isAnswerCorrect = false;
         currentPlayer = 1;
+        theWord = data.getListOfWords().get(currentPlayer);
     }
 
     // Start method
@@ -68,8 +70,11 @@ public class GameViewControl implements Initializable {
         mistakes = 0;
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
     }
+    public void switchWord(){
+
+    }
     public char[] generateHiddenWord(){
-        String theWord = data.getListOfWords().get(2);
+        String theWord = data.getListOfWords().get(currentPlayer);
         char[] hiddenWord = new char[theWord.length()];
         Arrays.fill(hiddenWord, '_');
         return hiddenWord;
@@ -84,9 +89,9 @@ public class GameViewControl implements Initializable {
 
 
     public boolean checkIfLetterExist(char letter,String guessWord) {
-        for (int i = 0; i < hiddenWord.length ; i++) {
+        for (int i = 0; i < encryptedWord.length ; i++) {
             if (guessWord.charAt(i) == letter){
-                hiddenWord[i] = letter;
+                encryptedWord[i] = letter;
                 isAnswerCorrect = true;
             }
         }
@@ -94,7 +99,7 @@ public class GameViewControl implements Initializable {
 
         getPoint();
 
-        String newHiddenWord = String.valueOf(hiddenWord);
+        String newHiddenWord = String.valueOf(encryptedWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
         return isAnswerCorrect;
     }
@@ -106,7 +111,7 @@ public class GameViewControl implements Initializable {
     }
 
     public void getPoint(){
-        if (String.valueOf(hiddenWord).equals(data.getListOfWords().get(2))){
+        if (String.valueOf(encryptedWord).equals(data.getListOfWords().get(2))){
             System.out.println("You Get A Point");
         }
     }
