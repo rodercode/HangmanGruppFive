@@ -29,6 +29,7 @@ public class GameViewControl implements Initializable {
     private Database data;
     private int remainingGuesses;
     private char[] hiddenWord;
+    private int mistakes;
 
     // FXML variables
     @FXML
@@ -38,7 +39,7 @@ public class GameViewControl implements Initializable {
     @FXML
     private Label wordGuess;
     @FXML
-    private Label mistake;
+    private Label mistakePlate;
     @FXML
     private ImageView imageViewCake;
 
@@ -46,6 +47,7 @@ public class GameViewControl implements Initializable {
         data = Database.getInstance();
         remainingGuesses = 11;
         hiddenWord = generateHiddenWord();
+        mistakes = 0;
     }
 
     // Start method
@@ -72,10 +74,18 @@ public class GameViewControl implements Initializable {
         for (int i = 0; i < hiddenWord.length ; i++) {
             if (guessWord.charAt(i) == letter){
                 hiddenWord[i] = letter;
-            }
+            } 
         }
+
         String newHiddenWord = String.valueOf(hiddenWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
+
+    }
+    public void makeAMistake(){
+        if (!String.valueOf(hiddenWord).equals(data.getListOfWords().get(2))){
+            System.out.println("Incorrect Guess");
+            mistakePlate.setText("Mistake: " + mistakes +"/12");
+        }
     }
 
 
