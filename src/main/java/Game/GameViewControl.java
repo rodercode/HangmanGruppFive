@@ -52,7 +52,7 @@ public class GameViewControl implements Initializable {
         data = Database.getInstance();
         remainingGuesses = 11;
         enemyPlayer = 2;
-        theWord = data.getListOfWords().get(enemyPlayer);
+        theWord = data.getListOfWords().get(1);
         encryptedWord = new char[theWord.length()];
         mistakes = 0;
         isAnswerCorrect = false;
@@ -62,6 +62,8 @@ public class GameViewControl implements Initializable {
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        switchWord();
+        System.out.println(theWord);
         switchPlayer();
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
@@ -73,7 +75,9 @@ public class GameViewControl implements Initializable {
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
     }
     public void switchWord(){
-        
+        enemyPlayer--;
+        theWord = data.getListOfWords().get(enemyPlayer);
+
     }
     public char[] generateHiddenWord(){
         Arrays.fill(encryptedWord, '_');
