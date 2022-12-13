@@ -67,6 +67,15 @@ public class GameViewControl implements Initializable {
         return newWord.replace(""," ").trim();
     }
 
+    public void checkIfLetterExist(char letter,String guessWord) {
+        for (int i = 0; i < hiddenWord.length ; i++) {
+            if (guessWord.charAt(i) == letter){
+                hiddenWord[i] = letter;
+            }
+        }
+        String newHiddenWord = String.valueOf(hiddenWord);
+        wordGuess.setText(newHiddenWord.replace(""," ").trim());
+    }
 
 
     @FXML
