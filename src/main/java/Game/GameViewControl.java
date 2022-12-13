@@ -74,8 +74,15 @@ public class GameViewControl implements Initializable {
                 hiddenWord[i] = letter;
             }
         }
+        getPoint();
         String newHiddenWord = String.valueOf(hiddenWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
+    }
+
+    public void getPoint(){
+        if (String.valueOf(hiddenWord).equals(data.getListOfWords().get(2))){
+            System.out.println("You Get A Point");
+        }
     }
 
 
