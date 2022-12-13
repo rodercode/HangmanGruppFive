@@ -18,7 +18,7 @@ public class Database {
         listOfWords = new HashMap<>();
         players = Arrays.asList(1,2);
         listOfWords.put(1,"Kaffe");
-        listOfWords.put(2,"Te");
+        listOfWords.put(2,"TE");
     }
 
     public void addWord(int player, String word){
