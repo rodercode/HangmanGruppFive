@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Objects;
 
 import javafx.geometry.Pos;
@@ -51,10 +52,14 @@ public class GameViewControl implements Initializable {
         imageViewCake.setImage(imageCake12);
         wordGuess.setAlignment(Pos.CENTER);
     }
+    public char[] generateHiddenWord(){
+        String theWord = data.getListOfWords().get(2);
+        char[] hiddenWord = new char[theWord.length()];
+        Arrays.fill(hiddenWord, '_');
+        return hiddenWord;
+    }
 
-
-
-
+    public
 
     @FXML
     public void pressEnter() {
