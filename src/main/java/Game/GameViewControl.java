@@ -29,6 +29,9 @@ public class GameViewControl implements Initializable {
     private Database data;
     private int remainingGuesses;
     private char[] hiddenWord;
+    private int mistakes;
+
+    private boolean isAnswerCorrect;
 
     // FXML variables
     @FXML
@@ -38,7 +41,7 @@ public class GameViewControl implements Initializable {
     @FXML
     private Label wordGuess;
     @FXML
-    private Label mistake;
+    private Label mistakePlate;
     @FXML
     private ImageView imageViewCake;
 
@@ -46,6 +49,8 @@ public class GameViewControl implements Initializable {
         data = Database.getInstance();
         remainingGuesses = 11;
         hiddenWord = generateHiddenWord();
+        mistakes = 0;
+        isAnswerCorrect = false;
     }
 
     // Start method
@@ -68,15 +73,28 @@ public class GameViewControl implements Initializable {
         return newWord.replace(""," ").trim();
     }
 
-    public void checkIfLetterExist(char letter,String guessWord) {
+
+
+    public boolean checkIfLetterExist(char letter,String guessWord) {
         for (int i = 0; i < hiddenWord.length ; i++) {
             if (guessWord.charAt(i) == letter){
                 hiddenWord[i] = letter;
+                isAnswerCorrect = true;
             }
         }
+
+
         getPoint();
+
         String newHiddenWord = String.valueOf(hiddenWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
+        return isAnswerCorrect;
+    }
+    public void makeAMistake(){
+        if (!isAnswerCorrect){
+            System.out.println("Incorrect Guess");
+            mistakePlate.setText("Mistake: " + mistakes +"/12");
+        }
     }
 
     public void getPoint(){
