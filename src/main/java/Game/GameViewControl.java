@@ -83,6 +83,9 @@ public class GameViewControl implements Initializable {
             }
         }
 
+
+        getPoint();
+
         String newHiddenWord = String.valueOf(hiddenWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
         return isAnswerCorrect;
@@ -91,6 +94,12 @@ public class GameViewControl implements Initializable {
         if (!isAnswerCorrect){
             System.out.println("Incorrect Guess");
             mistakePlate.setText("Mistake: " + mistakes +"/12");
+        }
+    }
+
+    public void getPoint(){
+        if (String.valueOf(hiddenWord).equals(data.getListOfWords().get(2))){
+            System.out.println("You Get A Point");
         }
     }
 
