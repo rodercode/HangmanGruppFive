@@ -58,15 +58,15 @@ public class GameViewControl implements Initializable {
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        switchPlayer();
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake12);
     }
     public void switchPlayer(){
-        playerPlate.setText("Player "+currentPlayer+"'s Turn");
         currentPlayer++;
-        
-
+        mistakes = 0;
+        playerPlate.setText("Player "+currentPlayer+"'s Turn");
     }
     public char[] generateHiddenWord(){
         String theWord = data.getListOfWords().get(2);
