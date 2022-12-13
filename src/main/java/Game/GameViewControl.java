@@ -28,6 +28,7 @@ public class GameViewControl implements Initializable {
     // Variables
     private Database data;
     private int remainingGuesses;
+    private char[] hiddenWord;
 
     // FXML variables
     @FXML
@@ -44,6 +45,7 @@ public class GameViewControl implements Initializable {
     public GameViewControl() throws FileNotFoundException {
         data = Database.getInstance();
         remainingGuesses = 11;
+        hiddenWord = generateHiddenWord();
     }
 
     // Start method
@@ -64,6 +66,8 @@ public class GameViewControl implements Initializable {
         String newWord = String.valueOf(hiddenWord);
         return newWord.replace(""," ").trim();
     }
+
+
 
     @FXML
     public void pressEnter() {
