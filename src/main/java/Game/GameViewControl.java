@@ -59,7 +59,11 @@ public class GameViewControl implements Initializable {
         return hiddenWord;
     }
 
-    public
+    public String displayHiddenWord() {
+        char[] hiddenWord = generateHiddenWord();
+        String newWord = String.valueOf(hiddenWord);
+        return newWord.replace(""," ").trim();
+    }
 
     @FXML
     public void pressEnter() {
