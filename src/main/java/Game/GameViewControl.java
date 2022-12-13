@@ -60,6 +60,9 @@ public class GameViewControl implements Initializable {
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake12);
     }
+    public void switchPlayer(){
+
+    }
     public char[] generateHiddenWord(){
         String theWord = data.getListOfWords().get(2);
         char[] hiddenWord = new char[theWord.length()];
