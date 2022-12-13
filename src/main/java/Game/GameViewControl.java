@@ -31,6 +31,8 @@ public class GameViewControl implements Initializable {
     private char[] hiddenWord;
     private int mistakes;
 
+    private boolean isAnswerCorrect;
+
     // FXML variables
     @FXML
     private Label currentPlayer;
@@ -48,6 +50,7 @@ public class GameViewControl implements Initializable {
         remainingGuesses = 11;
         hiddenWord = generateHiddenWord();
         mistakes = 0;
+        isAnswerCorrect = false;
     }
 
     // Start method
@@ -70,19 +73,22 @@ public class GameViewControl implements Initializable {
         return newWord.replace(""," ").trim();
     }
 
-    public void checkIfLetterExist(char letter,String guessWord) {
+
+
+    public boolean checkIfLetterExist(char letter,String guessWord) {
         for (int i = 0; i < hiddenWord.length ; i++) {
             if (guessWord.charAt(i) == letter){
                 hiddenWord[i] = letter;
-            } 
+                isAnswerCorrect = true;
+            }
         }
 
         String newHiddenWord = String.valueOf(hiddenWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
-
+        return isAnswerCorrect;
     }
     public void makeAMistake(){
-        if (!String.valueOf(hiddenWord).equals(data.getListOfWords().get(2))){
+        if (!isAnswerCorrect){
             System.out.println("Incorrect Guess");
             mistakePlate.setText("Mistake: " + mistakes +"/12");
         }
