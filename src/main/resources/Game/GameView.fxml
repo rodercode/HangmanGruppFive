@@ -11,29 +11,29 @@
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.GameViewControl">
    <children>
       <AnchorPane fx:id="keyboard" layoutX="241.0" layoutY="529.0" prefHeight="0.0" prefWidth="512.0" />
-      <Label fx:id="wordGuess" layoutY="368.0" prefHeight="93.0" prefWidth="1024.0" text="_ _ _ _ _ _" textFill="#e41397">
+      <Label fx:id="wordGuess" layoutY="338.0" prefHeight="93.0" prefWidth="1024.0" text="_ _ _ _ _ _" textFill="#e41397">
          <font>
             <Font size="64.0" />
          </font>
       </Label>
-      <Label layoutX="95.0" layoutY="166.0" text="Score: ">
+      <Label layoutX="58.0" layoutY="129.0" text="Score: ">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="button_Enter" layoutX="847.0" layoutY="571.0" mnemonicParsing="false" onAction="#button" text="ENTER" textFill="#3912a3" />
-      <TextField fx:id="userInput" layoutX="786.0" layoutY="492.0" onAction="#button" />
-      <Label fx:id="mistake" layoutY="504.0" prefHeight="30.0" prefWidth="1024.0" text="Guesses:">
+      <Button fx:id="button_Enter" layoutX="472.0" layoutY="556.0" mnemonicParsing="false" onAction="#button" text="ENTER" textFill="#3912a3" />
+      <TextField fx:id="userInput" layoutX="423.0" layoutY="522.0" onAction="#button" />
+      <Label fx:id="mistake" layoutX="424.0" layoutY="470.0" prefHeight="35.0" prefWidth="149.0" text="Mistake: 0/12">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="currentPlayer" layoutY="235.0" prefHeight="35.0" prefWidth="1024.0" text="Player One's turn">
+      <Label fx:id="currentPlayer" layoutX="394.0" layoutY="54.0" prefHeight="35.0" prefWidth="187.0" text="Player One's Turn">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TilePane layoutX="340.0" layoutY="571.0" prefHeight="109.0" prefWidth="367.0">
+      <TilePane layoutX="340.0" layoutY="601.0" prefHeight="109.0" prefWidth="367.0">
          <children>
             <Button fx:id="q" mnemonicParsing="false" onAction="#buttonQ" prefHeight="26.0" prefWidth="31.0" text="Q">
                <font>
@@ -182,8 +182,7 @@
             </Button>
          </children>
       </TilePane>
-      <ImageView fx:id="imageViewCake" fitHeight="150.0" fitWidth="200.0" layoutX="673.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="buttonToSwitchImages" layoutX="747.0" layoutY="372.0" mnemonicParsing="false" onAction="#displayCakeImage" text="Button" />
+      <ImageView fx:id="imageViewCake" fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
 
    </children>
 </AnchorPane>
