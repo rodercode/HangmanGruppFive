@@ -2,9 +2,12 @@ package Game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,13 +35,20 @@ public class StartMenu {
     public boolean checkIfInputIsValid() {
         return !userInput.getText().equals("");
     }
-
-    public void changePlayer() {
+    @FXML
+    public void changeScene(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Game.class.getResource("GameView.fxml"));
+        stage.setTitle("Hangman");
+        stage.setScene(new Scene(fxmlLoader.load()));
+        stage.show();
+    }
+    public void changePlayer() throws IOException {
         if (currentPlayer <2){
             currentPlayer++;
             playerPlate.setText("Player " + currentPlayer + ": Enter A Word");
         }else {
 //            switchScene
+            changeScene(new Stage());
         }
     }
 
@@ -49,6 +59,7 @@ public class StartMenu {
             database.addWord(currentPlayer, userInput.getText());
             userInput.setText("");
             changePlayer();
+
         } else {
             popUpLabel.setText("Incorrect Word");
         }
