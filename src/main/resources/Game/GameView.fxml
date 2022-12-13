@@ -11,49 +11,178 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.GameViewControl">
    <children>
-      <AnchorPane layoutX="236.0" layoutY="507.0" prefHeight="200.0" prefWidth="482.0">
+      <AnchorPane fx:id="keyboard" layoutX="241.0" layoutY="529.0" prefHeight="0.0" prefWidth="512.0" />
+      <Label fx:id="wordGuess" layoutY="368.0" prefHeight="93.0" prefWidth="1024.0" text="_ _ _ _ _ _" textFill="#e41397">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <Label layoutX="95.0" layoutY="166.0" text="Score: ">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="button_Enter" layoutX="847.0" layoutY="571.0" mnemonicParsing="false" onAction="#button" text="ENTER" textFill="#3912a3" />
+      <TextField fx:id="userInput" layoutX="789.0" layoutY="494.0" onAction="#button" />
+      <Label fx:id="mistake" layoutY="504.0" prefHeight="30.0" prefWidth="1024.0" text="Guesses:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="currentPlayer" layoutY="235.0" prefHeight="35.0" prefWidth="1024.0" text="Player One's turn">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TilePane layoutX="340.0" layoutY="571.0" prefHeight="109.0" prefWidth="367.0">
          <children>
-            <TilePane layoutX="65.0" layoutY="111.0" prefHeight="81.0" prefWidth="327.0">
-               <children>
-                  <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#buttonQ" prefHeight="25.0" prefWidth="26.0" text="Q" />
-                  <Button fx:id="buttonW" mnemonicParsing="false" onAction="#buttonW" prefHeight="25.0" prefWidth="28.0" text="W" />
-                  <Button fx:id="buttonE" mnemonicParsing="false" onAction="#buttonE" text="E" />
-                  <Button fx:id="buttonR" mnemonicParsing="false" onAction="#buttonR" text="R" />
-                  <Button mnemonicParsing="false" text="T" />
-                  <Button mnemonicParsing="false" text="Y" />
-                  <Button mnemonicParsing="false" text="U" />
-                  <Button mnemonicParsing="false" text="I" />
-                  <Button mnemonicParsing="false" text="O" />
-                  <Button mnemonicParsing="false" text="P" />
-                  <Button mnemonicParsing="false" text="Å" />
-                  <Button mnemonicParsing="false" text="A" />
-                  <Button mnemonicParsing="false" text="S" />
-                  <Button mnemonicParsing="false" text="D" />
-                  <Button mnemonicParsing="false" text="F" />
-                  <Button mnemonicParsing="false" text="G" />
-                  <Button mnemonicParsing="false" text="H" />
-                  <Button mnemonicParsing="false" text="J" />
-                  <Button mnemonicParsing="false" text="K" />
-                  <Button mnemonicParsing="false" text="L" />
-                  <Button mnemonicParsing="false" text="Ö" />
-                  <Button mnemonicParsing="false" text="Ä" />
-                  <Button mnemonicParsing="false" text="Z" />
-                  <Button mnemonicParsing="false" text="X" />
-                  <Button mnemonicParsing="false" text="C" />
-                  <Button mnemonicParsing="false" text="V" />
-                  <Button mnemonicParsing="false" text="B" />
-                  <Button mnemonicParsing="false" text="N" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" text="M" />
-               </children>
-            </TilePane>
-            <TextField fx:id="userInput" layoutX="166.0" layoutY="42.0" onAction="#button" />
-            <Button fx:id="button_Enter" layoutX="203.0" layoutY="74.0" mnemonicParsing="false" onAction="#button" text="ENTER" textFill="#3912a3" />
-            <Label fx:id="wordGuess" layoutX="180.0" layoutY="14.0" prefHeight="31.0" prefWidth="204.0" text="*  GUESS WORD  *" textFill="#e41397">
+            <Button fx:id="q" mnemonicParsing="false" onAction="#buttonQ" prefHeight="26.0" prefWidth="31.0" text="Q">
                <font>
-                  <Font size="13.0" />
+                  <Font name="Comic Sans MS" size="12.0" />
                </font>
-            </Label>
+            </Button>
+            <Button fx:id="w" mnemonicParsing="false" onAction="#buttonW" prefHeight="27.0" prefWidth="33.0" text="W">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="e" mnemonicParsing="false" onAction="#buttonE" text="E">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="r" mnemonicParsing="false" onAction="#buttonR" text="R">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="t" mnemonicParsing="false" onAction="#buttonT" text="T">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="y" mnemonicParsing="false" onAction="#buttonY" text="Y">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="u" mnemonicParsing="false" onAction="#buttonU" text="U">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="i" mnemonicParsing="false" onAction="#buttonI" text="I">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="o" mnemonicParsing="false" onAction="#buttonO" text="O">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="p" mnemonicParsing="false" onAction="#buttonP" text="P">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="å" mnemonicParsing="false" onAction="#buttonÅ" text="Å">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="a" mnemonicParsing="false" onAction="#buttonA" text="A">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="s" mnemonicParsing="false" onAction="#buttonS" text="S">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="d" mnemonicParsing="false" onAction="#buttonD" text="D">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="f" mnemonicParsing="false" onAction="#buttonF" text="F">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="g" mnemonicParsing="false" onAction="#buttonG" text="G">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="h" mnemonicParsing="false" onAction="#buttonH" prefHeight="27.0" prefWidth="33.0" text="H">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="j" mnemonicParsing="false" onAction="#buttonJ" prefHeight="27.0" prefWidth="32.0" text="J">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="k" mnemonicParsing="false" onAction="#buttonK" prefHeight="27.0" prefWidth="27.0" text="K">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="l" mnemonicParsing="false" onAction="#buttonL" prefHeight="27.0" prefWidth="33.0" text="L">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="ä" mnemonicParsing="false" onAction="#buttonÄ" prefHeight="27.0" prefWidth="33.0" text="Ä">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="z" mnemonicParsing="false" onAction="#buttonZ" prefHeight="27.0" prefWidth="25.0" text="Z">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#buttonX" text="X" fx:id="x">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="c" mnemonicParsing="false" onAction="#buttonC" text="C">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="v" mnemonicParsing="false" onAction="#buttonV" text="V">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="b" mnemonicParsing="false" onAction="#buttonB" text="B">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="n" mnemonicParsing="false" onAction="#buttonN" text="N">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="m" mnemonicParsing="false" onAction="#buttonM" prefHeight="25.0" prefWidth="31.0" text="M">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="ö" mnemonicParsing="false" onAction="#buttonÖ" text="Ö">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
          </children>
+
       </AnchorPane>
       <Button fx:id="buttonToSwitchImages" layoutX="707.0" layoutY="271.0" mnemonicParsing="false" onAction="#displayCakeImage" text="buttonToSwitchImages" />
       <ImageView fx:id="imageViewCake12" fitHeight="174.0" fitWidth="284.0" layoutX="582.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
@@ -61,5 +190,8 @@
             <Image url="@../../../../../Desktop/Cake2/Cake12.png" />
          </image>
       </ImageView>
+
+      </TilePane>
+
    </children>
 </AnchorPane>

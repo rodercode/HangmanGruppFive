@@ -16,7 +16,6 @@ public class Game extends Application {
         stage.setScene(new Scene(fxmlLoader.load()));
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }
