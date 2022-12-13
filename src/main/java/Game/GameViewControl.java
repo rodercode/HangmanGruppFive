@@ -51,18 +51,17 @@ public class GameViewControl implements Initializable {
     public GameViewControl() throws FileNotFoundException {
         data = Database.getInstance();
         remainingGuesses = 11;
-        encryptedWord = generateHiddenWord();
+        enemyPlayer = 2;
+        theWord = data.getListOfWords().get(enemyPlayer);
+        encryptedWord = new char[theWord.length()];
         mistakes = 0;
         isAnswerCorrect = false;
         currentPlayer = 1;
-        enemyPlayer = 2;
-        theWord = data.getListOfWords().get(enemyPlayer);
     }
 
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(theWord);
         switchPlayer();
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
@@ -74,7 +73,7 @@ public class GameViewControl implements Initializable {
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
     }
     public void switchWord(){
-
+        
     }
     public char[] generateHiddenWord(){
         Arrays.fill(encryptedWord, '_');
