@@ -30,12 +30,13 @@ public class GameViewControl implements Initializable {
     private int remainingGuesses;
     private char[] hiddenWord;
     private int mistakes;
+    private int currentPlayer;
 
     private boolean isAnswerCorrect;
 
     // FXML variables
     @FXML
-    private Label currentPlayer;
+    private Label playerPlate;
     @FXML
     private TextField userInput;
     @FXML
@@ -51,6 +52,7 @@ public class GameViewControl implements Initializable {
         hiddenWord = generateHiddenWord();
         mistakes = 0;
         isAnswerCorrect = false;
+        currentPlayer = 1;
     }
 
     // Start method
@@ -61,6 +63,9 @@ public class GameViewControl implements Initializable {
         imageViewCake.setImage(imageCake12);
     }
     public void switchPlayer(){
+        playerPlate.setText("Player "+currentPlayer+"'s Turn");
+        currentPlayer++;
+        
 
     }
     public char[] generateHiddenWord(){
