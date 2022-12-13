@@ -69,15 +69,16 @@ public class GameViewControl implements Initializable {
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake12);
     }
+
     public void switchPlayer(){
         currentPlayer++;
         mistakes = 0;
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
     }
+    // switch from player 2 to Player 1's word
     public void switchWord(){
         enemyPlayer--;
         theWord = data.getListOfWords().get(enemyPlayer);
-
     }
     public char[] generateHiddenWord(){
         Arrays.fill(encryptedWord, '_');
