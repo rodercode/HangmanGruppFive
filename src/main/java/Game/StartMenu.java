@@ -36,7 +36,6 @@ public class StartMenu implements Initializable {
         System.out.println(database.getPlayerScores().get(2));
 
     }
-
     public boolean checkIfInputIsValid() {
         return !userInput.getText().equals("");
     }

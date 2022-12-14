@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 
 
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class GameViewControl implements Initializable {
 
@@ -60,11 +61,24 @@ public class GameViewControl implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        switchPlayer();
+//        database.createPlayer(2);
         database.createPlayer(2);
         System.out.println(database.getPlayerScores().get(2));
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake10);
+    }
+
+    public static void waitAnimation(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
     public void switchPlayer(){
         currentPlayer++;
@@ -122,8 +136,10 @@ public class GameViewControl implements Initializable {
     public void getPoint(){
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
+            userInput.setText("");
             database.addScore(currentPlayer);
             scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
+
             switchPlayer();
             System.out.println("You get a point");
         }
