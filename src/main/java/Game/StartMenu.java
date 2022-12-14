@@ -34,9 +34,7 @@ public class StartMenu implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         database.createPlayer(2);
         System.out.println(database.getPlayerScores().get(2));
-
     }
-
     public boolean checkIfInputIsValid() {
         return !userInput.getText().equals("");
     }
