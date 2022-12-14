@@ -99,24 +99,28 @@ public class GameViewControl implements Initializable {
                 isAnswerCorrect = true;
             }
         }
-        makeAMistake();
-        correctAnswer();
+        checkAnswer();
         String newHiddenWord = String.valueOf(encryptedWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
     }
+
+    public void checkAnswer(){
+        if (isAnswerCorrect){
+            correctAnswer();
+        }else {
+            makeAMistake();
+        }
+    }
     public void makeAMistake(){
-        if (!isAnswerCorrect){
             System.out.println("Incorrect Guess");
             mistakePlate.setText("Mistake: " + mistakes +"/12");
-        }
+    }
+    public void correctAnswer(){
+        System.out.println("You Get A Point");
+        isAnswerCorrect = false;
     }
 
-    public void correctAnswer(){
-        if (isAnswerCorrect){
-            System.out.println("You Get A Point");
-            isAnswerCorrect = false;
-        }
-    }
+
 
 
     @FXML
