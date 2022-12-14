@@ -22,12 +22,10 @@ public class Database {
         listOfWords.put(2,"TE");
         score = 0;
     }
-
     public void addScore(int player){
         score = score +5;
         playerScores.put(player,score);
     }
-
     public void addWord(int player, String word){
         listOfWords.put(player,word);
     }

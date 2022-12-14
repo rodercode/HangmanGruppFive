@@ -69,7 +69,6 @@ public class GameViewControl implements Initializable {
         displayHiddenWord();
         imageViewCake.setImage(imageCake12);
     }
-
     public void switchPlayer(){
         currentPlayer++;
         mistakes = 0;
@@ -93,33 +92,40 @@ public class GameViewControl implements Initializable {
 
 
 
-    public boolean checkIfLetterExist(char letter,String guessWord) {
+    public void checkIfLetterExist(char letter,String guessWord) {
         for (int i = 0; i < encryptedWord.length ; i++) {
             if (guessWord.charAt(i) == letter){
                 encryptedWord[i] = letter;
                 isAnswerCorrect = true;
             }
         }
-
-        getPoint();
+        checkAnswer();
         String newHiddenWord = String.valueOf(encryptedWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
-        return isAnswerCorrect;
+    }
+
+    public void checkAnswer(){
+        if (isAnswerCorrect){
+            correctAnswer();
+        }else {
+            makeAMistake();
+        }
     }
     public void makeAMistake(){
-        if (!isAnswerCorrect){
             System.out.println("Incorrect Guess");
             mistakePlate.setText("Mistake: " + mistakes +"/12");
-        }
+    }
+    public void correctAnswer(){
+        isAnswerCorrect = false;
+        getPoint();
     }
 
     public void getPoint(){
-        if (String.valueOf(encryptedWord).equals(theWord)){
-            System.out.println("You Get A Point");
+        String s = String.valueOf(encryptedWord);
+        if (s.equals(theWord)){
+            System.out.println("You get a point");
         }
     }
-
-
     @FXML
     public void pressEnter() {
 
