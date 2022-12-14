@@ -52,23 +52,20 @@ public class GameViewControl implements Initializable {
 
     public GameViewControl() throws FileNotFoundException {
         data = Database.getInstance();
-        remainingGuesses = 11;
         enemyPlayer = 2;
+        remainingGuesses = 11;
         theWord = data.getListOfWords().get(enemyPlayer);
         encryptedWord = new char[theWord.length()];
         mistakes = 0;
         isAnswerCorrect = false;
         currentPlayer = 1;
     }
-
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        switchPlayer();
-//        System.out.println(theWord);
+        switchPlayer();
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
-        displayHiddenWord();
         imageViewCake.setImage(imageCake12);
     }
     public void switchPlayer(){
@@ -79,8 +76,9 @@ public class GameViewControl implements Initializable {
     }
     // switch from player 2 to Player 1's word
     public void switchWord(){
-        enemyPlayer--;
-        theWord = data.getListOfWords().get(enemyPlayer);
+        theWord = data.getListOfWords().get(1);
+        encryptedWord = new char[theWord.length()];
+        wordGuess.setText(displayHiddenWord());
     }
     public char[] generateHiddenWord(){
         Arrays.fill(encryptedWord, '_');
@@ -91,9 +89,6 @@ public class GameViewControl implements Initializable {
         String newWord = String.valueOf(generateHiddenWord());
         return newWord.replace(""," ").trim();
     }
-
-
-
     public void checkIfLetterExist(char letter,String guessWord) {
         for (int i = 0; i < encryptedWord.length ; i++) {
             if (guessWord.charAt(i) == letter){
@@ -126,7 +121,6 @@ public class GameViewControl implements Initializable {
     }
     int point = 0;
     public void getPoint(){
-
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
             point++;
