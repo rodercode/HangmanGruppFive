@@ -55,6 +55,7 @@ public class GameViewControl implements Initializable {
         mistakes = 0;
         isAnswerCorrect = false;
         currentPlayer = 1;
+
     }
     // Start method
     @Override
@@ -65,6 +66,7 @@ public class GameViewControl implements Initializable {
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake10);
+        playerPlate.setText("Player "+currentPlayer+"'s Turn");
     }
     public void switchPlayer(){
         currentPlayer++;
@@ -72,6 +74,9 @@ public class GameViewControl implements Initializable {
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
         scorePlate.setText("Score: " + database.getPlayerScores().get(2));
         switchWord();
+        if(currentPlayer<5){
+            //Start menu. 
+        }
     }
     // switch from player 2 to Player 1's word
     public void switchWord(){
@@ -110,7 +115,7 @@ public class GameViewControl implements Initializable {
     public void makeAMistake(){
         mistakes++;
         if (mistakes == 12){
-            System.out.println("You lost the game");
+            switchPlayer();
         }
         mistakePlate.setText("Mistake: " + mistakes +"/12");
     }
