@@ -75,7 +75,7 @@ public class GameViewControl implements Initializable {
         scorePlate.setText("Score: " + database.getPlayerScores().get(2));
         switchWord();
         if(currentPlayer<5){
-            //Start menu. 
+            //Start menu.
         }
     }
     // switch from player 2 to Player 1's word
