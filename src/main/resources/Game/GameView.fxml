@@ -23,23 +23,23 @@
       </Label>
       <Button fx:id="enter" layoutX="472.0" layoutY="556.0" mnemonicParsing="false" onAction="#pressEnter" text="ENTER" textFill="#3912a3" />
       <TextField fx:id="userInput" layoutX="423.0" layoutY="522.0" onAction="#pressEnter" />
-      <Label fx:id="mistakePlate" layoutX="424.0" layoutY="470.0" prefHeight="35.0" prefWidth="149.0" text="Mistake: 0/12">
+      <Label fx:id="mistakePlate" layoutX="424.0" layoutY="470.0" prefHeight="35.0" prefWidth="149.0" text="Mistake: 0/10">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="playerPlate" layoutX="394.0" layoutY="54.0" prefHeight="35.0" prefWidth="187.0" text="Player One's Turn">
+      <Label fx:id="playerPlate" layoutX="394.0" layoutY="54.0" prefHeight="35.0" prefWidth="187.0" text="Player 1's Turn">
          <font>
-            <Font size="24.0" />
+            <Font name="Comic Sans MS" size="24.0" />
          </font>
       </Label>
-      <TilePane layoutX="340.0" layoutY="601.0" prefHeight="109.0" prefWidth="367.0">
+      <TilePane layoutX="340.0" layoutY="601.0" prefHeight="109.0" prefWidth="379.0">
          <children>
             <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#buttonQ" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="Q">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonW" mnemonicParsing="false" onAction="#buttonW" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="W">
+            <Button fx:id="buttonW" mnemonicParsing="false" onAction="#buttonW" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: lightblue;" text="W">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
