@@ -112,8 +112,8 @@ public class GameViewControl implements Initializable {
         }
     }
     public void makeAMistake(){
-            System.out.println("Incorrect Guess");
-            mistakePlate.setText("Mistake: " + mistakes +"/12");
+        mistakes++;
+        mistakePlate.setText("Mistake: " + mistakes +"/12");
     }
     public void correctAnswer(){
         isAnswerCorrect = false;
