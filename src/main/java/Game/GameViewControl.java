@@ -3,8 +3,6 @@ package Game;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import javafx.scene.control.Button;
-
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,12 +11,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Objects;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 
 import java.util.ResourceBundle;
@@ -26,7 +22,7 @@ import java.util.ResourceBundle;
 public class GameViewControl implements Initializable {
 
     // Variables
-    private Database data;
+    private Database database;
     private int remainingGuesses;
     private char[] encryptedWord;
     private int mistakes;
@@ -51,10 +47,10 @@ public class GameViewControl implements Initializable {
     private Label scorePlate;
 
     public GameViewControl() throws FileNotFoundException {
-        data = Database.getInstance();
+        database = Database.getInstance();
         enemyPlayer = 2;
         remainingGuesses = 11;
-        theWord = data.getListOfWords().get(enemyPlayer);
+        theWord = database.getListOfWords().get(enemyPlayer);
         encryptedWord = new char[theWord.length()];
         mistakes = 0;
         isAnswerCorrect = false;
@@ -63,7 +59,9 @@ public class GameViewControl implements Initializable {
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        switchPlayer();
+//        switchPlayer();
+        database.createPlayer(2);
+        System.out.println(database.getPlayerScores().get(2));
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake12);
@@ -72,11 +70,12 @@ public class GameViewControl implements Initializable {
         currentPlayer++;
         mistakes = 0;
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
+        scorePlate.setText("Score: " + database.getPlayerScores().get(2));
         switchWord();
     }
     // switch from player 2 to Player 1's word
     public void switchWord(){
-        theWord = data.getListOfWords().get(1);
+        theWord = database.getListOfWords().get(1);
         encryptedWord = new char[theWord.length()];
         wordGuess.setText(displayHiddenWord());
     }
@@ -123,8 +122,8 @@ public class GameViewControl implements Initializable {
     public void getPoint(){
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
-            data.addScore(1);
-            scorePlate.setText("Score: " + data.getScore());
+            database.addScore(currentPlayer);
+            scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
             switchPlayer();
             System.out.println("You get a point");
         }

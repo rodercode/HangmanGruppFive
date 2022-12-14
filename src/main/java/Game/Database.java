@@ -18,15 +18,24 @@ public class Database {
         players = Arrays.asList(1,2);
         listOfWords.put(1,"Kaffe");
         listOfWords.put(2,"TE");
-        score = 0;
+        score = 5;
+    }
+
+    public void createPlayer(int howManyPlayers){
+        for (int player = 0; player < howManyPlayers; player++) {
+            playerScores.put((player+1),0);
+        }
     }
     public void addScore(int player){
-        score = score +5;
         playerScores.put(player,score);
     }
 
     public int getScore() {
         return score;
+    }
+
+    public HashMap<Integer, Integer> getPlayerScores() {
+        return playerScores;
     }
 
     public void addWord(int player, String word){

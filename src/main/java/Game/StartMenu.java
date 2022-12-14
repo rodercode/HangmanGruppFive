@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StartMenu {
+public class StartMenu implements Initializable {
 
     private Database database;
     private int currentPlayer;
@@ -22,7 +22,6 @@ public class StartMenu {
         database = Database.getInstance();
         currentPlayer = 1;
     }
-
     @FXML
     private Label popUpLabel;
     @FXML
@@ -31,6 +30,12 @@ public class StartMenu {
     @FXML
     private Label playerPlate;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        database.createPlayer(2);
+        System.out.println(database.getPlayerScores().get(2));
+
+    }
 
     public boolean checkIfInputIsValid() {
         return !userInput.getText().equals("");
