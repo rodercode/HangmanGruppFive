@@ -111,9 +111,9 @@ public class GameViewControl implements Initializable {
         mistakes++;
         if (mistakes == 1) {
             switchPlayer();
-            System.out.println("You lost the game");
         }else {
             if (mistakes == 12) {
+                System.out.println("You lost the game");
             }
         }
         mistakePlate.setText("Mistake: " + mistakes +"/12");
