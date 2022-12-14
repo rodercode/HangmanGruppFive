@@ -32,11 +32,9 @@ public class StartMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.createPlayer(2);
+        database.createPlayer(4);
         System.out.println(database.getPlayerScores().get(2));
-
     }
-
     public boolean checkIfInputIsValid() {
         return !userInput.getText().equals("");
     }
@@ -48,7 +46,7 @@ public class StartMenu implements Initializable {
         stage.show();
     }
     public void changePlayer() throws IOException {
-        if (currentPlayer <2){
+        if (currentPlayer <4){
             currentPlayer++;
             playerPlate.setText("Player " + currentPlayer + ": Enter A Word");
         }else {

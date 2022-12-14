@@ -16,7 +16,7 @@ public class Database {
         listOfWords = new HashMap<>();
         playerScores = new HashMap<>();
         players = Arrays.asList(1,2);
-        listOfWords.put(1,"Kaffe");
+        listOfWords.put(1,"KAFFE");
         listOfWords.put(2,"TE");
         score = 5;
     }

@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.GameViewControl">
    <children>
       <AnchorPane fx:id="keyboard" layoutX="241.0" layoutY="529.0" prefHeight="0.0" prefWidth="512.0" />
-      <Label fx:id="wordGuess" layoutY="338.0" prefHeight="93.0" prefWidth="1024.0" text="_ _ _ _ _ _" textFill="#e41397">
+      <Label fx:id="wordGuess" layoutY="378.0" prefHeight="81.0" prefWidth="1024.0" text="_ _ _ _ _ _" textFill="#e41397">
          <font>
             <Font size="64.0" />
          </font>
@@ -28,7 +28,9 @@
             <Font name="Comic Sans MS" size="20.0" />
          </font>
       </Label>
+
       <Label fx:id="playerPlate" layoutX="394.0" layoutY="54.0" prefHeight="35.0" prefWidth="187.0" text="Player 1's Turn">
+
          <font>
             <Font name="Comic Sans MS" size="24.0" />
          </font>
@@ -153,8 +155,8 @@
                </font></Button>
          </children>
       </TilePane>
-      <ImageView fx:id="imageViewCake" fitHeight="350.0" fitWidth="400.0" layoutX="279.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="nextPlayer" layoutX="627.0" layoutY="556.0" mnemonicParsing="false" onAction="#changeSceneWithButton" text="Next Player" visible="false" />
+
+      <ImageView fx:id="imageViewCake" fitHeight="232.0" fitWidth="400.0" layoutX="297.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" />
 
    </children>
 </AnchorPane>

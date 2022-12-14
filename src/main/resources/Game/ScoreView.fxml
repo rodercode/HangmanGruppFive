@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="440.0" prefWidth="681.0" style="-fx-background-color: lightyellow;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.ScoreView">
+<AnchorPane prefHeight="440.0" prefWidth="681.0" style="-fx-background-color: lightyellow;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.ScoreViewControl">
    <children>
       <Button fx:id="nextButton" layoutX="314.0" layoutY="282.0" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="Next">
          <font>
