@@ -47,6 +47,8 @@ public class GameViewControl implements Initializable {
     private Label mistakePlate;
     @FXML
     private ImageView imageViewCake;
+    @FXML
+    private Label scorePlate;
 
     public GameViewControl() throws FileNotFoundException {
         data = Database.getInstance();
@@ -122,22 +124,21 @@ public class GameViewControl implements Initializable {
         isAnswerCorrect = false;
         getPoint();
     }
-
+    int point = 0;
     public void getPoint(){
+
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
+            point++;
+            scorePlate.setText("Score: " + point);
             System.out.println("You get a point");
         }
     }
     @FXML
     public void pressEnter() {
-
         if (userInput.getText().toUpperCase().equals(theWord)) {
             System.out.println("Funkade :D");
         } else {
-       /*int count = 0;
-         count++;
-         mistake.setText(count); */
             System.out.println("Fel");
         }
         userInput.setText("");
