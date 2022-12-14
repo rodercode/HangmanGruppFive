@@ -1,20 +1,26 @@
 package Game;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 import java.util.ResourceBundle;
@@ -47,6 +53,9 @@ public class GameViewControl implements Initializable {
     @FXML
     private Label scorePlate;
 
+    @FXML
+    private Button enter;
+
     public GameViewControl() throws FileNotFoundException {
         database = Database.getInstance();
         enemyPlayer = 2;
@@ -58,6 +67,7 @@ public class GameViewControl implements Initializable {
         currentPlayer = 1;
 
     }
+
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,49 +76,49 @@ public class GameViewControl implements Initializable {
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake10);
-        playerPlate.setText("Player "+currentPlayer+"'s Turn");
+        playerPlate.setText("Player " + currentPlayer + "'s Turn");
     }
 
-    public static void waitAnimation(int ms)
-    {
-        try
-        {
+    public static void waitAnimation(int ms) {
+        try {
             Thread.sleep(ms);
-        }
-        catch(InterruptedException ex)
-        {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
-    public void switchPlayer(){
+
+    public void switchPlayer() {
 
         currentPlayer++;
         mistakes = 0;
-        playerPlate.setText("Player "+currentPlayer+"'s Turn");
+        playerPlate.setText("Player " + currentPlayer + "'s Turn");
         scorePlate.setText("Score: " + database.getPlayerScores().get(2));
         switchWord();
-        if(currentPlayer<5){
+        if (currentPlayer < 5) {
             //Start menu. 
         }
     }
+
     // switch from player 2 to Player 1's word
-    public void switchWord(){
+    public void switchWord() {
         theWord = database.getListOfWords().get(1);
         encryptedWord = new char[theWord.length()];
         wordGuess.setText(displayHiddenWord());
     }
-    public char[] generateHiddenWord(){
+
+    public char[] generateHiddenWord() {
         Arrays.fill(encryptedWord, '_');
         return encryptedWord;
     }
 
     public String displayHiddenWord() {
         String newWord = String.valueOf(generateHiddenWord());
-        return newWord.replace(""," ").trim();
+        return newWord.replace("", " ").trim();
     }
-    public void checkIfLetterExist(char letter,String guessWord) {
-        for (int i = 0; i < encryptedWord.length ; i++) {
-            if (guessWord.charAt(i) == letter){
+
+    public void checkIfLetterExist(char letter, String guessWord) {
+        for (int i = 0; i < encryptedWord.length; i++) {
+            if (guessWord.charAt(i) == letter) {
                 System.out.println(guessWord.charAt(i));
                 System.out.println(letter);
                 encryptedWord[i] = letter;
@@ -117,57 +127,72 @@ public class GameViewControl implements Initializable {
         }
         checkAnswer();
         String newHiddenWord = String.valueOf(encryptedWord);
-        wordGuess.setText(newHiddenWord.replace(""," ").trim());
+        wordGuess.setText(newHiddenWord.replace("", " ").trim());
     }
 
-    public void checkAnswer(){
-        if (isAnswerCorrect){
+    public void checkAnswer() {
+        if (isAnswerCorrect) {
             correctAnswer();
-        }else {
+        } else {
             makeAMistake();
         }
     }
-    public void makeAMistake(){
+
+    public void makeAMistake() {
         mistakes++;
 
         if (mistakes == 10) {
-
-            switchPlayer();
+            enter.setText("Next");
+//            switchPlayer();
         }
 
-        mistakePlate.setText("Mistake: " + mistakes +"/10");
+        mistakePlate.setText("Mistake: " + mistakes + "/10");
     }
-    public void correctAnswer(){
+
+    public void correctAnswer() {
         isAnswerCorrect = false;
         getPoint();
     }
+
     int point = 0;
-    public void getPoint(){
+
+    public void getPoint() {
         String s = String.valueOf(encryptedWord);
-        if (s.equals(theWord)){
+        if (s.equals(theWord)) {
+            enter.setText("Next");
             database.addScore(currentPlayer);
             scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
-            switchPlayer();
             System.out.println("You get a point");
         }
     }
+
+    public void switchGame() throws IOException {
+        Parent root = FXMLLoader.load(GameViewControl.class.getResource("ScoreView.fxml"));
+        Stage window = (Stage) enter.getScene().getWindow();
+        window.setScene(new Scene(root));
+    }
+
     @FXML
-    public void pressEnter() {
+    public void pressEnter() throws IOException {
+        String s = String.valueOf(encryptedWord);
         if (userInput.getText().toUpperCase().equals(theWord)) {
             userInput.setText("");
             database.addScore(currentPlayer);
             scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
             switchPlayer();
             System.out.println("You get a point");
-        } else {
-            System.out.println("Fel");
+        } else if (mistakes == 10 || s.equals(theWord)) {
+            switchGame();
         }
         userInput.setText("");
+        System.out.println("Fel");
     }
+
+
     // Cake animation
     @FXML
     public void displayCakeImage() {
-            if (remainingGuesses == 10)
+        if (remainingGuesses == 10)
             imageViewCake.setImage(imageCake10);
         else if (remainingGuesses == 9)
             imageViewCake.setImage(imageCake9);
@@ -197,175 +222,175 @@ public class GameViewControl implements Initializable {
     // Letter buttons
     @FXML
     public void buttonQ() {
-        checkIfLetterExist('Q',theWord);
+        checkIfLetterExist('Q', theWord);
 //        userInput.appendText("Q");
     }
 
     @FXML
     public void buttonW() {
-        checkIfLetterExist('W',theWord);
+        checkIfLetterExist('W', theWord);
 //        userInput.appendText("W");
     }
 
     @FXML
     public void buttonE() {
-        checkIfLetterExist('E',theWord);
+        checkIfLetterExist('E', theWord);
 //        userInput.appendText("E");
     }
 
     @FXML
     public void buttonR() {
-        checkIfLetterExist('R',theWord);
+        checkIfLetterExist('R', theWord);
 //        userInput.appendText("R");
     }
 
     @FXML
     public void buttonT() {
-        checkIfLetterExist('T',theWord);
+        checkIfLetterExist('T', theWord);
 //        userInput.appendText("T");
     }
 
     @FXML
     public void buttonY() {
-        checkIfLetterExist('Y',theWord);
+        checkIfLetterExist('Y', theWord);
 //        userInput.appendText("Y");
     }
 
     @FXML
     public void buttonU() {
-        checkIfLetterExist('U',theWord);
+        checkIfLetterExist('U', theWord);
 //        userInput.appendText("U");
     }
 
     @FXML
     public void buttonI() {
-        checkIfLetterExist('I',theWord);
+        checkIfLetterExist('I', theWord);
 //        userInput.appendText("I");
     }
 
     @FXML
     public void buttonO() {
-        checkIfLetterExist('O',theWord);
+        checkIfLetterExist('O', theWord);
 //        userInput.appendText("O");
     }
 
     @FXML
     public void buttonP() {
-        checkIfLetterExist('P',theWord);
+        checkIfLetterExist('P', theWord);
 //        userInput.appendText("P");
     }
 
     @FXML
     public void buttonÅ() {
-        checkIfLetterExist('Å',theWord);
+        checkIfLetterExist('Å', theWord);
 //        userInput.appendText("Å");
     }
 
     @FXML
     public void buttonA() {
-        checkIfLetterExist('A',theWord);
+        checkIfLetterExist('A', theWord);
 //        userInput.appendText("A");
     }
 
     @FXML
     public void buttonS() {
-        checkIfLetterExist('S',theWord);
+        checkIfLetterExist('S', theWord);
 //        userInput.appendText("S");
     }
 
     @FXML
     public void buttonD() {
-        checkIfLetterExist('D',theWord);
+        checkIfLetterExist('D', theWord);
 //        userInput.appendText("D");
     }
 
     @FXML
     public void buttonF() {
-        checkIfLetterExist('F',theWord);
+        checkIfLetterExist('F', theWord);
 //        userInput.appendText("F");
     }
 
     @FXML
     public void buttonG() {
-        checkIfLetterExist('G',theWord);
+        checkIfLetterExist('G', theWord);
 //        userInput.appendText("G");
     }
 
     @FXML
     public void buttonH() {
-        checkIfLetterExist('H',theWord);
+        checkIfLetterExist('H', theWord);
 //        userInput.appendText("H");
     }
 
     @FXML
     public void buttonJ() {
-        checkIfLetterExist('J',theWord);
+        checkIfLetterExist('J', theWord);
 //        userInput.appendText("J");
     }
 
     @FXML
     public void buttonK() {
-        checkIfLetterExist('K',theWord);
+        checkIfLetterExist('K', theWord);
 //        userInput.appendText("K");
     }
 
     @FXML
     public void buttonL() {
-        checkIfLetterExist('L',theWord);
+        checkIfLetterExist('L', theWord);
 //        userInput.appendText("L");
     }
 
     @FXML
     public void buttonÖ() {
-        checkIfLetterExist('Ö',theWord);
+        checkIfLetterExist('Ö', theWord);
 //        userInput.appendText("Ö");
     }
 
     @FXML
     public void buttonÄ() {
-        checkIfLetterExist('Ä',theWord);
+        checkIfLetterExist('Ä', theWord);
 //        userInput.appendText("Ä");
     }
 
     @FXML
     public void buttonZ() {
-        checkIfLetterExist('Z',theWord);
+        checkIfLetterExist('Z', theWord);
 //        userInput.appendText("Z");
     }
 
     @FXML
     public void buttonX() {
-        checkIfLetterExist('X',theWord);
+        checkIfLetterExist('X', theWord);
 //        userInput.appendText("X");
     }
 
     @FXML
     public void buttonC() {
-        checkIfLetterExist('C',theWord);
+        checkIfLetterExist('C', theWord);
 //        userInput.appendText("C");
     }
 
     @FXML
     public void buttonV() {
-        checkIfLetterExist('V',theWord);
+        checkIfLetterExist('V', theWord);
 //        userInput.appendText("V");
     }
 
     @FXML
     public void buttonB() {
-        checkIfLetterExist('B',theWord);
+        checkIfLetterExist('B', theWord);
 //        userInput.appendText("B");
     }
 
     @FXML
     public void buttonN() {
-        checkIfLetterExist('N',theWord);
+        checkIfLetterExist('N', theWord);
 //        userInput.appendText("N");
     }
 
     @FXML
     public void buttonM() {
-        checkIfLetterExist('M',theWord);
+        checkIfLetterExist('M', theWord);
 //        userInput.appendText("M");
     }
 
