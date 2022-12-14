@@ -351,7 +351,7 @@ public class GameViewControl implements Initializable {
 
     Image imageCake9 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue9 cat.png"));
 
-    Image imageCake8 = new Image(new FileInputStream("cakeBlue/cakeBlue8 cat.png"));
+    Image imageCake8 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue8 cat.png"));
 
     Image imageCake7 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue7 cat.png"));
 
