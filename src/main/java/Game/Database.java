@@ -24,6 +24,11 @@ public class Database {
         score = score +5;
         playerScores.put(player,score);
     }
+
+    public int getScore() {
+        return score;
+    }
+
     public void addWord(int player, String word){
         listOfWords.put(player,word);
     }

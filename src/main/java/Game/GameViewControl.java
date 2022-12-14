@@ -123,8 +123,9 @@ public class GameViewControl implements Initializable {
     public void getPoint(){
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
-            point++;
-            scorePlate.setText("Score: " + point);
+            data.addScore(1);
+            scorePlate.setText("Score: " + data.getScore());
+            switchPlayer();
             System.out.println("You get a point");
         }
     }
