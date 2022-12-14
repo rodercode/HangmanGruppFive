@@ -8,12 +8,10 @@ import java.util.*;
 public class Database {
 
     private static final Database instance = new Database();
-
    private HashMap<Integer, String> listOfWords;
    private HashMap<Integer,Integer> playerScores;
    private List<Integer> players;
    private int score;
-
     public Database() {
         listOfWords = new HashMap<>();
         playerScores = new HashMap<>();
