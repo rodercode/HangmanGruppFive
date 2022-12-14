@@ -131,6 +131,7 @@ public class GameViewControl implements Initializable {
         if (s.equals(theWord)){
             point++;
             scorePlate.setText("Score: " + point);
+            switchPlayer();
             System.out.println("You get a point");
         }
     }
