@@ -127,19 +127,15 @@ public class GameViewControl implements Initializable {
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
             point++;
-
+            scorePlate.setText("Score: " + point);
             System.out.println("You get a point");
         }
     }
     @FXML
     public void pressEnter() {
-
         if (userInput.getText().toUpperCase().equals(theWord)) {
             System.out.println("Funkade :D");
         } else {
-       /*int count = 0;
-         count++;
-         mistake.setText(count); */
             System.out.println("Fel");
         }
         userInput.setText("");
