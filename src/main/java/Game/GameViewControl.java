@@ -52,7 +52,7 @@ public class GameViewControl implements Initializable {
         data = Database.getInstance();
         remainingGuesses = 11;
         enemyPlayer = 2;
-        theWord = data.getListOfWords().get(1);
+        theWord = data.getListOfWords().get(enemyPlayer);
         encryptedWord = new char[theWord.length()];
         mistakes = 0;
         isAnswerCorrect = false;
@@ -62,10 +62,11 @@ public class GameViewControl implements Initializable {
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        switchPlayer();
-        System.out.println(theWord);
+//        switchPlayer();
+//        System.out.println(theWord);
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
+        displayHiddenWord();
         imageViewCake.setImage(imageCake12);
     }
 
@@ -86,8 +87,7 @@ public class GameViewControl implements Initializable {
     }
 
     public String displayHiddenWord() {
-        char[] hiddenWord = generateHiddenWord();
-        String newWord = String.valueOf(hiddenWord);
+        String newWord = String.valueOf(generateHiddenWord());
         return newWord.replace(""," ").trim();
     }
 
@@ -101,9 +101,7 @@ public class GameViewControl implements Initializable {
             }
         }
 
-
         getPoint();
-
         String newHiddenWord = String.valueOf(encryptedWord);
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
         return isAnswerCorrect;
