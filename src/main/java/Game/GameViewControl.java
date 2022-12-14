@@ -49,7 +49,7 @@ public class GameViewControl implements Initializable {
     public GameViewControl() throws FileNotFoundException {
         database = Database.getInstance();
         enemyPlayer = 2;
-        remainingGuesses = 11;
+        remainingGuesses = 10;
         theWord = database.getListOfWords().get(enemyPlayer);
         encryptedWord = new char[theWord.length()];
         mistakes = 0;
@@ -64,7 +64,7 @@ public class GameViewControl implements Initializable {
         System.out.println(database.getPlayerScores().get(2));
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
-        imageViewCake.setImage(imageCake12);
+        imageViewCake.setImage(imageCake10);
     }
     public void switchPlayer(){
         currentPlayer++;
@@ -141,9 +141,7 @@ public class GameViewControl implements Initializable {
     // Cake animation
     @FXML
     public void displayCakeImage() {
-        if (remainingGuesses == 11)
-            imageViewCake.setImage(imageCake11);
-        else if (remainingGuesses == 10)
+            if (remainingGuesses == 10)
             imageViewCake.setImage(imageCake10);
         else if (remainingGuesses == 9)
             imageViewCake.setImage(imageCake9);
@@ -348,30 +346,28 @@ public class GameViewControl implements Initializable {
     // end of Letter buttons
 
     // Images
-    Image imageCake12 = new Image(new FileInputStream("src/main/resources/IMG/Cake12.png"));
-    Image imageCake11 = new Image(new FileInputStream("src/main/resources/IMG/Cake11.png"));
 
-    Image imageCake10 = new Image(new FileInputStream("src/main/resources/IMG/Cake10.png"));
+    Image imageCake10 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue10 cat.png"));
 
-    Image imageCake9 = new Image(new FileInputStream("src/main/resources/IMG/Cake9.png"));
+    Image imageCake9 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue9 cat.png"));
 
-    Image imageCake8 = new Image(new FileInputStream("src/main/resources/IMG/Cake8.png"));
+    Image imageCake8 = new Image(new FileInputStream("cakeBlue/cakeBlue8 cat.png"));
 
-    Image imageCake7 = new Image(new FileInputStream("src/main/resources/IMG/Cake7.png"));
+    Image imageCake7 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue7 cat.png"));
 
-    Image imageCake6 = new Image(new FileInputStream("src/main/resources/IMG/Cake6.png"));
+    Image imageCake6 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue6 cat.png"));
 
-    Image imageCake5 = new Image(new FileInputStream("src/main/resources/IMG/Cake5.png"));
+    Image imageCake5 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue5 cat.png"));
 
-    Image imageCake4 = new Image(new FileInputStream("src/main/resources/IMG/Cake4.png"));
+    Image imageCake4 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue4 cat.png"));
 
-    Image imageCake3 = new Image(new FileInputStream("src/main/resources/IMG/Cake3.png"));
+    Image imageCake3 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue3 cat.png"));
 
-    Image imageCake2 = new Image(new FileInputStream("src/main/resources/IMG/Cake2.png"));
+    Image imageCake2 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue2 cat.png"));
 
-    Image imageCake1 = new Image(new FileInputStream("src/main/resources/IMG/Cake1.png"));
+    Image imageCake1 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue1 cat.png"));
 
-    Image imageCake0 = new Image(new FileInputStream("src/main/resources/IMG/Cake0.png"));
+    Image imageCake0 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue0 cat.png"));
     // end of Images
 }
 
