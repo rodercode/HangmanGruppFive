@@ -47,6 +47,8 @@ public class GameViewControl implements Initializable {
     private Label mistakePlate;
     @FXML
     private ImageView imageViewCake;
+    @FXML
+    private Label scorePlate;
 
     public GameViewControl() throws FileNotFoundException {
         data = Database.getInstance();
@@ -119,10 +121,13 @@ public class GameViewControl implements Initializable {
         isAnswerCorrect = false;
         getPoint();
     }
-
+    int point = 0;
     public void getPoint(){
+
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
+            point++;
+
             System.out.println("You get a point");
         }
     }
