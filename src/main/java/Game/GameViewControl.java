@@ -116,13 +116,16 @@ public class GameViewControl implements Initializable {
             mistakePlate.setText("Mistake: " + mistakes +"/12");
     }
     public void correctAnswer(){
-        System.out.println("You Get A Point");
         isAnswerCorrect = false;
+        getPoint();
     }
 
-
-
-
+    public void getPoint(){
+        String s = String.valueOf(encryptedWord);
+        if (s.equals(theWord)){
+            System.out.println("You get a point");
+        }
+    }
     @FXML
     public void pressEnter() {
 
