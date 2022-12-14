@@ -62,9 +62,8 @@ public class GameViewControl implements Initializable {
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        switchWord();
-        System.out.println(theWord);
         switchPlayer();
+        System.out.println(theWord);
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake12);
@@ -74,6 +73,7 @@ public class GameViewControl implements Initializable {
         currentPlayer++;
         mistakes = 0;
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
+        switchWord();
     }
     // switch from player 2 to Player 1's word
     public void switchWord(){
