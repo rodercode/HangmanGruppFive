@@ -16,7 +16,7 @@
             <Font size="64.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="129.0" text="Score: ">
+      <Label fx:id="scorePlate" layoutX="58.0" layoutY="129.0" text="Score:0 ">
          <font>
             <Font size="24.0" />
          </font>
@@ -28,7 +28,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="currentPlayer" layoutX="394.0" layoutY="54.0" prefHeight="35.0" prefWidth="187.0" text="Player One's Turn">
+      <Label fx:id="playerPlate" layoutX="394.0" layoutY="54.0" prefHeight="35.0" prefWidth="187.0" text="Player One's Turn">
          <font>
             <Font size="24.0" />
          </font>
@@ -182,7 +182,7 @@
             </Button>
          </children>
       </TilePane>
-      <ImageView fx:id="imageViewCake" fitHeight="150.0" fitWidth="200.0" layoutX="388.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewCake" fitHeight="350.0" fitWidth="400.0" layoutX="279.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
 
    </children>
 </AnchorPane>
