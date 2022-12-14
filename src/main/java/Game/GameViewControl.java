@@ -1,20 +1,25 @@
 package Game;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 import java.util.ResourceBundle;
@@ -72,8 +77,12 @@ public class GameViewControl implements Initializable {
         playerPlate.setText("Player "+currentPlayer+"'s Turn");
         scorePlate.setText("Score: " + database.getPlayerScores().get(2));
         switchWord();
+        if(currentPlayer>5){
+
+        }
     }
     // switch from player 2 to Player 1's word
+    
     public void switchWord(){
         theWord = database.getListOfWords().get(1);
         encryptedWord = new char[theWord.length()];
@@ -100,18 +109,17 @@ public class GameViewControl implements Initializable {
         wordGuess.setText(newHiddenWord.replace(""," ").trim());
     }
 
-    public void checkAnswer(){
+    public void checkAnswer()  {
         if (isAnswerCorrect){
             correctAnswer();
         }else {
             makeAMistake();
         }
     }
-    public void makeAMistake(){
+    public void makeAMistake()  {
         mistakes++;
         if (mistakes == 10){
-            switchPlayer(); //In the furture we should make this switch scene. 
-
+            switchPlayer(); //In the furture we should make this switch scene.
             System.out.println("You lost the game");
         }
         mistakePlate.setText("Mistake: " + mistakes +"/10");
@@ -120,16 +128,18 @@ public class GameViewControl implements Initializable {
         isAnswerCorrect = false;
         getPoint();
     }
-    int point = 0;
+
     public void getPoint(){
         String s = String.valueOf(encryptedWord);
         if (s.equals(theWord)){
             database.addScore(currentPlayer);
             scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
             switchPlayer();
+            //changeScene(new Stage());
             System.out.println("You get a point");
         }
     }
+
     @FXML
     public void pressEnter() {
         if (userInput.getText().toUpperCase().equals(theWord)) {
@@ -139,6 +149,13 @@ public class GameViewControl implements Initializable {
         }
         userInput.setText("");
     }
+
+    /*public void switchGameScene() throws IOException{
+        System.out.println(database.getListOfWords());
+        Parent root = FXMLLoader.load(GameViewControl.class.getResource("ScoreView.fxml"));
+        Stage window = (Stage)scorePlate.getScene().getWindow();
+        window.setScene(new Scene(root));
+    } */
 
     // Cake animation
     @FXML

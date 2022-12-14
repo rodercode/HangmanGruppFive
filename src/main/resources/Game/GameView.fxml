@@ -25,7 +25,7 @@
       <TextField fx:id="userInput" layoutX="423.0" layoutY="522.0" onAction="#pressEnter" />
       <Label fx:id="mistakePlate" layoutX="424.0" layoutY="470.0" prefHeight="35.0" prefWidth="149.0" text="Mistake: 0/10">
          <font>
-            <Font size="20.0" />
+            <Font name="Comic Sans MS" size="20.0" />
          </font>
       </Label>
       <Label fx:id="playerPlate" layoutX="394.0" layoutY="54.0" prefHeight="35.0" prefWidth="187.0" text="Player 1's Turn">
@@ -154,6 +154,7 @@
          </children>
       </TilePane>
       <ImageView fx:id="imageViewCake" fitHeight="350.0" fitWidth="400.0" layoutX="279.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="nextPlayer" layoutX="627.0" layoutY="556.0" mnemonicParsing="false" onAction="#changeSceneWithButton" text="Next Player" visible="false" />
 
    </children>
 </AnchorPane>
