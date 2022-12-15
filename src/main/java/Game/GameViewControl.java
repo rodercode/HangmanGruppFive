@@ -1,5 +1,6 @@
 package Game;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -166,7 +167,6 @@ public class GameViewControl implements Initializable {
         Stage window = (Stage) enter.getScene().getWindow();
         window.setScene(new Scene(root));
     }
-
     @FXML
     public void pressEnter() throws IOException {
         String s = String.valueOf(encryptedWord);
@@ -186,8 +186,6 @@ public class GameViewControl implements Initializable {
         userInput.setText("");
         System.out.println("Fel");
     }
-
-
     // Cake animation
     @FXML
     public void displayCakeImage() {
@@ -212,11 +210,18 @@ public class GameViewControl implements Initializable {
         else if (mistakes == 10)
             imageViewCake.setImage(imageCake0);
     }
-
     // End of Cake Animation
 
-
     // Letter buttons
+
+
+
+    @FXML
+    public void handleButtonPress(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        checkGuess(button.getText().charAt(0), theWord);
+    }
+
     @FXML
     public void buttonQ() {
         checkGuess('Q', theWord);
