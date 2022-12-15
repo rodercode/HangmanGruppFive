@@ -18,13 +18,16 @@ public class ScoreViewControl {
     public ScoreViewControl() {
         database = Database.getInstance();
     }
-    public void switchGameScene(ActionEvent actionEvent) throws IOException {
+
+    public void switchGameScene() throws IOException {
         Parent root = FXMLLoader.load(GameViewControl.class.getResource("GameView.fxml"));
         Stage window = (Stage) nextButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
-    public void pressedButton(ActionEvent actionEvent) throws IOException {
-        switchGameScene(actionEvent);
+    public void pressedButton() throws IOException {
+        switchGameScene();
+        if (database.getCurrentPlayer() > database.getAmountOfPlayers()) {
+        }
     }
 }
