@@ -12,13 +12,18 @@ public class Database {
    private HashMap<Integer,Integer> playerScores;
    private List<Integer> players;
    private int score;
-    public Database() {
+
+    private boolean isItGameOver;
+    private boolean  didIScore;
+    private Database() {
         listOfWords = new HashMap<>();
         playerScores = new HashMap<>();
         players = Arrays.asList(1,2);
         listOfWords.put(1,"KAFFE");
         listOfWords.put(2,"TE");
         score = 5;
+        isItGameOver = false;
+        didIScore = false;
     }
 
     public void createPlayer(int howManyPlayers){
@@ -47,12 +52,21 @@ public class Database {
     }
 
 
-   /* public void getListOfWords() {
-        for( Map.Entry<Integer, String> entry : listOfWords.entrySet() ){
-            System.out.println( entry.getKey() + " = " + entry.getValue() );
-        }
-    } */
+    public boolean isItGameOver() {
+        return isItGameOver;
+    }
 
+    public void setItGameOver(boolean itGameOver) {
+        isItGameOver = itGameOver;
+    }
+
+    public boolean isDidIScore() {
+        return didIScore;
+    }
+
+    public void setDidIScore(boolean didIScore) {
+        this.didIScore = didIScore;
+    }
 
     public void setListOfWords(HashMap<Integer, String> listOfWords) {
         this.listOfWords = listOfWords;
