@@ -31,9 +31,8 @@ public class GameViewControl implements Initializable {
     private Database database;
     private int mistakes;
     private char[] encryptedWord;
-    private int currentPlayer;
     private String theWord;
-    private int enemyPlayer;
+
     private boolean didIScore;
 
     private boolean isLetterCorrect;
@@ -58,34 +57,30 @@ public class GameViewControl implements Initializable {
 
     public GameViewControl() throws FileNotFoundException {
         database = Database.getInstance();
-        enemyPlayer = 2;
-        theWord = database.getListOfWords().get(enemyPlayer);
-        encryptedWord = new char[theWord.length()];
         mistakes = 0;
         isLetterCorrect = false;
-        currentPlayer = 1;
     }
 
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.setDidIScore(false);
-        database.setItGameOver(false);
         database.createPlayer(2);
+        theWord = database.getListOfWords().get(database.getEnemyPlayer());
+        encryptedWord = new char[theWord.length()];
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake10);
-        playerPlate.setText("Player " + currentPlayer + "'s Turn");
+        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
 
     public void switchPlayer() {
-        currentPlayer++;
+        database.switchPlayer();
         mistakes = 0;
-        playerPlate.setText("Player " + currentPlayer + "'s Turn");
+        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
         scorePlate.setText("Score: " + database.getPlayerScores().get(2));
         switchTheWord();
-        if (currentPlayer < 5) {
+        if (database.getCurrentPlayer() < 5) {
             //Start menu. 
         }
     }
@@ -160,8 +155,8 @@ public class GameViewControl implements Initializable {
         String s = String.valueOf(encryptedWord);
         if (isWordCorrect()) {
             enter.setText("Next");
-            database.addScore(currentPlayer);
-            scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
+            database.addScore(database.getCurrentPlayer());
+            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             database.setDidIScore(true);
         }
     }
@@ -177,12 +172,16 @@ public class GameViewControl implements Initializable {
         String s = String.valueOf(encryptedWord);
         if (userInput.getText().toUpperCase().equals(theWord)) {
             userInput.setText("");
-            database.addScore(currentPlayer);
-            scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
+            database.addScore(database.getCurrentPlayer());
+            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             switchPlayer();
             System.out.println("You get a point");
-        } else if (database.isItGameOver()|| database.isDidIScore()) {
+        } else if (isWordCorrect()) {
             switchGameScene();
+            switchPlayer();
+        } else if (!isWordCorrect()){
+            switchGameScene();
+            switchPlayer();
         }
         userInput.setText("");
         System.out.println("Fel");
