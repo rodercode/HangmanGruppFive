@@ -36,7 +36,7 @@ public class GameViewControl implements Initializable {
     private int enemyPlayer;
     private boolean didIScore;
 
-    private boolean isAnswerCorrect;
+    private boolean isLetterCorrect;
     private boolean isItGameOver;
 
     // FXML variables
@@ -62,7 +62,7 @@ public class GameViewControl implements Initializable {
         theWord = database.getListOfWords().get(enemyPlayer);
         encryptedWord = new char[theWord.length()];
         mistakes = 0;
-        isAnswerCorrect = false;
+        isLetterCorrect = false;
         currentPlayer = 1;
     }
 
@@ -112,7 +112,7 @@ public class GameViewControl implements Initializable {
                 System.out.println(guessWord.charAt(i));
                 System.out.println(letter);
                 encryptedWord[i] = letter;
-                isAnswerCorrect = true;
+                isLetterCorrect = true;
             }
         }
         checkAnswer();
@@ -121,7 +121,7 @@ public class GameViewControl implements Initializable {
     }
 
     public void checkAnswer() {
-        if (isAnswerCorrect) {
+        if (isLetterCorrect) {
             correctAnswer();
         } else {
             makeAMistake();
@@ -129,7 +129,7 @@ public class GameViewControl implements Initializable {
     }
 
     public void makeAMistake() {
-        if(mistakes <10){
+        if(mistakes <10 && !isWordCorrect()){
             mistakes++;
             displayCakeImage();
         }
@@ -142,13 +142,22 @@ public class GameViewControl implements Initializable {
     }
 
     public void correctAnswer() {
-        isAnswerCorrect = false;
+        isLetterCorrect = false;
         getPoint();
     }
 
+    public boolean isWordCorrect() {
+        String s = String.valueOf(encryptedWord);
+        if (theWord.equals(s)) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
     public void getPoint() {
         String s = String.valueOf(encryptedWord);
-        if (s.equals(theWord)) {
+        if (isWordCorrect()) {
             enter.setText("Next");
             database.addScore(currentPlayer);
             scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
