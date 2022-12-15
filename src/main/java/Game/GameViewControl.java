@@ -133,7 +133,9 @@ public class GameViewControl implements Initializable {
         displayCakeImage();
         if (mistakes == 10) {
             enter.setText("Next");
-            database.setItGameOver(true);
+
+            switchPlayer();
+
         }
 
         mistakePlate.setText("Mistake: " + mistakes + "/10");
@@ -154,7 +156,10 @@ public class GameViewControl implements Initializable {
         }
     }
 
-    public void switchGameScene() throws IOException {
+
+    public void switchGame() throws IOException {
+        switchPlayer();
+
         Parent root = FXMLLoader.load(GameViewControl.class.getResource("ScoreView.fxml"));
         Stage window = (Stage) enter.getScene().getWindow();
         window.setScene(new Scene(root));
@@ -169,8 +174,15 @@ public class GameViewControl implements Initializable {
             scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
             switchPlayer();
             System.out.println("You get a point");
-        } else if (database.isItGameOver()|| database.isDidIScore()) {
-            switchGameScene();
+
+        } else if (mistakes == 10) {
+            switchPlayer();
+            switchGame();
+            //change text on scene 3
+        }else if (s.equals(theWord)){
+            switchPlayer();
+            switchGame();
+
         }
         userInput.setText("");
         System.out.println("Fel");
