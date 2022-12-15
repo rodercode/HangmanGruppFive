@@ -148,6 +148,7 @@ public class GameViewControl implements Initializable {
 
     public boolean isWordCorrect() {
         String s = String.valueOf(encryptedWord);
+
         if (theWord.equals(s)) {
             return true;
 
