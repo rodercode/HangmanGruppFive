@@ -47,7 +47,8 @@ public class GameViewControl implements Initializable {
     private Label mistakePlate;
     @FXML
     private ImageView imageViewCakeOne;
-    private ImageView imageViewCakeTwo
+    @FXML
+    private ImageView imageViewCakeTwo;
     @FXML
     private Label scorePlate;
 

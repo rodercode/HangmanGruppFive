@@ -16,7 +16,7 @@
             <Font name="Comic Sans MS" size="64.0" />
          </font>
       </Label>
-      <Label fx:id="scorePlate" layoutX="58.0" layoutY="129.0" text="Score:0 " textFill="#6db8e4">
+      <Label fx:id="scorePlate" layoutX="45.0" layoutY="54.0" text="Score:0 " textFill="#6db8e4">
          <font>
             <Font name="Comic Sans MS" size="24.0" />
          </font>
@@ -159,7 +159,8 @@
                </font></Button>
          </children>
       </TilePane>
-      <ImageView fx:id="imageViewCake" fitHeight="270.0" fitWidth="400.0" layoutX="330.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewCakeOne" fitHeight="270.0" fitWidth="400.0" layoutX="601.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewCakeTwo" fitHeight="270.0" fitWidth="400.0" layoutX="23.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
 
    </children>
 </AnchorPane>
