@@ -184,6 +184,7 @@ public class GameViewControl implements Initializable {
             imageViewCake.setImage(imageCake0);
         remainingGuesses--;
     }
+
     // End of Cake Animation
 
 
