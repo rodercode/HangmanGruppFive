@@ -69,7 +69,8 @@ public class GameViewControl implements Initializable {
         encryptedWord = new char[theWord.length()];
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
-        imageViewCake.setImage(imageCakeBlue10);
+        imageViewCakeOne.setImage(imageCakeBlue10);
+        imageViewCakeTwo.setImage(imageCakePink10);
         playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
@@ -126,7 +127,7 @@ public class GameViewControl implements Initializable {
     public void makeAMistake() {
         if(mistakes <10 && !isWordCorrect()){
             mistakes++;
-            displayCakeImage();
+//            displayCakeImage();
         }
         else if (mistakes == 10) {
             enter.setText("Next");
@@ -187,7 +188,7 @@ public class GameViewControl implements Initializable {
     }
     // Cake animation
     @FXML
-    public void displayCakeImage() {
+    public void displayCakeImage(ImageView imageViewCake) {
         if (mistakes == 1)
             imageViewCake.setImage(imageCakeBlue9);
         else if (mistakes == 2)
