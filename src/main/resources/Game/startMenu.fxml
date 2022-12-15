@@ -12,7 +12,7 @@
     <TilePane layoutX="119.0" layoutY="283.0" prefHeight="109.0" prefWidth="367.0">
         
         <children>
-            <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#buttonQ" onMousePressed="#buttonS" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink; -fx-background-color: darkpink;" text="Q">
+            <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#buttonQ" onMousePressed="#buttonS" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="Q">
             <font>
                <Font name="Comic Sans MS" size="13.0" />
             </font></Button>

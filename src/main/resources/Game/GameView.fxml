@@ -23,7 +23,7 @@
       </Label>
       <Button fx:id="enter" layoutX="472.0" layoutY="556.0" mnemonicParsing="false" onAction="#pressEnter" text="ENTER" textFill="#3912a3" />
       <TextField fx:id="userInput" layoutX="423.0" layoutY="522.0" onAction="#pressEnter" />
-      <Label fx:id="mistakePlate" layoutX="424.0" layoutY="470.0" prefHeight="35.0" prefWidth="149.0" text="Mistake: 0/12">
+      <Label fx:id="mistakePlate" layoutX="424.0" layoutY="470.0" prefHeight="35.0" prefWidth="149.0" text="Mistake: 0/10">
          <font>
             <Font size="20.0" />
          </font>

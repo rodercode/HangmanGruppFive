@@ -181,8 +181,12 @@ public class GameViewControl implements Initializable {
             scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
             switchPlayer();
             System.out.println("You get a point");
-        } else if (mistakes == 10 || s.equals(theWord)) {
+        } else if (mistakes == 10) {
             switchGame();
+            //change text on scene 3
+        }else if (s.equals(theWord)){
+            switchGame();
+
         }
         userInput.setText("");
         System.out.println("Fel");
