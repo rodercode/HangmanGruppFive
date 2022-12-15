@@ -129,9 +129,11 @@ public class GameViewControl implements Initializable {
     }
 
     public void makeAMistake() {
-        mistakes++;
-        displayCakeImage();
-        if (mistakes == 10) {
+        if(mistakes <10){
+            mistakes++;
+            displayCakeImage();
+        }
+        else if (mistakes == 10) {
             enter.setText("Next");
             database.setItGameOver(true);
         }
