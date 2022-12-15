@@ -35,13 +35,12 @@ public class GameViewControl implements Initializable {
     private int mistakes;
     private char[] encryptedWord;
     private String theWord;
-    private Image imageCakeBlue;
-    private Image imageCakePink;
-
 
     private boolean isLetterCorrect;
     private List<String> listOfBlueCake;
     private List<String> listOfPinkCake;
+    private Image imageCakeBlue;
+    private Image imageCakePink;
 
     // FXML variables
     @FXML
@@ -68,8 +67,13 @@ public class GameViewControl implements Initializable {
         isLetterCorrect = false;
         listOfBlueCake = new ArrayList<>();
         listOfPinkCake = new ArrayList<>();
-        addImagesToLists();
-        addImagesToLists();
+        imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(10)));
+        imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(10)));
+
+        for (int i = 0; i < 11; i++) {
+            listOfBlueCake.add("src/main/resources/cakeBlue/cakeBlue" + i + " cat.png");
+            listOfPinkCake.add("src/main/resources/cakePink/cakePink" + i + " cat.png");
+        }
     }
 
     // Start method
@@ -83,15 +87,6 @@ public class GameViewControl implements Initializable {
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
         playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
-    }
-    public void addImagesToLists() throws FileNotFoundException {
-        for (int i = 0; i < 11; i++) {
-            listOfBlueCake.add("src/main/resources/cakeBlue/cakeBlue" + i + " cat.png");
-            listOfPinkCake.add("src/main/resources/cakePink/cakePink" + i + " cat.png");
-        }
-
-        imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(10)));
-        imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(10)));
     }
 
     public void switchPlayer() {
@@ -245,6 +240,8 @@ public class GameViewControl implements Initializable {
 
 
     }
+
+
 //    Image imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(0)));
 
 
