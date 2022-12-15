@@ -201,6 +201,7 @@ public class GameViewControl implements Initializable {
         else if (mistakes == 10)
             imageViewCake.setImage(imageCake0);
     }
+
     // End of Cake Animation
 
 
