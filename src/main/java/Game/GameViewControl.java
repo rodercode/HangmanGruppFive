@@ -143,7 +143,7 @@ public class GameViewControl implements Initializable {
 
         if (mistakes == 10) {
             enter.setText("Next");
-//            switchPlayer();
+            switchPlayer();
         }
 
         mistakePlate.setText("Mistake: " + mistakes + "/10");
@@ -167,6 +167,7 @@ public class GameViewControl implements Initializable {
     }
 
     public void switchGame() throws IOException {
+        switchPlayer();
         Parent root = FXMLLoader.load(GameViewControl.class.getResource("ScoreView.fxml"));
         Stage window = (Stage) enter.getScene().getWindow();
         window.setScene(new Scene(root));
@@ -182,9 +183,11 @@ public class GameViewControl implements Initializable {
             switchPlayer();
             System.out.println("You get a point");
         } else if (mistakes == 10) {
+            switchPlayer();
             switchGame();
             //change text on scene 3
         }else if (s.equals(theWord)){
+            switchPlayer();
             switchGame();
 
         }
