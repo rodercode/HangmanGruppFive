@@ -1,5 +1,6 @@
 package Game;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,9 +32,8 @@ public class GameViewControl implements Initializable {
     private Database database;
     private int mistakes;
     private char[] encryptedWord;
-    private int currentPlayer;
     private String theWord;
-    private int enemyPlayer;
+
     private boolean didIScore;
 
     private boolean isLetterCorrect;
@@ -58,34 +58,30 @@ public class GameViewControl implements Initializable {
 
     public GameViewControl() throws FileNotFoundException {
         database = Database.getInstance();
-        enemyPlayer = 2;
-        theWord = database.getListOfWords().get(enemyPlayer);
-        encryptedWord = new char[theWord.length()];
         mistakes = 0;
         isLetterCorrect = false;
-        currentPlayer = 1;
     }
 
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.setDidIScore(false);
-        database.setItGameOver(false);
         database.createPlayer(2);
+        theWord = database.getListOfWords().get(database.getEnemyPlayer());
+        encryptedWord = new char[theWord.length()];
         wordGuess.setAlignment(Pos.CENTER);
         wordGuess.setText(displayHiddenWord());
         imageViewCake.setImage(imageCake10);
-        playerPlate.setText("Player " + currentPlayer + "'s Turn");
+        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
 
     public void switchPlayer() {
-        currentPlayer++;
+        database.switchPlayer();
         mistakes = 0;
-        playerPlate.setText("Player " + currentPlayer + "'s Turn");
+        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
         scorePlate.setText("Score: " + database.getPlayerScores().get(2));
         switchTheWord();
-        if (currentPlayer < 5) {
+        if (database.getCurrentPlayer() < 5) {
             //Start menu. 
         }
     }
@@ -160,8 +156,8 @@ public class GameViewControl implements Initializable {
         String s = String.valueOf(encryptedWord);
         if (isWordCorrect()) {
             enter.setText("Next");
-            database.addScore(currentPlayer);
-            scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
+            database.addScore(database.getCurrentPlayer());
+            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             database.setDidIScore(true);
         }
     }
@@ -171,24 +167,25 @@ public class GameViewControl implements Initializable {
         Stage window = (Stage) enter.getScene().getWindow();
         window.setScene(new Scene(root));
     }
-
     @FXML
     public void pressEnter() throws IOException {
         String s = String.valueOf(encryptedWord);
         if (userInput.getText().toUpperCase().equals(theWord)) {
             userInput.setText("");
-            database.addScore(currentPlayer);
-            scorePlate.setText("Score: " + database.getPlayerScores().get(currentPlayer));
+            database.addScore(database.getCurrentPlayer());
+            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             switchPlayer();
             System.out.println("You get a point");
-        } else if (database.isItGameOver()|| database.isDidIScore()) {
+        } else if (isWordCorrect()) {
             switchGameScene();
+            switchPlayer();
+        } else if (!isWordCorrect()){
+            switchGameScene();
+            switchPlayer();
         }
         userInput.setText("");
         System.out.println("Fel");
     }
-
-
     // Cake animation
     @FXML
     public void displayCakeImage() {
@@ -213,188 +210,15 @@ public class GameViewControl implements Initializable {
         else if (mistakes == 10)
             imageViewCake.setImage(imageCake0);
     }
-
     // End of Cake Animation
-
 
     // Letter buttons
     @FXML
-    public void buttonQ() {
-        checkGuess('Q', theWord);
-//        userInput.appendText("Q");
+    public void handleButtonPress(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        checkGuess(button.getText().charAt(0), theWord);
     }
 
-    @FXML
-    public void buttonW() {
-        checkGuess('W', theWord);
-//        userInput.appendText("W");
-    }
-
-    @FXML
-    public void buttonE() {
-        checkGuess('E', theWord);
-//        userInput.appendText("E");
-    }
-
-    @FXML
-    public void buttonR() {
-        checkGuess('R', theWord);
-//        userInput.appendText("R");
-    }
-
-    @FXML
-    public void buttonT() {
-        checkGuess('T', theWord);
-//        userInput.appendText("T");
-    }
-
-    @FXML
-    public void buttonY() {
-        checkGuess('Y', theWord);
-//        userInput.appendText("Y");
-    }
-
-    @FXML
-    public void buttonU() {
-        checkGuess('U', theWord);
-//        userInput.appendText("U");
-    }
-
-    @FXML
-    public void buttonI() {
-        checkGuess('I', theWord);
-//        userInput.appendText("I");
-    }
-
-    @FXML
-    public void buttonO() {
-        checkGuess('O', theWord);
-//        userInput.appendText("O");
-    }
-
-    @FXML
-    public void buttonP() {
-        checkGuess('P', theWord);
-//        userInput.appendText("P");
-    }
-
-    @FXML
-    public void buttonÅ() {
-        checkGuess('Å', theWord);
-//        userInput.appendText("Å");
-    }
-
-    @FXML
-    public void buttonA() {
-        checkGuess('A', theWord);
-//        userInput.appendText("A");
-    }
-
-    @FXML
-    public void buttonS() {
-        checkGuess('S', theWord);
-//        userInput.appendText("S");
-    }
-
-    @FXML
-    public void buttonD() {
-        checkGuess('D', theWord);
-//        userInput.appendText("D");
-    }
-
-    @FXML
-    public void buttonF() {
-        checkGuess('F', theWord);
-//        userInput.appendText("F");
-    }
-
-    @FXML
-    public void buttonG() {
-        checkGuess('G', theWord);
-//        userInput.appendText("G");
-    }
-
-    @FXML
-    public void buttonH() {
-        checkGuess('H', theWord);
-//        userInput.appendText("H");
-    }
-
-    @FXML
-    public void buttonJ() {
-        checkGuess('J', theWord);
-//        userInput.appendText("J");
-    }
-
-    @FXML
-    public void buttonK() {
-        checkGuess('K', theWord);
-//        userInput.appendText("K");
-    }
-
-    @FXML
-    public void buttonL() {
-        checkGuess('L', theWord);
-//        userInput.appendText("L");
-    }
-
-    @FXML
-    public void buttonÖ() {
-        checkGuess('Ö', theWord);
-//        userInput.appendText("Ö");
-    }
-
-    @FXML
-    public void buttonÄ() {
-        checkGuess('Ä', theWord);
-//        userInput.appendText("Ä");
-    }
-
-    @FXML
-    public void buttonZ() {
-        checkGuess('Z', theWord);
-//        userInput.appendText("Z");
-    }
-
-    @FXML
-    public void buttonX() {
-        checkGuess('X', theWord);
-//        userInput.appendText("X");
-    }
-
-    @FXML
-    public void buttonC() {
-        checkGuess('C', theWord);
-//        userInput.appendText("C");
-    }
-
-    @FXML
-    public void buttonV() {
-        checkGuess('V', theWord);
-//        userInput.appendText("V");
-    }
-
-    @FXML
-    public void buttonB() {
-        checkGuess('B', theWord);
-//        userInput.appendText("B");
-    }
-
-    @FXML
-    public void buttonN() {
-        checkGuess('N', theWord);
-//        userInput.appendText("N");
-    }
-
-    @FXML
-    public void buttonM() {
-        checkGuess('M', theWord);
-//        userInput.appendText("M");
-    }
-
-    // end of Letter buttons
-
-    // Images
 
     Image imageCake10 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue10 cat.png"));
 

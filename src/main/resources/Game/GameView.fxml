@@ -41,119 +41,119 @@
       </Label>
       <TilePane layoutX="329.0" layoutY="602.0" prefHeight="109.0" prefWidth="367.0">
          <children>
-            <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#buttonQ" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="Q">
+            <Button fx:id="buttonQ" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="Q">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonW" mnemonicParsing="false" onAction="#buttonW" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: lightblue;" text="W">
+            <Button fx:id="buttonW" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: lightblue;" text="W">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonE" mnemonicParsing="false" onAction="#buttonE" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="E">
+            <Button fx:id="buttonE" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="E">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></Button>
-            <Button fx:id="buttonR" mnemonicParsing="false" onAction="#buttonR" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="R">
+            <Button fx:id="buttonR" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="R">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></Button>
-            <Button fx:id="buttonT" mnemonicParsing="false" onAction="#buttonT" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="T">
+            <Button fx:id="buttonT" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="T">
                <font>
                   <Font name="Comic Sans MS" size="12.0" />
                </font></Button>
-            <Button fx:id="buttonY" mnemonicParsing="false" onAction="#buttonY" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="Y">
+            <Button fx:id="buttonY" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="Y">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonU" mnemonicParsing="false" onAction="#buttonU" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="U">
+            <Button fx:id="buttonU" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="U">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonI" mnemonicParsing="false" onAction="#buttonI" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="I">
+            <Button fx:id="buttonI" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="I">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonO" mnemonicParsing="false" onAction="#buttonO" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="O">
+            <Button fx:id="buttonO" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="O">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonP" mnemonicParsing="false" onAction="#buttonP" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="P">
+            <Button fx:id="buttonP" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="P">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonÅ" mnemonicParsing="false" onAction="#buttonÅ" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="Å">
+            <Button fx:id="buttonÅ" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="Å">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonA" mnemonicParsing="false" onAction="#buttonA" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="A">
+            <Button fx:id="buttonA" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="A">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonS" mnemonicParsing="false" onAction="#buttonS" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="S">
+            <Button fx:id="buttonS" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="S">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonD" mnemonicParsing="false" onAction="#buttonD" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="D">
+            <Button fx:id="buttonD" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="D">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonF" mnemonicParsing="false" onAction="#buttonF" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="F">
+            <Button fx:id="buttonF" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="F">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonG" mnemonicParsing="false" onAction="#buttonG" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="G">
+            <Button fx:id="buttonG" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="G">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonH" mnemonicParsing="false" onAction="#buttonH" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="H">
+            <Button fx:id="buttonH" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="H">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonJ" mnemonicParsing="false" onAction="#buttonJ" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="J">
+            <Button fx:id="buttonJ" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="J">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonK" mnemonicParsing="false" onAction="#buttonK" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="K">
+            <Button fx:id="buttonK" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="K">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonL" mnemonicParsing="false" onAction="#buttonL" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="L">
+            <Button fx:id="buttonL" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="L">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonÖ" mnemonicParsing="false" onAction="#buttonÖ" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="Ö">
+            <Button fx:id="buttonÖ" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="Ö">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonÄ" mnemonicParsing="false" onAction="#buttonÄ" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="Ä">
+            <Button fx:id="buttonÄ" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="Ä">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonZ" mnemonicParsing="false" onAction="#buttonZ" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="Z">
+            <Button fx:id="buttonZ" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="Z">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonX" mnemonicParsing="false" onAction="#buttonX" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="X">
+            <Button fx:id="buttonX" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="X">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonC" mnemonicParsing="false" onAction="#buttonC" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="C">
+            <Button fx:id="buttonC" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="C">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonV" mnemonicParsing="false" onAction="#buttonV" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="V">
+            <Button fx:id="buttonV" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightblue;" text="V">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonB" mnemonicParsing="false" onAction="#buttonB" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="B">
+            <Button fx:id="buttonB" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightyellow;" text="B">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonN" mnemonicParsing="false" onAction="#buttonN" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="N">
+            <Button fx:id="buttonN" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightgreen;" text="N">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
-            <Button fx:id="buttonM" mnemonicParsing="false" onAction="#buttonM" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="M">
+            <Button fx:id="buttonM" mnemonicParsing="false" onAction="#handleButtonPress" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: lightpink;" text="M">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></Button>
