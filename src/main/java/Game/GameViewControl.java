@@ -136,8 +136,17 @@ public class GameViewControl implements Initializable {
 
     public void switchPlayer() {
 //        database.switchPlayer();
-        currentPlayer++;
-        enemyPlayer--;
+        if (currentPlayer == 2){
+            currentPlayer--;
+            enemyPlayer++;
+        }else if (currentPlayer == 1){
+            currentPlayer++;
+            enemyPlayer--;
+        }
+        System.out.println(currentPlayer);
+        System.out.println(enemyPlayer);
+
+
 //        if (currentPlayer == 2){
 //            currentPlayer--;
 //            enemyPlayer++;
@@ -190,6 +199,7 @@ public class GameViewControl implements Initializable {
         } else {
             makeAMistake();
         }
+        switchPlayer();
     }
 
     public void makeAMistake() {
@@ -237,7 +247,7 @@ public class GameViewControl implements Initializable {
 
     @FXML
     public void pressEnter() throws IOException {
-        switchPlayer();
+
 
 
 //        String s = String.valueOf(encryptedWord);
