@@ -37,13 +37,15 @@ public class GameViewControl implements Initializable {
 
     private int currentPlayer;
     private int enemyPlayer;
-    private HashMap<Integer,Label> listOfWordGuess;
-    private HashMap<Integer,char[]> listOfEncryptedWord;
+    private HashMap<Integer, Label> listOfWordGuess;
+    private HashMap<Integer, char[]> listOfEncryptedWord;
 
 
     // FXML variables
     @FXML
     private Label playerPlate1;
+    @FXML
+    private Label playerPlate2;
     @FXML
     private TextField userInput;
     @FXML
@@ -84,8 +86,8 @@ public class GameViewControl implements Initializable {
         encryptedWordOne = new char[database.getListOfWords().get(2).length()];
         encryptedWordTwo = new char[database.getListOfWords().get(1).length()];
         listOfEncryptedWord = new HashMap<>();
-        listOfEncryptedWord.put(1,encryptedWordOne);
-        listOfEncryptedWord.put(2,encryptedWordTwo);
+        listOfEncryptedWord.put(1, encryptedWordOne);
+        listOfEncryptedWord.put(2, encryptedWordTwo);
 
         addImagesToLists();
 
@@ -96,21 +98,32 @@ public class GameViewControl implements Initializable {
         enemyPlayer = 2;
     }
 
-//    public void highlightPlayer2(){
-//        playerPlate1.setStyle("-fx-text-fill: grey");
-//        mistakePlate1.setStyle("-fx-text-fill: grey");
-//        scorePlate1.setStyle("-fx-text-fill: grey");
-//    }
-//    public void highlightPlayer1(){
-//        playerPlate2.setStyle("-fx-text-fill: grey");
-//        mistakePlate2.setStyle("-fx-text-fill: grey");
-//        scorePlate2.setStyle("-fx-text-fill: grey");
-//    }
+    public void highlightPlayer() {
+        if (currentPlayer == 1) {
+            playerPlate2.setStyle("-fx-text-fill: grey");
+            mistakePlate2.setStyle("-fx-text-fill: grey");
+            scorePlate2.setStyle("-fx-text-fill: grey");
+
+            playerPlate1.setStyle("-fx-text-fill: #f797c7 ");
+            mistakePlate1.setStyle("-fx-text-fill: #f797c7 ");
+            scorePlate1.setStyle("-fx-text-fill: #f797c7 ");
+
+        } else if (currentPlayer == 2) {
+            playerPlate1.setStyle("-fx-text-fill: grey");
+            mistakePlate1.setStyle("-fx-text-fill: grey");
+            scorePlate1.setStyle("-fx-text-fill: grey");
+
+            playerPlate2.setStyle("-fx-text-fill: #6db8e4 ");
+            mistakePlate2.setStyle("-fx-text-fill: #6db8e4 ");
+            scorePlate2.setStyle("-fx-text-fill: #6db8e4 ");
+        }
+    }
 
 
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        highlightPlayer();
 
         wordGuess1.setAlignment(Pos.BASELINE_LEFT);
         wordGuess1.setText(displayHiddenWord(encryptedWordOne));
@@ -118,8 +131,8 @@ public class GameViewControl implements Initializable {
         wordGuess2.setAlignment(Pos.BASELINE_CENTER);
         wordGuess2.setText(displayHiddenWord(encryptedWordTwo));
 
-        listOfWordGuess.put(1,wordGuess1);
-        listOfWordGuess.put(2,wordGuess2);
+        listOfWordGuess.put(1, wordGuess1);
+        listOfWordGuess.put(2, wordGuess2);
 
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
@@ -127,7 +140,7 @@ public class GameViewControl implements Initializable {
         playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
-    public void addImagesToLists(){
+    public void addImagesToLists() {
         for (int i = 0; i < 11; i++) {
             listOfBlueCake.add("src/main/resources/cakeBlue/cakeBlue" + i + " cat.png");
             listOfPinkCake.add("src/main/resources/cakePink/cakePink" + i + " cat.png");
@@ -135,31 +148,18 @@ public class GameViewControl implements Initializable {
     }
 
     public void switchPlayer() {
-//        database.switchPlayer();
-        if (currentPlayer == 2){
+        if (currentPlayer == 2) {
             currentPlayer--;
             enemyPlayer++;
-        }else if (currentPlayer == 1){
+        } else if (currentPlayer == 1) {
             currentPlayer++;
             enemyPlayer--;
         }
         System.out.println(currentPlayer);
         System.out.println(enemyPlayer);
 
-
-//        if (currentPlayer == 2){
-//            currentPlayer--;
-//            enemyPlayer++;
-//        }else {
-//            currentPlayer++;
-//            enemyPlayer--;
-//        }
         playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
         scorePlate1.setText("Score: " + database.getPlayerScores().get(2));
-//        switchTheWord();
-//        if (database.getCurrentPlayer() < 5) {
-//            //Start menu.
-//        }
     }
 
     // switch from player 2 to Player 1's word
@@ -180,7 +180,7 @@ public class GameViewControl implements Initializable {
         return newWord.replace("", " ").trim();
     }
 
-    public void checkGuess(char letter, String guessWord,char[] encryptedWord,Label wordGuess) {
+    public void checkGuess(char letter, String guessWord, char[] encryptedWord, Label wordGuess) {
         for (int i = 0; i < encryptedWord.length; i++) {
             if (guessWord.charAt(i) == letter) {
                 System.out.println("hit");
@@ -199,6 +199,7 @@ public class GameViewControl implements Initializable {
         } else {
             makeAMistake();
         }
+
         switchPlayer();
     }
 
@@ -213,6 +214,7 @@ public class GameViewControl implements Initializable {
 
         mistakePlate1.setText("Mistake: " + mistakes + "/10");
     }
+
     public void correctAnswer() {
         isLetterCorrect = false;
         getPoint();
@@ -247,7 +249,6 @@ public class GameViewControl implements Initializable {
 
     @FXML
     public void pressEnter() throws IOException {
-
 
 
 //        String s = String.valueOf(encryptedWord);
@@ -288,7 +289,7 @@ public class GameViewControl implements Initializable {
 
     // Cake animation
     @FXML
-    public void displayCakeImage(ImageView imageViewCake,Image imageCake) {
+    public void displayCakeImage(ImageView imageViewCake, Image imageCake) {
         imageViewCake.setImage(imageCake);
 //        if (mistakes == 1)
 //            imageViewCake.setImage(imageCakeBlue9);
@@ -317,10 +318,12 @@ public class GameViewControl implements Initializable {
     @FXML
     public void handleButtonPress(ActionEvent event) {
         Button button = (Button) event.getSource();
-        checkGuess(button.getText().charAt(0),database.getListOfWords().get(enemyPlayer),listOfEncryptedWord.get(currentPlayer),listOfWordGuess.get(currentPlayer));
+        checkGuess(button.getText().charAt(0), database.getListOfWords().get(enemyPlayer), listOfEncryptedWord.get(currentPlayer), listOfWordGuess.get(currentPlayer));
+        highlightPlayer();
         button.setStyle("-fx-background-color: white");
         button.setStyle("-fx-text-fill: white");
     }
+
     public void addBlueCake() {
     }
 
