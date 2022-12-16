@@ -48,7 +48,10 @@ public class GameViewControl implements Initializable {
     @FXML
     private TextField userInput;
     @FXML
-    private Label wordGuess;
+    private Label wordGuess1;
+
+    @FXML
+    private Label wordGuess2;
     @FXML
     private Label mistakePlate;
     @FXML
@@ -79,8 +82,11 @@ public class GameViewControl implements Initializable {
         database.createPlayer(2);
         theWord = database.getListOfWords().get(database.getEnemyPlayer());
         encryptedWord = new char[theWord.length()];
-        wordGuess.setAlignment(Pos.CENTER);
-        wordGuess.setText(displayHiddenWord());
+        wordGuess2.setAlignment(Pos.BASELINE_CENTER);
+        wordGuess2.setText(displayHiddenWord());
+        switchPlayer();
+        wordGuess1.setAlignment(Pos.BASELINE_LEFT);
+        wordGuess1.setText(displayHiddenWord());
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
         playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
@@ -108,7 +114,8 @@ public class GameViewControl implements Initializable {
     public void switchTheWord() {
         theWord = database.getListOfWords().get(1);
         encryptedWord = new char[theWord.length()];
-        wordGuess.setText(displayHiddenWord());
+        wordGuess1.setText(displayHiddenWord());
+        wordGuess2.setText(displayHiddenWord());
     }
 
     public char[] generateHiddenWord() {
@@ -132,7 +139,8 @@ public class GameViewControl implements Initializable {
         }
         checkAnswer();
         String newHiddenWord = String.valueOf(encryptedWord);
-        wordGuess.setText(newHiddenWord.replace("", " ").trim());
+        wordGuess1.setText(newHiddenWord.replace("", " ").trim());
+        wordGuess2.setText(newHiddenWord.replace("", " ").trim());
     }
 
     public void checkAnswer() {
