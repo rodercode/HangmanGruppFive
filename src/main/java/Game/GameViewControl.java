@@ -56,7 +56,13 @@ public class GameViewControl implements Initializable {
     @FXML
     private ImageView imageViewCakeTwo;
     @FXML
-    private Label scorePlate;
+    private Label scorePlate1;
+    @FXML
+    private Label scorePlate2;
+    @FXML
+    private Label mistakePlate1;
+    @FXML
+    private Label mistakePlate2;
 
     @FXML
     private Button enter;
@@ -97,7 +103,7 @@ public class GameViewControl implements Initializable {
         database.switchPlayer();
         mistakes = 0;
         playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
-        scorePlate.setText("Score: " + database.getPlayerScores().get(2));
+        scorePlate1.setText("Score: " + database.getPlayerScores().get(2));
         switchTheWord();
         if (database.getCurrentPlayer() < 5) {
             //Start menu. 
@@ -176,7 +182,7 @@ public class GameViewControl implements Initializable {
         if (isWordCorrect()) {
             enter.setText("Next");
             database.addScore(database.getCurrentPlayer());
-            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+            scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             database.setDidIScore(true);
         }
     }
@@ -193,7 +199,7 @@ public class GameViewControl implements Initializable {
         if (userInput.getText().toUpperCase().equals(theWord)) {
             userInput.setText("");
             database.addScore(database.getCurrentPlayer());
-            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+            scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             switchPlayer();
             System.out.println("You get a point");
         } else if (isWordCorrect()) {
