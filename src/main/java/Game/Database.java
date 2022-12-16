@@ -23,7 +23,7 @@ public class Database {
         enemyPlayer = 2;
         listOfWords = new HashMap<>();
         playerScores = new HashMap<>();
-        listOfWords.put(1, "KAFFE");
+        listOfWords.put(1, "KAFFÖ");
         listOfWords.put(2, "TE");
         score = 5;
         isItGameOver = false;
@@ -38,10 +38,14 @@ public class Database {
     }
 
     public void switchPlayer(){
+
        if (currentPlayer == 2){
            currentPlayer--;
+           enemyPlayer++;
+       }else {
+           currentPlayer++;
+           enemyPlayer--;
        }
-        currentPlayer++;
     }
     public void addScore(int player){
         playerScores.put(player,score);
