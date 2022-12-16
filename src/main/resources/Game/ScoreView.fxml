@@ -13,7 +13,7 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="newGameButton" layoutX="567.0" layoutY="382.0" mnemonicParsing="false" style="-fx-background-color: #ce77d1;" text="New Game" textFill="#151415">
+      <Button fx:id="newGameButton" layoutX="567.0" layoutY="382.0" mnemonicParsing="false" onAction="#switchGameScene" style="-fx-background-color: #ce77d1;" text="New Game" textFill="#151415">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
          </font>
