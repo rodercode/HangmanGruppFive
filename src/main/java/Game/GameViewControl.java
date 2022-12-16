@@ -35,16 +35,16 @@ public class GameViewControl implements Initializable {
     private int mistakes;
     private char[] encryptedWord;
     private String theWord;
-
     private boolean isLetterCorrect;
     private List<String> listOfBlueCake;
     private List<String> listOfPinkCake;
     private Image imageCakeBlue;
     private Image imageCakePink;
 
+
     // FXML variables
     @FXML
-    private Label playerPlate;
+    private Label playerPlate1;
     @FXML
     private TextField userInput;
     @FXML
@@ -59,7 +59,13 @@ public class GameViewControl implements Initializable {
     @FXML
     private ImageView imageViewCakeTwo;
     @FXML
-    private Label scorePlate;
+    private Label scorePlate1;
+    @FXML
+    private Label scorePlate2;
+    @FXML
+    private Label mistakePlate1;
+    @FXML
+    private Label mistakePlate2;
 
     @FXML
     private Button enter;
@@ -89,7 +95,7 @@ public class GameViewControl implements Initializable {
         wordGuess1.setText(displayHiddenWord());
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
-        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
+        playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
     public void addImagesToLists(){
@@ -101,18 +107,21 @@ public class GameViewControl implements Initializable {
 
     public void switchPlayer() {
         database.switchPlayer();
+
         mistakes = 0;
-        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
-        scorePlate.setText("Score: " + database.getPlayerScores().get(2));
+        playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
+        scorePlate1.setText("Score: " + database.getPlayerScores().get(2));
+
+       
         switchTheWord();
-        if (database.getCurrentPlayer() < 5) {
-            //Start menu. 
-        }
+//        if (database.getCurrentPlayer() < 5) {
+//            //Start menu.
+//        }
     }
 
     // switch from player 2 to Player 1's word
     public void switchTheWord() {
-        theWord = database.getListOfWords().get(1);
+        theWord = database.getListOfWords().get(database.getEnemyPlayer());
         encryptedWord = new char[theWord.length()];
         wordGuess1.setText(displayHiddenWord());
         wordGuess2.setText(displayHiddenWord());
@@ -131,8 +140,7 @@ public class GameViewControl implements Initializable {
     public void checkGuess(char letter, String guessWord) {
         for (int i = 0; i < encryptedWord.length; i++) {
             if (guessWord.charAt(i) == letter) {
-                System.out.println(guessWord.charAt(i));
-                System.out.println(letter);
+                System.out.println("hit");
                 encryptedWord[i] = letter;
                 isLetterCorrect = true;
             }
@@ -149,7 +157,6 @@ public class GameViewControl implements Initializable {
         } else {
             makeAMistake();
         }
-        switchPlayer();
     }
 
     public void makeAMistake() {
@@ -185,7 +192,7 @@ public class GameViewControl implements Initializable {
         if (isWordCorrect()) {
             enter.setText("Next");
             database.addScore(database.getCurrentPlayer());
-            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+            scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             database.setDidIScore(true);
         }
     }
@@ -198,11 +205,30 @@ public class GameViewControl implements Initializable {
 
     @FXML
     public void pressEnter() throws IOException {
+
+        switchPlayer();
+//        String s = String.valueOf(encryptedWord);
+//        if (userInput.getText().toUpperCase().equals(theWord)) {
+//            userInput.setText("");
+//            database.addScore(database.getCurrentPlayer());
+//            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+//            switchPlayer();
+//            System.out.println("You get a point");
+//        } else if (isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        } else if (!isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        }
+//        userInput.setText("");
+//        System.out.println("Fel");
+
         String s = String.valueOf(encryptedWord);
         if (userInput.getText().toUpperCase().equals(theWord)) {
             userInput.setText("");
             database.addScore(database.getCurrentPlayer());
-            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+            scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
             switchPlayer();
             System.out.println("You get a point");
         } else if (isWordCorrect()) {
@@ -214,6 +240,7 @@ public class GameViewControl implements Initializable {
         }
         userInput.setText("");
         System.out.println("Fel");
+
     }
 
     // Cake animation
