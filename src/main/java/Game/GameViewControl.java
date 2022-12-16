@@ -29,12 +29,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class GameViewControl implements Initializable {
-
     // Variables
     private Database database;
     private int mistakes;
-    private char[] encryptedWord;
-    private String theWord;
+    private char[] encryptedWordOne;
+    private char[] encryptedWordTwo;
+    private String theWordOne;
+    private String theWordTwo;
     private boolean isLetterCorrect;
     private List<String> listOfBlueCake;
     private List<String> listOfPinkCake;
@@ -73,8 +74,15 @@ public class GameViewControl implements Initializable {
         database = Database.getInstance();
         mistakes = 0;
         isLetterCorrect = false;
+
         listOfBlueCake = new ArrayList<>();
         listOfPinkCake = new ArrayList<>();
+
+        theWordOne = database.getListOfWords().get(2);
+        theWordTwo = database.getListOfWords().get(1);
+
+        encryptedWordOne = new char[theWordOne.length()];
+        encryptedWordTwo = new char[theWordTwo.length()];
 
         addImagesToLists();
         imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(10)));
@@ -96,16 +104,16 @@ public class GameViewControl implements Initializable {
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.createPlayer(2);
-        theWord = database.getListOfWords().get(database.getEnemyPlayer());
-        encryptedWord = new char[theWord.length()];
-        wordGuess2.setAlignment(Pos.BASELINE_CENTER);
-        wordGuess2.setText(displayHiddenWord());
-        switchPlayer();
+
         wordGuess1.setAlignment(Pos.BASELINE_LEFT);
-        wordGuess1.setText(displayHiddenWord());
+        wordGuess1.setText(displayHiddenWord(encryptedWordOne));
+
+        wordGuess2.setAlignment(Pos.BASELINE_CENTER);
+        wordGuess2.setText(displayHiddenWord(encryptedWordTwo));
+
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
+
         playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
@@ -118,12 +126,9 @@ public class GameViewControl implements Initializable {
 
     public void switchPlayer() {
         database.switchPlayer();
-
         mistakes = 0;
         playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
         scorePlate1.setText("Score: " + database.getPlayerScores().get(2));
-
-       
         switchTheWord();
 //        if (database.getCurrentPlayer() < 5) {
 //            //Start menu.
@@ -132,32 +137,32 @@ public class GameViewControl implements Initializable {
 
     // switch from player 2 to Player 1's word
     public void switchTheWord() {
-        theWord = database.getListOfWords().get(database.getEnemyPlayer());
-        encryptedWord = new char[theWord.length()];
-        wordGuess1.setText(displayHiddenWord());
-        wordGuess2.setText(displayHiddenWord());
+        theWordOne = database.getListOfWords().get(database.getEnemyPlayer());
+        encryptedWordOne = new char[theWordOne.length()];
+//        wordGuess1.setText(displayHiddenWord());
+//        wordGuess2.setText(displayHiddenWord());
     }
 
-    public char[] generateHiddenWord() {
-        Arrays.fill(encryptedWord, '_');
-        return encryptedWord;
+    public char[] generateHiddenWord(char[] encryptedWordOne) {
+        Arrays.fill(encryptedWordOne, '_');
+        return encryptedWordOne;
     }
 
-    public String displayHiddenWord() {
-        String newWord = String.valueOf(generateHiddenWord());
+    public String displayHiddenWord(char[] encryptedWord) {
+        String newWord = String.valueOf(generateHiddenWord(encryptedWord));
         return newWord.replace("", " ").trim();
     }
 
     public void checkGuess(char letter, String guessWord) {
-        for (int i = 0; i < encryptedWord.length; i++) {
+        for (int i = 0; i < encryptedWordOne.length; i++) {
             if (guessWord.charAt(i) == letter) {
                 System.out.println("hit");
-                encryptedWord[i] = letter;
+                encryptedWordOne[i] = letter;
                 isLetterCorrect = true;
             }
         }
         checkAnswer();
-        String newHiddenWord = String.valueOf(encryptedWord);
+        String newHiddenWord = String.valueOf(encryptedWordOne);
         wordGuess1.setText(newHiddenWord.replace("", " ").trim());
         wordGuess2.setText(newHiddenWord.replace("", " ").trim());
     }
@@ -188,9 +193,9 @@ public class GameViewControl implements Initializable {
     }
 
     public boolean isWordCorrect() {
-        String s = String.valueOf(encryptedWord);
+        String s = String.valueOf(encryptedWordOne);
 
-        if (theWord.equals(s)) {
+        if (theWordOne.equals(s)) {
             return true;
 
         } else {
@@ -199,7 +204,7 @@ public class GameViewControl implements Initializable {
     }
 
     public void getPoint() {
-        String s = String.valueOf(encryptedWord);
+        String s = String.valueOf(encryptedWordOne);
         if (isWordCorrect()) {
             enter.setText("Next");
             database.addScore(database.getCurrentPlayer());
@@ -235,8 +240,8 @@ public class GameViewControl implements Initializable {
 //        userInput.setText("");
 //        System.out.println("Fel");
 
-        String s = String.valueOf(encryptedWord);
-        if (userInput.getText().toUpperCase().equals(theWord)) {
+        String s = String.valueOf(encryptedWordOne);
+        if (userInput.getText().toUpperCase().equals(theWordOne)) {
             userInput.setText("");
             database.addScore(database.getCurrentPlayer());
             scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
@@ -284,14 +289,11 @@ public class GameViewControl implements Initializable {
     @FXML
     public void handleButtonPress(ActionEvent event) {
         Button button = (Button) event.getSource();
-        checkGuess(button.getText().charAt(0), theWord);
+        checkGuess(button.getText().charAt(0), theWordOne);
         button.setStyle("-fx-background-color: white");
         button.setStyle("-fx-text-fill: white");
     }
-
     public void addBlueCake() {
-
-
     }
 
 
