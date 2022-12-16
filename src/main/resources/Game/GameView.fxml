@@ -11,8 +11,12 @@
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.GameViewControl">
    <children>
       <AnchorPane fx:id="keyboard" layoutX="241.0" layoutY="529.0" prefHeight="0.0" prefWidth="512.0" />
-      <Label fx:id="wordGuess" alignment="CENTER" layoutY="409.0" prefHeight="60.0" prefWidth="1024.0" text="_ _ _ _ _ _" textFill="#e41397">
-         <font>
+
+      <Label fx:id="wordGuess1" alignment="BASELINE_LEFT" layoutY="414.0" prefHeight="32.0" prefWidth="512.0" text="_ _ _ _ _ _" textFill="#e41397">
+
+      
+
+        <font>
             <Font name="Comic Sans MS" size="48.0" />
          </font>
       </Label>
@@ -165,9 +169,19 @@
          </children>
       </TilePane>
 
+      <ImageView fx:id="imageViewCakeOne" fitHeight="270.0" fitWidth="400.0" layoutX="601.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewCakeTwo" fitHeight="270.0" fitWidth="400.0" layoutX="23.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="wordGuess2" alignment="BASELINE_CENTER" contentDisplay="RIGHT" layoutX="517.0" layoutY="414.0" prefHeight="67.0" prefWidth="512.0" text="_ _ _ _ _ _ " textFill="#6db8e4">
+         <font>
+            <Font name="Comic Sans MS" size="48.0" />
+
+
       <ImageView fx:id="imageViewCakeOne" fitHeight="270.0" fitWidth="400.0" layoutX="619.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imageViewCakeTwo" fitHeight="270.0" fitWidth="400.0" layoutX="58.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="playerPlate2" layoutX="711.0" layoutY="45.0" prefHeight="35.0" prefWidth="172.0" text="Player 2's Turn" textFill="#6db8e4">
+      <Label fx:id="wordGuess2" alignment="BASELINE_CENTER" contentDisplay="RIGHT" layoutX="517.0" layoutY="414.0" prefHeight="67.0" prefWidth="512.0" text="_ _ _ _ _ _ " textFill="#6db8e4">
+      <font>
+            <Font name="Comic Sans MS" size="48.0" />
          <font>
             <Font name="Comic Sans MS" size="24.0" />
 
@@ -182,6 +196,7 @@
       <Label fx:id="mistakePlate2" layoutX="752.0" layoutY="512.0" prefHeight="35.0" prefWidth="149.0" text="Mistake: 0/10" textFill="#6db8e4">
          <font>
             <Font name="Comic Sans MS" size="20.0" />
+
          </font>
       </Label>
 
