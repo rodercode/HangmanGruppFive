@@ -70,7 +70,7 @@ public class GameViewControl implements Initializable {
 
     public GameViewControl() throws FileNotFoundException {
         database = Database.getInstance();
-        mistakes = 10;
+        mistakes = 0;
         isLetterCorrect = false;
 
         listOfBlueCake = new ArrayList<>();
@@ -318,48 +318,48 @@ public class GameViewControl implements Initializable {
 //    Image imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(0)));
 
 
-//    Image imageCakeBlue10 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue10 cat.png"));
+//    Image imageCakeBlue10 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue0 cat.png"));
 //
-//    Image imageCakeBlue9 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue9 cat.png"));
+//    Image imageCakeBlue9 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue1 cat.png"));
 //
-//    Image imageCakeBlue8 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue8 cat.png"));
+//    Image imageCakeBlue8 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue2 cat.png"));
 //
-//    Image imageCakeBlue7 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue7 cat.png"));
+//    Image imageCakeBlue7 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue3 cat.png"));
 //
-//    Image imageCakeBlue6 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue6 cat.png"));
+//    Image imageCakeBlue6 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue4 cat.png"));
 //
 //    Image imageCakeBlue5 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue5 cat.png"));
 //
-//    Image imageCakeBlue4 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue4 cat.png"));
+//    Image imageCakeBlue4 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue6 cat.png"));
 //
-//    Image imageCakeBlue3 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue3 cat.png"));
+//    Image imageCakeBlue3 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue7 cat.png"));
 //
-//    Image imageCakeBlue2 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue2 cat.png"));
+//    Image imageCakeBlue2 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue8 cat.png"));
 //
-//    Image imageCakeBlue1 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue1 cat.png"));
+//    Image imageCakeBlue1 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue9 cat.png"));
 //
-//    Image imageCakeBlue0 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue0 cat.png"));
+//    Image imageCakeBlue0 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue10 cat.png"));
 
-//    Image imageCakePink10 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink10 cat.png"));
+//    Image imageCakePink10 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink0 cat.png"));
 //
-//    Image imageCakePink9 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink9 cat.png"));
+//    Image imageCakePink9 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink1 cat.png"));
 //
-//    Image imageCakePink8 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink8 cat.png"));
+//    Image imageCakePink8 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink2 cat.png"));
 //
-//    Image imageCakePink7 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink7 cat.png"));
+//    Image imageCakePink7 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink3 cat.png"));
 //
-//    Image imageCakePink6 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink6 cat.png"));
+//    Image imageCakePink6 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink4 cat.png"));
 //
 //    Image imageCakePink5 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink5 cat.png"));
 //
-//    Image imageCakePink4 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink4 cat.png"));
+//    Image imageCakePink4 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink6 cat.png"));
 //
-//    Image imageCakePink3 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink3 cat.png"));
+//    Image imageCakePink3 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink7 cat.png"));
 //
-//    Image imageCakePink2 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink2 cat.png"));
+//    Image imageCakePink2 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink8 cat.png"));
 //
-//    Image imageCakePink1 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink1 cat.png"));
+//    Image imageCakePink1 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink9 cat.png"));
 //
-//    Image imageCakePink0 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink0 cat.png"));
+//    Image imageCakePink0 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink10 cat.png"));
 }
 
