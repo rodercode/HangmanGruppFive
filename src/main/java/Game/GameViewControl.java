@@ -35,12 +35,12 @@ public class GameViewControl implements Initializable {
     private int mistakes;
     private char[] encryptedWord;
     private String theWord;
-
     private boolean isLetterCorrect;
     private List<String> listOfBlueCake;
     private List<String> listOfPinkCake;
     private Image imageCakeBlue;
     private Image imageCakePink;
+
 
     // FXML variables
     @FXML

@@ -38,6 +38,9 @@ public class Database {
     }
 
     public void switchPlayer(){
+       if (currentPlayer == 2){
+           currentPlayer--;
+       }
         currentPlayer++;
     }
     public void addScore(int player){
