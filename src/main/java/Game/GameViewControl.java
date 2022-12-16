@@ -104,7 +104,7 @@ public class GameViewControl implements Initializable {
 
         mistakes = 0;
         playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
-        scorePlate.setText("Score: " + database.getPlayerScores().get(2));
+        scorePlate1.setText("Score: " + database.getPlayerScores().get(2));
 
        
         switchTheWord();
