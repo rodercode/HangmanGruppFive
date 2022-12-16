@@ -44,7 +44,7 @@ public class StartMenu implements Initializable {
 
     @FXML
     public void changeScene(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Game.class.getResource("GameView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartMenu.class.getResource("GameView.fxml"));
         stage.setTitle("Hangman");
         stage.setScene(new Scene(fxmlLoader.load()));
         stage.show();

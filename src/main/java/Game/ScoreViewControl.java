@@ -35,7 +35,7 @@ public class ScoreViewControl implements Initializable {
         player2Score.setText("Player 2 score: "+ database.getPlayerScores().get(2));
     }
     public void switchGameScene() throws IOException {
-        Parent root = FXMLLoader.load(GameViewControl.class.getResource("startMenu.fxml"));
+        Parent root = FXMLLoader.load(ScoreViewControl.class.getResource("startMenu.fxml"));
         Stage window = (Stage) nextButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
