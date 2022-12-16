@@ -44,7 +44,7 @@ public class GameViewControl implements Initializable {
 
     // FXML variables
     @FXML
-    private Label playerPlate;
+    private Label playerPlate1;
     @FXML
     private TextField userInput;
     @FXML
@@ -89,7 +89,7 @@ public class GameViewControl implements Initializable {
         wordGuess.setText(displayHiddenWord());
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
-        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
+        playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
     public void addImagesToLists(){
@@ -101,12 +101,12 @@ public class GameViewControl implements Initializable {
 
     public void switchPlayer() {
         database.switchPlayer();
-        System.out.println(database.getCurrentPlayer());
-        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
 
-        scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
-        scorePlate1.setText("Score: " + database.getPlayerScores().get(2));
+        mistakes = 0;
+        playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
+        scorePlate.setText("Score: " + database.getPlayerScores().get(2));
 
+       
         switchTheWord();
 //        if (database.getCurrentPlayer() < 5) {
 //            //Start menu.
