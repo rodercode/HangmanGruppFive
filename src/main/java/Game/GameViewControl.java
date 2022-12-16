@@ -52,8 +52,7 @@ public class GameViewControl implements Initializable {
 
     @FXML
     private Label wordGuess2;
-    @FXML
-    private Label mistakePlate;
+
     @FXML
     private ImageView imageViewCakeOne;
     @FXML
@@ -81,6 +80,18 @@ public class GameViewControl implements Initializable {
         imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(10)));
         imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(10)));
     }
+
+//    public void highlightPlayer2(){
+//        playerPlate1.setStyle("-fx-text-fill: grey");
+//        mistakePlate1.setStyle("-fx-text-fill: grey");
+//        scorePlate1.setStyle("-fx-text-fill: grey");
+//    }
+//    public void highlightPlayer1(){
+//        playerPlate2.setStyle("-fx-text-fill: grey");
+//        mistakePlate2.setStyle("-fx-text-fill: grey");
+//        scorePlate2.setStyle("-fx-text-fill: grey");
+//    }
+
 
     // Start method
     @Override
@@ -168,7 +179,7 @@ public class GameViewControl implements Initializable {
             database.setItGameOver(true);
         }
 
-        mistakePlate.setText("Mistake: " + mistakes + "/10");
+        mistakePlate1.setText("Mistake: " + mistakes + "/10");
     }
 
     public void correctAnswer() {
