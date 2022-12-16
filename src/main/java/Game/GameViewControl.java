@@ -141,6 +141,7 @@ public class GameViewControl implements Initializable {
         } else {
             makeAMistake();
         }
+        switchPlayer();
     }
 
     public void makeAMistake() {
@@ -238,6 +239,8 @@ public class GameViewControl implements Initializable {
     public void handleButtonPress(ActionEvent event) {
         Button button = (Button) event.getSource();
         checkGuess(button.getText().charAt(0), theWord);
+        button.setStyle("-fx-background-color: white");
+        button.setStyle("-fx-text-fill: white");
     }
 
     public void addBlueCake() {
@@ -270,7 +273,7 @@ public class GameViewControl implements Initializable {
 //    Image imageCakeBlue1 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue1 cat.png"));
 //
 //    Image imageCakeBlue0 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue0 cat.png"));
-//
+
 //    Image imageCakePink10 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink10 cat.png"));
 //
 //    Image imageCakePink9 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink9 cat.png"));
