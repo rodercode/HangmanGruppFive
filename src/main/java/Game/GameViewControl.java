@@ -16,17 +16,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class GameViewControl implements Initializable {
     // Variables
@@ -34,18 +29,23 @@ public class GameViewControl implements Initializable {
     private int mistakes;
     private char[] encryptedWordOne;
     private char[] encryptedWordTwo;
-    private String theWordOne;
-    private String theWordTwo;
     private boolean isLetterCorrect;
     private List<String> listOfBlueCake;
     private List<String> listOfPinkCake;
     private Image imageCakeBlue;
     private Image imageCakePink;
 
+    private int currentPlayer;
+    private int enemyPlayer;
+    private HashMap<Integer, Label> listOfWordGuess;
+    private HashMap<Integer, char[]> listOfEncryptedWord;
+
 
     // FXML variables
     @FXML
     private Label playerPlate1;
+    @FXML
+    private Label playerPlate2;
     @FXML
     private TextField userInput;
     @FXML
@@ -77,33 +77,53 @@ public class GameViewControl implements Initializable {
 
         listOfBlueCake = new ArrayList<>();
         listOfPinkCake = new ArrayList<>();
+        listOfWordGuess = new HashMap<>();
 
-        theWordOne = database.getListOfWords().get(2);
-        theWordTwo = database.getListOfWords().get(1);
 
-        encryptedWordOne = new char[theWordOne.length()];
-        encryptedWordTwo = new char[theWordTwo.length()];
+        database.getListOfWords().get(2);
+        database.getListOfWords().get(1);
+
+        encryptedWordOne = new char[database.getListOfWords().get(2).length()];
+        encryptedWordTwo = new char[database.getListOfWords().get(1).length()];
+        listOfEncryptedWord = new HashMap<>();
+        listOfEncryptedWord.put(1, encryptedWordOne);
+        listOfEncryptedWord.put(2, encryptedWordTwo);
 
         addImagesToLists();
-        imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(10)));
-        imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(10)));
+
+        imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(mistakes)));
+        imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(mistakes)));
+
+        currentPlayer = 1;
+        enemyPlayer = 2;
     }
 
-//    public void highlightPlayer2(){
-//        playerPlate1.setStyle("-fx-text-fill: grey");
-//        mistakePlate1.setStyle("-fx-text-fill: grey");
-//        scorePlate1.setStyle("-fx-text-fill: grey");
-//    }
-//    public void highlightPlayer1(){
-//        playerPlate2.setStyle("-fx-text-fill: grey");
-//        mistakePlate2.setStyle("-fx-text-fill: grey");
-//        scorePlate2.setStyle("-fx-text-fill: grey");
-//    }
+    public void highlightPlayer() {
+        if (currentPlayer == 1) {
+            playerPlate2.setStyle("-fx-text-fill: grey");
+            mistakePlate2.setStyle("-fx-text-fill: grey");
+            scorePlate2.setStyle("-fx-text-fill: grey");
+
+            playerPlate1.setStyle("-fx-text-fill: #f797c7 ");
+            mistakePlate1.setStyle("-fx-text-fill: #f797c7 ");
+            scorePlate1.setStyle("-fx-text-fill: #f797c7 ");
+
+        } else if (currentPlayer == 2) {
+            playerPlate1.setStyle("-fx-text-fill: grey");
+            mistakePlate1.setStyle("-fx-text-fill: grey");
+            scorePlate1.setStyle("-fx-text-fill: grey");
+
+            playerPlate2.setStyle("-fx-text-fill: #6db8e4 ");
+            mistakePlate2.setStyle("-fx-text-fill: #6db8e4 ");
+            scorePlate2.setStyle("-fx-text-fill: #6db8e4 ");
+        }
+    }
 
 
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        highlightPlayer();
 
         wordGuess1.setAlignment(Pos.BASELINE_LEFT);
         wordGuess1.setText(displayHiddenWord(encryptedWordOne));
@@ -111,13 +131,16 @@ public class GameViewControl implements Initializable {
         wordGuess2.setAlignment(Pos.BASELINE_CENTER);
         wordGuess2.setText(displayHiddenWord(encryptedWordTwo));
 
+        listOfWordGuess.put(1, wordGuess1);
+        listOfWordGuess.put(2, wordGuess2);
+
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
 
         playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
     }
 
-    public void addImagesToLists(){
+    public void addImagesToLists() {
         for (int i = 0; i < 11; i++) {
             listOfBlueCake.add("src/main/resources/cakeBlue/cakeBlue" + i + " cat.png");
             listOfPinkCake.add("src/main/resources/cakePink/cakePink" + i + " cat.png");
@@ -125,27 +148,31 @@ public class GameViewControl implements Initializable {
     }
 
     public void switchPlayer() {
-        database.switchPlayer();
-        mistakes = 0;
+        if (currentPlayer == 2) {
+            currentPlayer--;
+            enemyPlayer++;
+        } else if (currentPlayer == 1) {
+            currentPlayer++;
+            enemyPlayer--;
+        }
+        System.out.println(currentPlayer);
+        System.out.println(enemyPlayer);
+
         playerPlate1.setText("Player " + database.getCurrentPlayer() + "'s Turn");
         scorePlate1.setText("Score: " + database.getPlayerScores().get(2));
-        switchTheWord();
-//        if (database.getCurrentPlayer() < 5) {
-//            //Start menu.
-//        }
     }
 
     // switch from player 2 to Player 1's word
     public void switchTheWord() {
-        theWordOne = database.getListOfWords().get(database.getEnemyPlayer());
-        encryptedWordOne = new char[theWordOne.length()];
+//        theWordOne = database.getListOfWords().get(database.getEnemyPlayer());
+//        encryptedWordOne = new char[theWordOne.length()];
 //        wordGuess1.setText(displayHiddenWord());
 //        wordGuess2.setText(displayHiddenWord());
     }
 
-    public char[] generateHiddenWord(char[] encryptedWordOne) {
-        Arrays.fill(encryptedWordOne, '_');
-        return encryptedWordOne;
+    public char[] generateHiddenWord(char[] encryptedWord) {
+        Arrays.fill(encryptedWord, '_');
+        return encryptedWord;
     }
 
     public String displayHiddenWord(char[] encryptedWord) {
@@ -153,18 +180,17 @@ public class GameViewControl implements Initializable {
         return newWord.replace("", " ").trim();
     }
 
-    public void checkGuess(char letter, String guessWord) {
-        for (int i = 0; i < encryptedWordOne.length; i++) {
+    public void checkGuess(char letter, String guessWord, char[] encryptedWord, Label wordGuess) {
+        for (int i = 0; i < encryptedWord.length; i++) {
             if (guessWord.charAt(i) == letter) {
                 System.out.println("hit");
-                encryptedWordOne[i] = letter;
+                encryptedWord[i] = letter;
                 isLetterCorrect = true;
             }
         }
         checkAnswer();
-        String newHiddenWord = String.valueOf(encryptedWordOne);
-        wordGuess1.setText(newHiddenWord.replace("", " ").trim());
-        wordGuess2.setText(newHiddenWord.replace("", " ").trim());
+        String newHiddenWord = String.valueOf(encryptedWord);
+        wordGuess.setText(newHiddenWord.replace("", " ").trim());
     }
 
     public void checkAnswer() {
@@ -173,6 +199,8 @@ public class GameViewControl implements Initializable {
         } else {
             makeAMistake();
         }
+
+        switchPlayer();
     }
 
     public void makeAMistake() {
@@ -195,7 +223,7 @@ public class GameViewControl implements Initializable {
     public boolean isWordCorrect() {
         String s = String.valueOf(encryptedWordOne);
 
-        if (theWordOne.equals(s)) {
+        if (database.getListOfWords().get(currentPlayer).equals(s)) {
             return true;
 
         } else {
@@ -222,7 +250,7 @@ public class GameViewControl implements Initializable {
     @FXML
     public void pressEnter() throws IOException {
 
-        switchPlayer();
+
 //        String s = String.valueOf(encryptedWord);
 //        if (userInput.getText().toUpperCase().equals(theWord)) {
 //            userInput.setText("");
@@ -240,28 +268,29 @@ public class GameViewControl implements Initializable {
 //        userInput.setText("");
 //        System.out.println("Fel");
 
-        String s = String.valueOf(encryptedWordOne);
-        if (userInput.getText().toUpperCase().equals(theWordOne)) {
-            userInput.setText("");
-            database.addScore(database.getCurrentPlayer());
-            scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
-            switchPlayer();
-            System.out.println("You get a point");
-        } else if (isWordCorrect()) {
-            switchGameScene();
-            switchPlayer();
-        } else if (!isWordCorrect()) {
-            switchGameScene();
-            switchPlayer();
-        }
-        userInput.setText("");
-        System.out.println("Fel");
+//        String s = String.valueOf(encryptedWordOne);
+//        if (userInput.getText().toUpperCase().equals()) {
+//            userInput.setText("");
+//            database.addScore(database.getCurrentPlayer());
+//            scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+//            switchPlayer();
+//            System.out.println("You get a point");
+//        } else if (isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        } else if (!isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        }
+//        userInput.setText("");
+//        System.out.println("Fel");
 
     }
 
     // Cake animation
     @FXML
-    public void displayCakeImage(ImageView imageViewCake) {
+    public void displayCakeImage(ImageView imageViewCake, Image imageCake) {
+        imageViewCake.setImage(imageCake);
 //        if (mistakes == 1)
 //            imageViewCake.setImage(imageCakeBlue9);
 //        else if (mistakes == 2)
@@ -289,10 +318,12 @@ public class GameViewControl implements Initializable {
     @FXML
     public void handleButtonPress(ActionEvent event) {
         Button button = (Button) event.getSource();
-        checkGuess(button.getText().charAt(0), theWordOne);
+        checkGuess(button.getText().charAt(0), database.getListOfWords().get(enemyPlayer), listOfEncryptedWord.get(currentPlayer), listOfWordGuess.get(currentPlayer));
+        highlightPlayer();
         button.setStyle("-fx-background-color: white");
         button.setStyle("-fx-text-fill: white");
     }
+
     public void addBlueCake() {
     }
 
@@ -300,48 +331,48 @@ public class GameViewControl implements Initializable {
 //    Image imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(0)));
 
 
-//    Image imageCakeBlue10 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue10 cat.png"));
+//    Image imageCakeBlue10 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue0 cat.png"));
 //
-//    Image imageCakeBlue9 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue9 cat.png"));
+//    Image imageCakeBlue9 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue1 cat.png"));
 //
-//    Image imageCakeBlue8 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue8 cat.png"));
+//    Image imageCakeBlue8 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue2 cat.png"));
 //
-//    Image imageCakeBlue7 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue7 cat.png"));
+//    Image imageCakeBlue7 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue3 cat.png"));
 //
-//    Image imageCakeBlue6 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue6 cat.png"));
+//    Image imageCakeBlue6 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue4 cat.png"));
 //
 //    Image imageCakeBlue5 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue5 cat.png"));
 //
-//    Image imageCakeBlue4 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue4 cat.png"));
+//    Image imageCakeBlue4 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue6 cat.png"));
 //
-//    Image imageCakeBlue3 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue3 cat.png"));
+//    Image imageCakeBlue3 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue7 cat.png"));
 //
-//    Image imageCakeBlue2 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue2 cat.png"));
+//    Image imageCakeBlue2 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue8 cat.png"));
 //
-//    Image imageCakeBlue1 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue1 cat.png"));
+//    Image imageCakeBlue1 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue9 cat.png"));
 //
-//    Image imageCakeBlue0 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue0 cat.png"));
+//    Image imageCakeBlue0 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue10 cat.png"));
 
-//    Image imageCakePink10 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink10 cat.png"));
+//    Image imageCakePink10 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink0 cat.png"));
 //
-//    Image imageCakePink9 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink9 cat.png"));
+//    Image imageCakePink9 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink1 cat.png"));
 //
-//    Image imageCakePink8 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink8 cat.png"));
+//    Image imageCakePink8 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink2 cat.png"));
 //
-//    Image imageCakePink7 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink7 cat.png"));
+//    Image imageCakePink7 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink3 cat.png"));
 //
-//    Image imageCakePink6 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink6 cat.png"));
+//    Image imageCakePink6 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink4 cat.png"));
 //
 //    Image imageCakePink5 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink5 cat.png"));
 //
-//    Image imageCakePink4 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink4 cat.png"));
+//    Image imageCakePink4 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink6 cat.png"));
 //
-//    Image imageCakePink3 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink3 cat.png"));
+//    Image imageCakePink3 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink7 cat.png"));
 //
-//    Image imageCakePink2 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink2 cat.png"));
+//    Image imageCakePink2 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink8 cat.png"));
 //
-//    Image imageCakePink1 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink1 cat.png"));
+//    Image imageCakePink1 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink9 cat.png"));
 //
-//    Image imageCakePink0 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink0 cat.png"));
+//    Image imageCakePink0 = new Image(new FileInputStream("src/main/resources/cakePink/cakePink10 cat.png"));
 }
 
