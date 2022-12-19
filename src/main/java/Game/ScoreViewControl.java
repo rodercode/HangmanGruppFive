@@ -15,10 +15,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ScoreViewControl implements Initializable {
+    public Button ExitButton;
     @FXML
     private Button nextButton;
     @FXML
     private Button newGameButton;
+
     private Database database;
     @FXML
     private Label player1Score;
@@ -46,5 +48,8 @@ public class ScoreViewControl implements Initializable {
         }
     }
 
+    public void exitButton() {
+        System.exit(0);
+            }
 
 }

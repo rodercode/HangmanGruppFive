@@ -33,5 +33,10 @@
             <Font name="Comic Sans MS" size="24.0" />
          </font>
       </Text>
+      <Button fx:id="ExitButton" layoutX="41.0" layoutY="383.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #ce77d1;" text="Exit">
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
