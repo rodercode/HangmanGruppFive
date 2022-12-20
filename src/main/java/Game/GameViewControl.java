@@ -42,7 +42,6 @@ public class GameViewControl implements Initializable {
     private HashMap<Integer, Label> listOfWordGuess;
     private HashMap<Integer, char[]> listOfEncryptedWord;
 
-
     // FXML variables
     @FXML
     private Label playerPlate1;
@@ -115,13 +114,19 @@ public class GameViewControl implements Initializable {
         listOfWordGuess.put(1, wordGuess1);
         listOfWordGuess.put(2, wordGuess2);
 
+        database.getPlayerMistakes().put(1,0);
+        database.getPlayerMistakes().put(2,0);
+
         // set Cake Image Pink and Blue
         importImagePinkCake();
         importImageBlueCake();
 
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
-        database.createPlayer(2);
+
+        scorePlate1.setText("Score: "+database.getPlayerScores().get(1));
+        scorePlate2.setText("Score: "+database.getPlayerScores().get(2));
+
     }
     public void importImagePinkCake(){
         try {
@@ -254,6 +259,11 @@ public class GameViewControl implements Initializable {
         } else if (currentPlayer == 2) {
             database.addScore(2);
             scorePlate2.setText("Score: " + database.getPlayerScores().get(2));
+        }
+        try {
+            switchGameScene();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

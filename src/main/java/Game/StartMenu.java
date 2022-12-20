@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,10 +33,20 @@ public class StartMenu implements Initializable {
     @FXML
     private Label playerPlate;
 
+    @FXML
+    private Button StartGame;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.createPlayer(2);
-        System.out.println(database.getPlayerScores().get(2));
+        if (database.getPlayerScores().isEmpty()) {
+            database.createPlayer(2);
+        }
+    }
+
+    public void switchGameScene() throws IOException {
+        Parent root = FXMLLoader.load(GameViewControl.class.getResource("GameView.fxml"));
+        Stage window = (Stage) StartGame.getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
     public boolean checkIfInputIsValid() {
@@ -56,7 +67,8 @@ public class StartMenu implements Initializable {
             playerPlate.setText("Player " + currentPlayer + ": Enter A Word");
         } else {
 //            switchScene
-            changeScene(new Stage());
+            switchGameScene();
+//            changeScene(new Stage());
         }
     }
 
