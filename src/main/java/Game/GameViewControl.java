@@ -26,7 +26,8 @@ import javafx.stage.Stage;
 public class GameViewControl implements Initializable {
     // Variables
     private Database database;
-    private int mistakes;
+    private int mistakesOne;
+    private int mistakeTwo;
     private char[] encryptedWordOne;
     private char[] encryptedWordTwo;
     private boolean isLetterCorrect;
@@ -73,7 +74,8 @@ public class GameViewControl implements Initializable {
 
     public GameViewControl() throws FileNotFoundException {
         database = Database.getInstance();
-        mistakes = 0;
+        mistakesOne = 0;
+        mistakeTwo = 0;
         currentPlayer = 1;
         enemyPlayer = 2;
         isLetterCorrect = false;
@@ -96,8 +98,8 @@ public class GameViewControl implements Initializable {
         listOfPinkCake = new ArrayList<>();
         addImagesToLists();
 
-        imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(mistakes)));
-        imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(mistakes)));
+        imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(mistakesOne)));
+        imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(mistakesOne)));
     }
 
     // Start method
@@ -202,12 +204,21 @@ public class GameViewControl implements Initializable {
 
     // if Player made a Mistake
     public void makeAMistake() {
-        if (mistakes < 10 && !isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
-            mistakes++;
-        } else if (mistakes == 10) {
-            //
+
+        if (currentPlayer == 1) {
+            database.addMistake(1);
+            mistakePlate1.setText("Mistake: " + database.getPlayerMistakes().get(1) + "/10");
+        } else if (currentPlayer == 2) {
+            database.addMistake(2);
+            mistakePlate2.setText("Mistake: " + database.getPlayerMistakes().get(2) + "/10");
         }
-        mistakePlate1.setText("Mistake: " + mistakes + "/10");
+
+//        if (mistakes < 10 && !isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
+//            mistakes++;
+//        } else if (mistakes == 10) {
+//            //
+//        }
+//        mistakePlate1.setText("Mistake: " + mistakes + "/10");
     }
 
     public boolean isWordCorrect(char[] encryptedWord ){
