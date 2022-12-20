@@ -34,7 +34,7 @@ public class StartMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.createPlayer(4);
+        database.createPlayer(2);
         System.out.println(database.getPlayerScores().get(2));
     }
 

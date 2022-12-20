@@ -30,6 +30,7 @@ public class GameViewControl implements Initializable {
     private char[] encryptedWordOne;
     private char[] encryptedWordTwo;
     private boolean isLetterCorrect;
+    private boolean wordCorrect = false;
     private List<String> listOfBlueCake;
     private List<String> listOfPinkCake;
     private Image imageCakeBlue;
@@ -184,13 +185,13 @@ public class GameViewControl implements Initializable {
     }
     // check if userInput was correct or incorrect and switch player
     public void checkAnswer() {
-        if (isLetterCorrect) {
+        if (isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
             getPoint();
+        } else if (isLetterCorrect){
             isLetterCorrect = false;
-        } else {
+        }else {
             makeAMistake();
         }
-
         switchPlayer();
     }
 
@@ -206,7 +207,7 @@ public class GameViewControl implements Initializable {
 
     public boolean isWordCorrect(char[] encryptedWord ){
         String s = String.valueOf(encryptedWord);
-        if (database.getListOfWords().get(currentPlayer).equals(s)) {
+        if (database.getListOfWords().get(enemyPlayer).equals(s)) {
             return true;
         } else {
             return false;
@@ -214,17 +215,15 @@ public class GameViewControl implements Initializable {
     }
     // if player figure out theWord
     public void getPoint() {
-        String s = String.valueOf(encryptedWordOne);
-        if (isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
-            database.addScore(currentPlayer);
+//        if (isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
+            if (currentPlayer == 1) {
+                database.addScore(1);
+                scorePlate1.setText("Score: " + database.getPlayerScores().get(1));
+            } else if (currentPlayer == 2) {
+                database.addScore(2);
+                scorePlate2.setText("Score: " + database.getPlayerScores().get(2));
+            }
 
-        }if (currentPlayer==1){
-            database.addScore(1);
-            scorePlate1.setText("Score: " + database.getScore());
-        }else if (currentPlayer==2){
-          database.addScore(2);
-          scorePlate2.setText("Score: " + database.getScore());
-        }
     }
 
     public void switchGameScene() throws IOException {
