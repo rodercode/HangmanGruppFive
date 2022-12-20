@@ -119,6 +119,11 @@ public class GameViewControl implements Initializable {
         // set Cake Image Pink and Blue
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
+        database.createPlayer(2);
+        System.out.println(database.getPlayerScores().get(1));
+        System.out.println(database.getPlayerScores().get(2));
+
+
     }
 
     // change color of Player One and Player Two labels
@@ -224,6 +229,11 @@ public class GameViewControl implements Initializable {
                 scorePlate2.setText("Score: " + database.getPlayerScores().get(2));
             }
 
+//        try {
+//            switchGameScene();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void switchGameScene() throws IOException {

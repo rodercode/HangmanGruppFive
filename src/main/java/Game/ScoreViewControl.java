@@ -32,7 +32,6 @@ public class ScoreViewControl implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.createPlayer(2);
         player1Score.setText("Player 1 score: "+ database.getPlayerScores().get(1));
         player2Score.setText("Player 2 score: "+ database.getPlayerScores().get(2));
     }
