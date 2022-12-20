@@ -14,7 +14,6 @@ public class Database {
    private int amountOfPlayers;
    private int currentPlayer;
    private int enemyPlayer;
-   private int score;
 
     private boolean isItGameOver;
     private boolean  didIScore;
@@ -25,9 +24,9 @@ public class Database {
         playerScores = new HashMap<>();
         listOfWords.put(1, "KAFFE");
         listOfWords.put(2, "TE");
-        score = 5;
         isItGameOver = false;
         didIScore = false;
+
     }
 
     public void createPlayer(int howManyPlayers){
@@ -47,12 +46,10 @@ public class Database {
        }
     }
     public void addScore(int player){
+        int score = getPlayerScores().get(player) + 5;
         playerScores.put(player,score);
     }
 
-    public int getScore() {
-        return score;
-    }
 
     public HashMap<Integer, Integer> getPlayerScores() {
         return playerScores;
