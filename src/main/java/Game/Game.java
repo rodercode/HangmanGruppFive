@@ -16,7 +16,7 @@ public class Game extends Application {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Hangman");
+        stage.setTitle("Save The Cake");
         stage.show();
     }
     public static void main(String[] args) {
