@@ -8,12 +8,7 @@
 
 <AnchorPane prefHeight="440.0" prefWidth="681.0" style="-fx-background-color: #bdfaa1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.ScoreViewControl">
    <children>
-      <Button fx:id="nextButton" layoutX="314.0" layoutY="282.0" mnemonicParsing="false" onAction="#switchGameScene" style="-fx-background-color: lightblue;" text="Next">
-         <font>
-            <Font name="Comic Sans MS" size="13.0" />
-         </font>
-      </Button>
-      <Button fx:id="newGameButton" layoutX="567.0" layoutY="382.0" mnemonicParsing="false" onAction="#switchGameScene" style="-fx-background-color: #ce77d1;" text="New Game" textFill="#151415">
+      <Button fx:id="nextButton" layoutX="425.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchGameScene" style="-fx-background-color: lightblue;" text="Next Round">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
          </font>
@@ -23,9 +18,9 @@
             <Font name="Comic Sans MS" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="player2Score" layoutX="272.0" layoutY="129.0" text="Player 2 score:" textFill="#6db8e4">
+      <Label fx:id="player2Score" layoutX="270.0" layoutY="146.0" text="Player 2 score:" textFill="#6db8e4">
          <font>
-            <Font size="22.0" />
+            <Font name="Comic Sans MS" size="22.0" />
          </font>
       </Label>
       <Text fill="#211971" layoutX="273.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score Board">
@@ -33,7 +28,7 @@
             <Font name="Comic Sans MS" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="ExitButton" layoutX="41.0" layoutY="383.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #ce77d1;" text="Exit">
+      <Button fx:id="ExitButton" layoutX="192.0" layoutY="260.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #ce77d1;" text="Exit">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
          </font>
