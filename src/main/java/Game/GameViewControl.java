@@ -97,9 +97,6 @@ public class GameViewControl implements Initializable {
         listOfBlueCake = new ArrayList<>();
         listOfPinkCake = new ArrayList<>();
         addImagesToLists();
-
-        imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(mistakesOne)));
-        imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(mistakesOne)));
     }
 
     // Start method
@@ -119,13 +116,27 @@ public class GameViewControl implements Initializable {
         listOfWordGuess.put(2, wordGuess2);
 
         // set Cake Image Pink and Blue
+        importImagePinkCake();
+        importImageBlueCake();
+
         imageViewCakeOne.setImage(imageCakeBlue);
         imageViewCakeTwo.setImage(imageCakePink);
         database.createPlayer(2);
-        System.out.println(database.getPlayerScores().get(1));
-        System.out.println(database.getPlayerScores().get(2));
+    }
+    public void importImagePinkCake(){
+        try {
+            imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(database.getPlayerMistakes().get(1))));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-
+    }
+    public void importImageBlueCake(){
+        try {
+            imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(database.getPlayerMistakes().get(2))));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // change color of Player One and Player Two labels
@@ -157,6 +168,7 @@ public class GameViewControl implements Initializable {
             listOfPinkCake.add("src/main/resources/cakePink/cakePink" + i + " cat.png");
         }
     }
+
     // Switch from current Player to the opponent
     public void switchPlayer() {
         if (currentPlayer == 2) {
@@ -167,16 +179,19 @@ public class GameViewControl implements Initializable {
             enemyPlayer--;
         }
     }
+
     // Generate an encrypted word
     public char[] generateHiddenWord(char[] encryptedWord) {
         Arrays.fill(encryptedWord, '_');
         return encryptedWord;
     }
+
     // Display an encrypted word
     public String displayHiddenWord(char[] encryptedWord) {
         String newWord = String.valueOf(generateHiddenWord(encryptedWord));
         return newWord.replace("", " ").trim();
     }
+
     // check if userInput letter match any letters in the opponent's word
     public void checkGuess(char letter, String guessWord, char[] encryptedWord, Label wordGuess) {
         for (int i = 0; i < encryptedWord.length; i++) {
@@ -190,13 +205,14 @@ public class GameViewControl implements Initializable {
         String s = String.valueOf(encryptedWord);
         wordGuess.setText(s.replace("", " ").trim());
     }
+
     // check if userInput was correct or incorrect and switch player
     public void checkAnswer() {
         if (isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
             getPoint();
-        } else if (isLetterCorrect){
+        } else if (isLetterCorrect) {
             isLetterCorrect = false;
-        }else {
+        } else {
             makeAMistake();
         }
         switchPlayer();
@@ -204,24 +220,24 @@ public class GameViewControl implements Initializable {
 
     // if Player made a Mistake
     public void makeAMistake() {
-
-        if (currentPlayer == 1) {
-            database.addMistake(1);
-            mistakePlate1.setText("Mistake: " + database.getPlayerMistakes().get(1) + "/10");
-        } else if (currentPlayer == 2) {
-            database.addMistake(2);
-            mistakePlate2.setText("Mistake: " + database.getPlayerMistakes().get(2) + "/10");
+        if (database.getPlayerMistakes().get(currentPlayer) < 10 && !isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
+            if (currentPlayer == 1) {
+                database.addMistake(1);
+                mistakePlate1.setText("Mistake: " + database.getPlayerMistakes().get(1) + "/10");
+                importImagePinkCake();
+                imageViewCakeTwo.setImage(imageCakePink);
+            } else if (currentPlayer == 2) {
+                database.addMistake(2);
+                mistakePlate2.setText("Mistake: " + database.getPlayerMistakes().get(2) + "/10");
+                importImageBlueCake();
+                imageViewCakeOne.setImage(imageCakeBlue);
+            }
+        } else if (database.getPlayerMistakes().get(currentPlayer) == 10) {
+            //
         }
-
-//        if (mistakes < 10 && !isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
-//            mistakes++;
-//        } else if (mistakes == 10) {
-//            //
-//        }
-//        mistakePlate1.setText("Mistake: " + mistakes + "/10");
     }
 
-    public boolean isWordCorrect(char[] encryptedWord ){
+    public boolean isWordCorrect(char[] encryptedWord) {
         String s = String.valueOf(encryptedWord);
         if (database.getListOfWords().get(enemyPlayer).equals(s)) {
             return true;
@@ -229,22 +245,16 @@ public class GameViewControl implements Initializable {
             return false;
         }
     }
+
     // if player figure out theWord
     public void getPoint() {
-//        if (isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
-            if (currentPlayer == 1) {
-                database.addScore(1);
-                scorePlate1.setText("Score: " + database.getPlayerScores().get(1));
-            } else if (currentPlayer == 2) {
-                database.addScore(2);
-                scorePlate2.setText("Score: " + database.getPlayerScores().get(2));
-            }
-
-//        try {
-//            switchGameScene();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        if (currentPlayer == 1) {
+            database.addScore(1);
+            scorePlate1.setText("Score: " + database.getPlayerScores().get(1));
+        } else if (currentPlayer == 2) {
+            database.addScore(2);
+            scorePlate2.setText("Score: " + database.getPlayerScores().get(2));
+        }
     }
 
     public void switchGameScene() throws IOException {
