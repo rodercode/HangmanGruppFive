@@ -216,9 +216,17 @@ public class GameViewControl implements Initializable {
     public void getPoint() {
         String s = String.valueOf(encryptedWordOne);
         if (isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
+            database.addScore(currentPlayer);
 
+        }if (currentPlayer==1){
+            database.addScore(1);
+            scorePlate1.setText("Score: " + database.getScore());
+        }else if (currentPlayer==2){
+          database.addScore(2);
+          scorePlate2.setText("Score: " + database.getScore());
         }
     }
+
     public void switchGameScene() throws IOException {
         Parent root = FXMLLoader.load(GameViewControl.class.getResource("ScoreView.fxml"));
         Stage window = (Stage) enter.getScene().getWindow();
