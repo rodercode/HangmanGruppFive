@@ -51,7 +51,7 @@ public class StartMenu implements Initializable {
     }
 
     public void changePlayer() throws IOException {
-        if (currentPlayer < 4) {
+        if (currentPlayer < 2) {
             currentPlayer++;
             playerPlate.setText("Player " + currentPlayer + ": Enter A Word");
         } else {
