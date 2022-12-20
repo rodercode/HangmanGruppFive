@@ -185,7 +185,7 @@
 
         <ImageView fx:id="imageViewCakeOne" fitHeight="270.0" fitWidth="400.0" layoutX="601.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
         <ImageView fx:id="imageViewCakeTwo" fitHeight="270.0" fitWidth="400.0" layoutX="27.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
-        <Label fx:id="wordGuess2" alignment="BASELINE_CENTER" contentDisplay="RIGHT" layoutX="592.0" layoutY="414.0" prefHeight="67.0" prefWidth="419.0" text="_ _ _ _ _ _ " textFill="#6db8e4">
+        <Label fx:id="wordGuess2" alignment="BASELINE_CENTER" contentDisplay="RIGHT" layoutX="27.0" layoutY="417.0" prefHeight="67.0" prefWidth="419.0" text="_ _ _ _ _ _ " textFill="#6db8e4">
         <font>
             <Font name="Comic Sans MS" size="48.0" />
         </font>
@@ -214,7 +214,7 @@
             <Font name="Comic Sans MS" size="28.0" />
          </font>
       </Label>
-      <Label fx:id="wordGuess1" alignment="BASELINE_CENTER" contentDisplay="RIGHT" layoutX="17.0" layoutY="430.0" prefHeight="67.0" prefWidth="419.0" text="_ _ _ _ _ _ " textFill="#e41397">
+      <Label fx:id="wordGuess1" alignment="BASELINE_CENTER" contentDisplay="RIGHT" layoutX="577.0" layoutY="425.0" prefHeight="67.0" prefWidth="419.0" text="_ _ _ _ _ _ " textFill="#e41397">
          <font>
             <Font name="Comic Sans MS" size="48.0" />
          </font>
