@@ -225,7 +225,7 @@ public class GameViewControl implements Initializable {
 
     // if Player made a Mistake
     public void makeAMistake() {
-        if (database.getPlayerMistakes().get(currentPlayer) < 10 && !isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
+        if (database.getPlayerMistakes().get(currentPlayer) < 10){
             if (currentPlayer == 1) {
                 database.addMistake(1);
                 mistakePlate1.setText("Mistake: " + database.getPlayerMistakes().get(1) + "/10");
@@ -236,11 +236,23 @@ public class GameViewControl implements Initializable {
                 mistakePlate2.setText("Mistake: " + database.getPlayerMistakes().get(2) + "/10");
                 importImageBlueCake();
                 imageViewCakeOne.setImage(imageCakeBlue);
+                if(database.getPlayerMistakes().get(2) == 10){
+                    try {
+                        switchGameScene();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
-        } else if (database.getPlayerMistakes().get(currentPlayer) == 10) {
-            //
+        } //else if (database.getPlayerMistakes().get(2) == 9){
+            //System.out.println(":D");
+          //  try {
+                //switchGameScene();
+            //} catch (IOException e) {
+              //  throw new RuntimeException(e);
+            //}
         }
-    }
+
 
     public boolean isWordCorrect(char[] encryptedWord) {
         String s = String.valueOf(encryptedWord);
