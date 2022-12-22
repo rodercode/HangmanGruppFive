@@ -256,11 +256,7 @@ public class GameViewControl implements Initializable {
 
     public boolean isWordCorrect(char[] encryptedWord) {
         String s = String.valueOf(encryptedWord);
-        if (database.getListOfWords().get(enemyPlayer).equals(s)) {
-            return true;
-        } else {
-            return false;
-        }
+        return database.getListOfWords().get(enemyPlayer).equals(s);
     }
 
     // if player figure out theWord
