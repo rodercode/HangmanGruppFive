@@ -26,6 +26,8 @@ public class ScoreViewControl implements Initializable {
     private Label player1Score;
     @FXML
     private Label player2Score;
+    @FXML
+    private Label winnerText;
 
     public ScoreViewControl() {
         database = Database.getInstance();
@@ -34,13 +36,20 @@ public class ScoreViewControl implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         player1Score.setText("Player 1 score: "+ database.getPlayerScores().get(1));
         player2Score.setText("Player 2 score: "+ database.getPlayerScores().get(2));
+        maxScore();
     }
     public void switchGameScene() throws IOException {
         Parent root = FXMLLoader.load(ScoreViewControl.class.getResource("startMenu.fxml"));
         Stage window = (Stage) nextButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
-
+    public void maxScore(){
+        if(database.getPlayerScores().get(1) == 10 ){
+            winnerText.setText("CONGRATULATIONS PLAYER 1! YOU WON");
+        } else if (database.getPlayerScores().get(2) == 10) {
+            winnerText.setText("CONGRATULATIONS PLAYER 2! YOU WON");
+        }
+    }
     public void pressedButton() throws IOException {
         switchGameScene();
         if (database.getCurrentPlayer() > database.getAmountOfPlayers()) {
