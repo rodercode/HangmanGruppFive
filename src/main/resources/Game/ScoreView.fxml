@@ -13,13 +13,13 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="player1Score" layoutX="263.0" layoutY="87.0" text="Player 1 score:" textFill="#f797c7">
+      <Label fx:id="player1Score" layoutX="251.0" layoutY="87.0" text="Player 1 score: " textFill="#f797c7">
          <font>
             <Font name="Comic Sans MS" size="22.0" />
          </font>
       </Label>
 
-      <Label fx:id="player2Score" layoutX="270.0" layoutY="146.0" text="Player 2 score:" textFill="#6db8e4">
+      <Label fx:id="player2Score" layoutX="253.0" layoutY="134.0" text="Player 2 score:" textFill="#6db8e4">
 
          <font>
             <Font name="Comic Sans MS" size="22.0" />
@@ -35,7 +35,7 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="winnerText" layoutX="22.0" layoutY="199.0" textAlignment="CENTER" textFill="YELLOW">
+      <Label fx:id="winnerText" layoutX="22.0" layoutY="199.0" textAlignment="CENTER" textFill="#c6c600">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="30.0" />
          </font>
