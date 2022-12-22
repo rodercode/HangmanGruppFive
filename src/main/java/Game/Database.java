@@ -10,11 +10,11 @@ public class Database {
     private static final Database instance = new Database();
    private HashMap<Integer, String> listOfWords;
    private HashMap<Integer,Integer> playerScores;
+   private HashMap<Integer,Integer> playerMistakes;
    //private List<Integer> players;
    private int amountOfPlayers;
    private int currentPlayer;
    private int enemyPlayer;
-   private int score;
 
     private boolean isItGameOver;
     private boolean  didIScore;
@@ -23,11 +23,14 @@ public class Database {
         enemyPlayer = 2;
         listOfWords = new HashMap<>();
         playerScores = new HashMap<>();
+        playerMistakes = new HashMap<>();
+        playerMistakes.put(1,0);
+        playerMistakes.put(2,0);
         listOfWords.put(1, "KAFFE");
         listOfWords.put(2, "TE");
-        score = 5;
         isItGameOver = false;
         didIScore = false;
+
     }
 
     public void createPlayer(int howManyPlayers){
@@ -38,15 +41,23 @@ public class Database {
     }
 
     public void switchPlayer(){
-        currentPlayer++;
+       if (currentPlayer == 2){
+           currentPlayer--;
+           enemyPlayer++;
+       }else {
+           currentPlayer++;
+           enemyPlayer--;
+       }
     }
     public void addScore(int player){
+        int score = getPlayerScores().get(player) + 5;
         playerScores.put(player,score);
     }
-
-    public int getScore() {
-        return score;
+    public void addMistake(int player){
+        int mistake = getPlayerMistakes().get(player) +1;
+        playerMistakes.put(player,mistake);
     }
+
 
     public HashMap<Integer, Integer> getPlayerScores() {
         return playerScores;
@@ -107,5 +118,9 @@ public class Database {
 
     public void setAmountOfPlayers(int amountOfPlayers) {
         this.amountOfPlayers = amountOfPlayers;
+    }
+
+    public HashMap<Integer, Integer> getPlayerMistakes() {
+        return playerMistakes;
     }
 }

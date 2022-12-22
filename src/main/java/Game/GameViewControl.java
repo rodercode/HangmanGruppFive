@@ -16,149 +16,266 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.*;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
-import java.util.ResourceBundle;
-
 public class GameViewControl implements Initializable {
-
     // Variables
     private Database database;
-    private int mistakes;
-    private char[] encryptedWord;
-    private String theWord;
-
-    private boolean didIScore;
-
+    private int mistakesOne;
+    private int mistakeTwo;
+    private char[] encryptedWordOne;
+    private char[] encryptedWordTwo;
     private boolean isLetterCorrect;
-    private boolean isItGameOver;
+    private boolean wordCorrect = false;
+    private List<String> listOfBlueCake;
+    private List<String> listOfPinkCake;
+    private Image imageCakeBlue;
+    private Image imageCakePink;
+
+    private int currentPlayer;
+    private int enemyPlayer;
+    private HashMap<Integer, Label> listOfWordGuess;
+    private HashMap<Integer, char[]> listOfEncryptedWord;
 
     // FXML variables
     @FXML
-    private Label playerPlate;
+    private Label playerPlate1;
+    @FXML
+    private Label playerPlate2;
     @FXML
     private TextField userInput;
     @FXML
-    private Label wordGuess;
+    private Label wordGuess1;
+
     @FXML
-    private Label mistakePlate;
+    private Label wordGuess2;
+
     @FXML
-    private ImageView imageViewCake;
+    private ImageView imageViewCakeOne;
     @FXML
-    private Label scorePlate;
+    private ImageView imageViewCakeTwo;
+    @FXML
+    private Label scorePlate1;
+    @FXML
+    private Label scorePlate2;
+    @FXML
+    private Label mistakePlate1;
+    @FXML
+    private Label mistakePlate2;
 
     @FXML
     private Button enter;
 
     public GameViewControl() throws FileNotFoundException {
         database = Database.getInstance();
-        mistakes = 0;
+        mistakesOne = 0;
+        mistakeTwo = 0;
+        currentPlayer = 1;
+        enemyPlayer = 2;
         isLetterCorrect = false;
+
+        // word players create at the start
+        listOfWordGuess = new HashMap<>();
+        String theWordOne = database.getListOfWords().get(2);
+        String theWordTwo = database.getListOfWords().get(1);
+
+        // list of all EncryptedWord
+        encryptedWordOne = new char[theWordOne.length()];
+        encryptedWordTwo = new char[theWordTwo.length()];
+
+        listOfEncryptedWord = new HashMap<>();
+        listOfEncryptedWord.put(1, encryptedWordOne);
+        listOfEncryptedWord.put(2, encryptedWordTwo);
+
+        // list of Cake Pictures for the cake animation
+        listOfBlueCake = new ArrayList<>();
+        listOfPinkCake = new ArrayList<>();
+        addImagesToLists();
     }
 
     // Start method
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        database.createPlayer(2);
-        theWord = database.getListOfWords().get(database.getEnemyPlayer());
-        encryptedWord = new char[theWord.length()];
-        wordGuess.setAlignment(Pos.CENTER);
-        wordGuess.setText(displayHiddenWord());
-        imageViewCake.setImage(imageCake10);
-        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
+        highlightPlayer();
+        // display encrypted word to Player One
+        wordGuess1.setAlignment(Pos.BASELINE_LEFT);
+        wordGuess1.setText(displayHiddenWord(encryptedWordOne));
+
+        // display encrypted word to Player Two
+        wordGuess2.setAlignment(Pos.BASELINE_CENTER);
+        wordGuess2.setText(displayHiddenWord(encryptedWordTwo));
+
+        // put encrypted words in a hashmap
+        listOfWordGuess.put(1, wordGuess1);
+        listOfWordGuess.put(2, wordGuess2);
+
+        database.getPlayerMistakes().put(1,0);
+        database.getPlayerMistakes().put(2,0);
+
+        // set Cake Image Pink and Blue
+        importImagePinkCake();
+        importImageBlueCake();
+
+        imageViewCakeOne.setImage(imageCakeBlue);
+        imageViewCakeTwo.setImage(imageCakePink);
+
+        scorePlate1.setText("Score: "+database.getPlayerScores().get(1));
+        scorePlate2.setText("Score: "+database.getPlayerScores().get(2));
+
     }
+    public void importImagePinkCake(){
+        try {
+            imageCakePink = new Image(new FileInputStream(listOfPinkCake.get(database.getPlayerMistakes().get(1))));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-
-    public void switchPlayer() {
-        database.switchPlayer();
-        mistakes = 0;
-        playerPlate.setText("Player " + database.getCurrentPlayer() + "'s Turn");
-        scorePlate.setText("Score: " + database.getPlayerScores().get(2));
-        switchTheWord();
-        if (database.getCurrentPlayer() < 5) {
-            //Start menu. 
+    }
+    public void importImageBlueCake(){
+        try {
+            imageCakeBlue = new Image(new FileInputStream(listOfBlueCake.get(database.getPlayerMistakes().get(2))));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
-    // switch from player 2 to Player 1's word
-    public void switchTheWord() {
-        theWord = database.getListOfWords().get(1);
-        encryptedWord = new char[theWord.length()];
-        wordGuess.setText(displayHiddenWord());
+
+    // change color of Player One and Player Two labels
+    public void highlightPlayer() {
+        if (currentPlayer == 1) {
+            playerPlate2.setStyle("-fx-text-fill: grey");
+            mistakePlate2.setStyle("-fx-text-fill: grey");
+            scorePlate2.setStyle("-fx-text-fill: grey");
+
+            playerPlate1.setStyle("-fx-text-fill: #f797c7 ");
+            mistakePlate1.setStyle("-fx-text-fill: #f797c7 ");
+            scorePlate1.setStyle("-fx-text-fill: #f797c7 ");
+
+        } else if (currentPlayer == 2) {
+            playerPlate1.setStyle("-fx-text-fill: grey");
+            mistakePlate1.setStyle("-fx-text-fill: grey");
+            scorePlate1.setStyle("-fx-text-fill: grey");
+
+            playerPlate2.setStyle("-fx-text-fill: #6db8e4 ");
+            mistakePlate2.setStyle("-fx-text-fill: #6db8e4 ");
+            scorePlate2.setStyle("-fx-text-fill: #6db8e4 ");
+        }
     }
 
-    public char[] generateHiddenWord() {
+    // add all Cake images to two separate lists
+    public void addImagesToLists() {
+        for (int i = 0; i < 11; i++) {
+            listOfBlueCake.add("src/main/resources/cakeBlue/cakeBlue" + i + " cat.png");
+            listOfPinkCake.add("src/main/resources/cakePink/cakePink" + i + " cat.png");
+        }
+    }
+
+    // Switch from current Player to the opponent
+    public void switchPlayer() {
+        if (currentPlayer == 2) {
+            currentPlayer--;
+            enemyPlayer++;
+        } else if (currentPlayer == 1) {
+            currentPlayer++;
+            enemyPlayer--;
+        }
+    }
+
+    // Generate an encrypted word
+    public char[] generateHiddenWord(char[] encryptedWord) {
         Arrays.fill(encryptedWord, '_');
         return encryptedWord;
     }
 
-    public String displayHiddenWord() {
-        String newWord = String.valueOf(generateHiddenWord());
+    // Display an encrypted word
+    public String displayHiddenWord(char[] encryptedWord) {
+        String newWord = String.valueOf(generateHiddenWord(encryptedWord));
         return newWord.replace("", " ").trim();
     }
 
-    public void checkGuess(char letter, String guessWord) {
+    // check if userInput letter match any letters in the opponent's word
+    public void checkGuess(char letter, String guessWord, char[] encryptedWord, Label wordGuess) {
         for (int i = 0; i < encryptedWord.length; i++) {
             if (guessWord.charAt(i) == letter) {
-                System.out.println(guessWord.charAt(i));
-                System.out.println(letter);
                 encryptedWord[i] = letter;
                 isLetterCorrect = true;
             }
         }
+
         checkAnswer();
-        String newHiddenWord = String.valueOf(encryptedWord);
-        wordGuess.setText(newHiddenWord.replace("", " ").trim());
+        String s = String.valueOf(encryptedWord);
+        wordGuess.setText(s.replace("", " ").trim());
     }
 
+    // check if userInput was correct or incorrect and switch player
     public void checkAnswer() {
-        if (isLetterCorrect) {
-            correctAnswer();
+        if (isWordCorrect(listOfEncryptedWord.get(currentPlayer))) {
+            getPoint();
+        } else if (isLetterCorrect) {
+            isLetterCorrect = false;
         } else {
             makeAMistake();
         }
+        switchPlayer();
     }
 
+    // if Player made a Mistake
     public void makeAMistake() {
-        if(mistakes <10 && !isWordCorrect()){
-            mistakes++;
-            displayCakeImage();
+        if (database.getPlayerMistakes().get(currentPlayer) < 10){
+            if (currentPlayer == 1) {
+                database.addMistake(1);
+                mistakePlate1.setText("Mistake: " + database.getPlayerMistakes().get(1) + "/10");
+                importImagePinkCake();
+                imageViewCakeTwo.setImage(imageCakePink);
+            } else if (currentPlayer == 2) {
+                database.addMistake(2);
+                mistakePlate2.setText("Mistake: " + database.getPlayerMistakes().get(2) + "/10");
+                importImageBlueCake();
+                imageViewCakeOne.setImage(imageCakeBlue);
+                if(database.getPlayerMistakes().get(2) == 10){
+                    try {
+                        switchGameScene();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        } //else if (database.getPlayerMistakes().get(2) == 9){
+            //System.out.println(":D");
+          //  try {
+                //switchGameScene();
+            //} catch (IOException e) {
+              //  throw new RuntimeException(e);
+            //}
         }
-        else if (mistakes == 10) {
-            enter.setText("Next");
-            database.setItGameOver(true);
-        }
 
-        mistakePlate.setText("Mistake: " + mistakes + "/10");
-    }
 
-    public void correctAnswer() {
-        isLetterCorrect = false;
-        getPoint();
-    }
-
-    public boolean isWordCorrect() {
+    public boolean isWordCorrect(char[] encryptedWord) {
         String s = String.valueOf(encryptedWord);
-
-        if (theWord.equals(s)) {
+        if (database.getListOfWords().get(enemyPlayer).equals(s)) {
             return true;
-
         } else {
             return false;
         }
     }
+
+    // if player figure out theWord
     public void getPoint() {
-        String s = String.valueOf(encryptedWord);
-        if (isWordCorrect()) {
-            enter.setText("Next");
-            database.addScore(database.getCurrentPlayer());
-            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
-            database.setDidIScore(true);
+        if (currentPlayer == 1) {
+            database.addScore(1);
+            scorePlate1.setText("Score: " + database.getPlayerScores().get(1));
+        } else if (currentPlayer == 2) {
+            database.addScore(2);
+            scorePlate2.setText("Score: " + database.getPlayerScores().get(2));
+        }
+        try {
+            switchGameScene();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -167,48 +284,70 @@ public class GameViewControl implements Initializable {
         Stage window = (Stage) enter.getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
     @FXML
     public void pressEnter() throws IOException {
-        String s = String.valueOf(encryptedWord);
-        if (userInput.getText().toUpperCase().equals(theWord)) {
-            userInput.setText("");
-            database.addScore(database.getCurrentPlayer());
-            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
-            switchPlayer();
-            System.out.println("You get a point");
-        } else if (isWordCorrect()) {
-            switchGameScene();
-            switchPlayer();
-        } else if (!isWordCorrect()){
-            switchGameScene();
-            switchPlayer();
-        }
-        userInput.setText("");
-        System.out.println("Fel");
+
+//        String s = String.valueOf(encryptedWord);
+//        if (userInput.getText().toUpperCase().equals(theWord)) {
+//            userInput.setText("");
+//            database.addScore(database.getCurrentPlayer());
+//            scorePlate.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+//            switchPlayer();
+//            System.out.println("You get a point");
+//        } else if (isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        } else if (!isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        }
+//        userInput.setText("");
+//        System.out.println("Fel");
+
+//        String s = String.valueOf(encryptedWordOne);
+//        if (userInput.getText().toUpperCase().equals()) {
+//            userInput.setText("");
+//            database.addScore(database.getCurrentPlayer());
+//            scorePlate1.setText("Score: " + database.getPlayerScores().get(database.getCurrentPlayer()));
+//            switchPlayer();
+//            System.out.println("You get a point");
+//        } else if (isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        } else if (!isWordCorrect()) {
+//            switchGameScene();
+//            switchPlayer();
+//        }
+//        userInput.setText("");
+//        System.out.println("Fel");
+
     }
-    // Cake animation
+
+    // Cake animation which change after each mistake
     @FXML
-    public void displayCakeImage() {
-        if (mistakes == 1)
-            imageViewCake.setImage(imageCake9);
-        else if (mistakes == 2)
-            imageViewCake.setImage(imageCake8);
-        else if (mistakes == 3)
-            imageViewCake.setImage(imageCake7);
-        else if (mistakes == 4)
-            imageViewCake.setImage(imageCake6);
-        else if (mistakes == 5)
-            imageViewCake.setImage(imageCake5);
-        else if (mistakes == 6)
-            imageViewCake.setImage(imageCake4);
-        else if (mistakes == 7)
-            imageViewCake.setImage(imageCake3);
-        else if (mistakes == 8)
-            imageViewCake.setImage(imageCake2);
-        else if (mistakes == 9)
-            imageViewCake.setImage(imageCake1);
-        else if (mistakes == 10)
-            imageViewCake.setImage(imageCake0);
+    public void displayCakeImage(ImageView imageViewCake, Image imageCake) {
+        imageViewCake.setImage(imageCake);
+//        if (mistakes == 1)
+//            imageViewCake.setImage(imageCakeBlue9);
+//        else if (mistakes == 2)
+//            imageViewCake.setImage(imageCakeBlue8);
+//        else if (mistakes == 3)
+//            imageViewCake.setImage(imageCakeBlue7);
+//        else if (mistakes == 4)
+//            imageViewCake.setImage(imageCakeBlue6);
+//        else if (mistakes == 5)
+//            imageViewCake.setImage(imageCakeBlue5);
+//        else if (mistakes == 6)
+//            imageViewCake.setImage(imageCakeBlue4);
+//        else if (mistakes == 7)
+//            imageViewCake.setImage(imageCakeBlue3);
+//        else if (mistakes == 8)
+//            imageViewCake.setImage(imageCakeBlue2);
+//        else if (mistakes == 9)
+//            imageViewCake.setImage(imageCakeBlue1);
+//        else if (mistakes == 10)
+//            imageViewCake.setImage(imageCakeBlue0);
     }
     // End of Cake Animation
 
@@ -216,31 +355,10 @@ public class GameViewControl implements Initializable {
     @FXML
     public void handleButtonPress(ActionEvent event) {
         Button button = (Button) event.getSource();
-        checkGuess(button.getText().charAt(0), theWord);
+        checkGuess(button.getText().charAt(0), database.getListOfWords().get(enemyPlayer), listOfEncryptedWord.get(currentPlayer), listOfWordGuess.get(currentPlayer));
+//        button.setStyle("-fx-background-color: white");
+//        button.setStyle("-fx-text-fill: white");
+        highlightPlayer();
     }
-
-
-    Image imageCake10 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue10 cat.png"));
-
-    Image imageCake9 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue9 cat.png"));
-
-    Image imageCake8 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue8 cat.png"));
-
-    Image imageCake7 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue7 cat.png"));
-
-    Image imageCake6 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue6 cat.png"));
-
-    Image imageCake5 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue5 cat.png"));
-
-    Image imageCake4 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue4 cat.png"));
-
-    Image imageCake3 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue3 cat.png"));
-
-    Image imageCake2 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue2 cat.png"));
-
-    Image imageCake1 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue1 cat.png"));
-
-    Image imageCake0 = new Image(new FileInputStream("src/main/resources/cakeBlue/cakeBlue0 cat.png"));
-    // end of Images
 }
 
